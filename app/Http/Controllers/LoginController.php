@@ -23,8 +23,9 @@ class LoginController extends Controller
             $user = auth()->user()->role;
             if ($user == 'admin') {
                 return redirect()->route('dashboard');
+            }else {
+                return redirect()->route('dashboard.kelurahan');
             }
-            return redirect()->route('umum');
         }
 
         return back()->with('status', 'Username atau Password salah');

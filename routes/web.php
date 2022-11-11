@@ -3,6 +3,8 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PenerimaController;
+use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,10 +22,17 @@ Route::middleware(['guest'])->group(function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::prefix('dashboard')->group(function () {
-        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-        Route::resource('/kriteria', KriteriaController::class);
-        Route::get('/kelurahan', [DashboardController::class, 'kelurahan'])->name('dashboard.kelurahan');
-        Route::resource('user', UserController::class);
+        Route::group(['middleware' => ['role:admin']], function(){
+
+            Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+            Route::resource('/kriteria', KriteriaController::class);
+            Route::resource('/survey', SurveyController::class);
+            Route::resource('/user', UserController::class);
+        });
+        Route::group(['middleware' => ['role:kelurahan']], function() {
+            Route::get('/kelurahan', [DashboardController::class, 'kelurahan'])->name('dashboard.kelurahan');
+            Route::resource('/penerima', PenerimaController::class);
+        });
 
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 

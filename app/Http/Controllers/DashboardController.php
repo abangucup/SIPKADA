@@ -9,7 +9,11 @@ class DashboardController extends Controller
 {
     public function index()
     {
-
         return view('admin.dashboard');
+    }
+
+    public function kelurahan()
+    {
+        return view('kelurahan.dashboard');
     }
 }

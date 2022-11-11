@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         $users = [
             ['name' => 'Hasda Damopilii', 'username' => 'hasda', 'password' => Hash::make('password'), 'role' => 'admin'],
+            ['name' => 'Kelurahan Hasda', 'username' => 'kelurahan', 'password' => Hash::make('password'), 'role' => 'kelurahan'],
         ];
 
         foreach ($users as $user) {

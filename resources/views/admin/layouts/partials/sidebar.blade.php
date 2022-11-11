@@ -1,6 +1,7 @@
 <div class="sidebar" id="sidebar">
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
+            @if (auth()->user()->role == 'admin')
             <ul>
                 <li class="{{Request::is('dashboard') ? 'active' : ''}}">
                     <a href="{{ route('dashboard')}}"><i class="fas fa-home"></i> <span>Dashboard</span></a>
@@ -10,8 +11,8 @@
                         <span>Kriteria</span>
                     </a>
                 </li>
-                <li class="{{Request::is('dashboard/penerima') ? 'active' : ''}}">
-                    <a href="pricing.html"><i class="fa fa-hand-holding-heart"></i><span>Penerima Bantuan</span></a>
+                <li class="{{Request::is('dashboard/survey') ? 'active' : ''}}">
+                    <a href="{{ route('survey.index')}}"><i class="fa fa-hand-holding-heart"></i><span>Survey Penerima</span></a>
                 </li>
                 <li class="{{Request::is('dashboard/rank') ? 'active' : ''}}">
                     <a href="pricing.html"><i class="fa fe-table"></i><span>Rangking</span></a>
@@ -23,6 +24,19 @@
                     <a href="pricing.html"><i class="fas fa-book"></i> <span>Laporan</span></a>
                 </li>
             </ul>
+            @elseif(auth()->user()->role == 'kelurahan')
+            <ul>
+                <li class="{{Request::is('dashboard') ? 'active' : ''}}">
+                    <a href="{{ route('dashboard')}}"><i class="fas fa-home"></i> <span>Dashboard</span></a>
+                </li>
+                <li class="{{Request::is('dashboard/survey') ? 'active' : ''}}">
+                    <a href="{{ route('survey.index')}}"><i class="fa fa-hand-holding-heart"></i><span>Data Penerima</span></a>
+                </li>
+                <li class="{{Request::is('dashboard/laporan') ? 'active' : ''}}">
+                    <a href="pricing.html"><i class="fas fa-book"></i> <span>Laporan</span></a>
+                </li>
+            </ul>
+            @endauth
         </div>
     </div>
 </div>
