@@ -29,10 +29,10 @@
             </ul>
             @elseif(auth()->user()->role == 'kelurahan')
             <ul>
-                <li class="{{Request::is('dashboard') ? 'active' : ''}}">
-                    <a href="{{ route('dashboard')}}"><i class="fas fa-home"></i> <span>Dashboard</span></a>
+                <li class="{{Request::is('kelurahan') ? 'active' : ''}}">
+                    <a href="{{ route('dashboard.kelurahan')}}"><i class="fas fa-home"></i> <span>Dashboard</span></a>
                 </li>
-                <li class="{{Request::is('dashboard/penerima') ? 'active' : ''}}">
+                <li class="{{Request::is('kelurahan/penerima') ? 'active' : ''}}">
                     <a href="{{ route('penerima.index')}}"><i class="fa fa-hand-holding-heart"></i><span>Data Penerima</span></a>
                 </li>
                 <li class="{{Request::is('dashboard/laporan') ? 'active' : ''}}">

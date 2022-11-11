@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelurahan;
 use App\Models\Penerima;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -17,7 +18,7 @@ class DashboardController extends Controller
 
     public function kelurahan()
     {
-        $penerimas = Penerima::all();
+        $penerimas = Penerima::where('kelurahan_id', auth()->user()->kelurahan_id)->get();
         return view('kelurahan.dashboard', compact(['penerimas']));
     }
 }

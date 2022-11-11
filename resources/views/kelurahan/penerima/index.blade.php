@@ -18,8 +18,7 @@
                     </nav>
                 </div>
                 <div class="card-body col-md-6 col-sm-12">
-                    {{-- <button class="btn btn-primary">Tambah User</button> --}}
-                    <a href="{{ route('kriteria.create')}}" class="btn btn-primary float-right veiwbutton"><i class="fas fa-plus pr-2"></i> Tambah Kriteria</a>
+                    <a href="{{ route('penerima.create')}}" class="btn btn-primary float-right veiwbutton"><i class="fas fa-plus pr-2"></i> Tambah Penerima</a>
                 </div>
 
             </div>

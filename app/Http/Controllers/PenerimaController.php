@@ -12,4 +12,14 @@ class PenerimaController extends Controller
         $penerimas = Penerima::all();
         return view('kelurahan.penerima.index', compact(['penerimas']));
     }
+
+    public function create()
+    {
+        return view('kelurahan.penerima.create');
+    }
+
+    public function edit($id)
+    {
+        return view('kelurahan.penerima.edit');
+    }
 }

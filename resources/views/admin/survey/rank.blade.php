@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Survey')
+@section('title', 'Rangking')
 
 @section('content')
 <div class="page-header mt-5">

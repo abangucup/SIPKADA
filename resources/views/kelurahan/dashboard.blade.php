@@ -28,37 +28,8 @@
     <div class="col-md-12 col-lg-6">
         <div class="card card-chart">
             <div class="card-header">
-                <h4 class="card-title">Nama Penerima Bantuan</h4>
+                <h4 class="card-title">Nama Penerima Bantuan Di {{ auth()->user()->kelurahan->nama}}</h4>
             </div>
-            {{-- <div class="card-body">
-                <div id="donut-chart"></div>
-            </div> --}}
-            {{-- <div class="card">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="datatable table table-stripped">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>NIK</th>
-                                    <th>Nama</th>
-                                    <th>Alamat</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-
-
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div> --}}
             <div class="table-responsive">
                 <table class="table mb-0">
                     <thead>
@@ -71,10 +42,11 @@
                     </thead>
                     <tbody>
                         @foreach ($penerimas as $penerima)
+                            
                         <tr>
                             <td>{{ $loop->iteration}}</td>
-                            <td>{{ $penerima->nama}}</td>
                             <td>{{ $penerima->nik}}</td>
+                            <td>{{ $penerima->nama}}</td>
                             <td>{{ $penerima->alamat}}</td>
                         </tr>
                         @endforeach

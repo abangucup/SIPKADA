@@ -13,9 +13,9 @@
                 <div class="card-body col-md-6 col-sm-12">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0">
-                            <h4 class="breadcrumb-item pl-4"><a href="{{ route('dashboard')}}"
-                                    class="text-primary ps-4">Dashboard</a></h4>
-                            <h4 class="breadcrumb-item active" aria-current="dashbaord">User</h4>
+                            <h5 class="breadcrumb-item pl-4"><a href="{{ route('dashboard')}}"
+                                    class="text-primary ps-4">Dashboard</a></h5>
+                            <h5 class="breadcrumb-item active" aria-current="dashbaord">User</h5>
                         </ol>
                     </nav>
                 </div>
