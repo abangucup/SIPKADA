@@ -19,7 +19,7 @@
             <div class="card-body">
                 <div class="dash-widget-header">
                     <div>
-                        <h3 class="card_widget_header">200</h3>
+                        <h3 class="card_widget_header">{{ $penerima}}</h3>
                         <h6 class="text-bold">Total Penerima Batuan</h6>
                     </div>
                     <div class="ml-auto mt-md-3 mt-lg-0">
@@ -41,7 +41,7 @@
             <div class="card-body">
                 <div class="dash-widget-header">
                     <div>
-                        <h3 class="card_widget_header">180</h3>
+                        <h3 class="card_widget_header">{{ $kelurahan}}</h3>
                         <h6 class="text-bold">Total Kelurahan</h6>
                     </div>
                     <div class="ml-auto mt-md-3 mt-lg-0">

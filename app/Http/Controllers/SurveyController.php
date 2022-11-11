@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class SurveyController extends Controller
 {
+
+    public function rank()
+    {
+        return view('admin.survey.rank');
+    }
     public function index()
     {
         $kriterias = Kriteria::all();

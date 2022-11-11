@@ -70,12 +70,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($penerimas as $penerima)
                         <tr>
-                            <td>John</td>
-                            <td>Doe</td>
-                            <td>#</td>
-                            <td>#</td>
+                            <td>{{ $loop->iteration}}</td>
+                            <td>{{ $penerima->nama}}</td>
+                            <td>{{ $penerima->nik}}</td>
+                            <td>{{ $penerima->alamat}}</td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

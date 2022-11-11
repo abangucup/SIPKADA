@@ -13,7 +13,7 @@
                         <ol class="breadcrumb mb-0">
                             <h5 class="breadcrumb-item pl-4"><a href="{{ route('dashboard')}}"
                                     class="text-primary ps-4">Dashboard</a></h5>
-                            <h5 class="breadcrumb-item active" aria-current="dashbaord">Survey</h5>
+                            <h5 class="breadcrumb-item active" aria-current="dashbaord">Ranking</h5>
                         </ol>
                     </nav>
                 </div>
@@ -34,24 +34,22 @@
                                     <th>Nama</th>
                                     <th>Jenis Kelamin</th>
                                     <th>Alamat</th>
-                                    <th>Aksi</th>
+                                    <th>Total Nilai</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($penerimas as $penerima)
+                                {{-- @foreach ($penerimas as $penerima) --}}
                                 <tr>
 
 
-                                    <td>{{ $loop->iteration}}</td>
-                                    <td>{{ $penerima->nik}}</td>
-                                    <td>{{ $penerima->nama}}</td>
-                                    <td>{{ $penerima->jk}}</td>
-                                    <td>{{ $penerima->alamat}}</td>
-                                    <td>
-                                        <button class="btn btn-success">Survey</button>
-                                    </td>
+                                    <td>#</td>
+                                    <td>#</td>
+                                    <td>#</td>
+                                    <td>#</td>
+                                    <td>#</td>
+                                    <td>2000</td>
                                 </tr>
-                                @endforeach
+                                {{-- @endforeach --}}
                             </tbody>
                         </table>
                     </div>

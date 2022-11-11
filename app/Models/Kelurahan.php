@@ -5,20 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Penerima extends Model
+class Kelurahan extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'nik',
         'nama',
-        'jk',
-        'alamat',
-        'kelurahan_id',
+        'lokasi'
     ];
 
-    public function kelurahan()
+    public function user()
     {
-        return $this->belongsTo(Kelurahan::class);
+        return $this->hasOne(User::class);
     }
+
+    public function penerima()
+    {
+        return $this->hasMany(Penerima::class);
+    }
+    
 }

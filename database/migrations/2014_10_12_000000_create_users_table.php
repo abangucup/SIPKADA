@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('profile')->nullable();
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->string('email')->nullable()->unique();
             $table->string('password');
             $table->enum('role', ['admin', 'kelurahan']);
+            $table->foreignId('kelurahan_id')->nullable()->constrained();
             $table->rememberToken();
             $table->timestamps();
         });
