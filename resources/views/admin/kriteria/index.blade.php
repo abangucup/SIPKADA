@@ -1,10 +1,8 @@
 @extends('admin.layouts.app')
 
-@section('title', 'User')
+@section('title', 'Kriteria')
 
 @section('content')
-
-
 <div class="page-header mt-5">
     <section class="comp-section">
         <div class="card">
@@ -15,12 +13,13 @@
                         <ol class="breadcrumb mb-0">
                             <h4 class="breadcrumb-item pl-4"><a href="{{ route('dashboard')}}"
                                     class="text-primary ps-4">Dashboard</a></h4>
-                            <h4 class="breadcrumb-item active" aria-current="dashbaord">User</h4>
+                            <h4 class="breadcrumb-item active" aria-current="dashbaord">Kriteria</h4>
                         </ol>
                     </nav>
                 </div>
-                <div class="card-body col-md-6 col-sm-12 text-right">
-                    <button class="btn btn-primary">Tambah User</button>
+                <div class="card-body col-md-6 col-sm-12">
+                    {{-- <button class="btn btn-primary">Tambah User</button> --}}
+                    <a href="{{ route('kriteria.create')}}" class="btn btn-primary float-right veiwbutton"><i class="fas fa-plus pr-2"></i> Tambah Kriteria</a>
                 </div>
 
             </div>
@@ -35,27 +34,27 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama</th>
-                                    <th>Username</th>
-                                    <th>Level</th>
+                                    <th>Kriteria</th>
+                                    <th>Bobot</th>
+                                    <th>Keterangan</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($kriterias as $kriteria)
                                 <tr>
-                                    @foreach ($users as $user)
 
 
                                     <td>{{ $loop->iteration}}</td>
-                                    <td>{{ $user->name}}</td>
-                                    <td>{{ $user->username}}</td>
-                                    <td>{{ $user->role}}</td>
+                                    <td>{{ $kriteria->nama}}</td>
+                                    <td>{{ $kriteria->bobot}}</td>
+                                    <td>{{ $kriteria->keterangan}}</td>
                                     <td>
-                                        <a href="" class="pr-3"><i class="fas fa-edit"></i> Edit</a>
+                                        <a href="{{ route('kriteria.edit', $kriteria->id)}}" class="pr-3"><i class="fas fa-edit"></i> Edit</a>
                                         <a href=""><i class="fas fa-trash"></i> Hapus</a>
                                     </td>
-                                    @endforeach
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -64,5 +63,4 @@
         </div>
     </div>
 </div>
-
 @endsection
