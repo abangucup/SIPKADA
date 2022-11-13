@@ -51,8 +51,12 @@
                                     <td>{{ $penerima->jk}}</td>
                                     <td>{{ $penerima->alamat}}</td>
                                     <td>
-                                        <a href="{{ route('penerima.edit', $penerima->id)}}" class="pr-3"><i class="fas fa-edit"></i> Edit</a>
-                                        <a href=""><i class="fas fa-trash"></i> Hapus</a>
+                                        <a href="{{ route('penerima.edit', $penerima->id)}}" class="col-sm-5 float-left btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
+                                        <form action="{{ route('penerima.destroy', $penerima->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                                <button type="submit" class="col-sm-6 btn btn-danger float-right"><i class="fas fa-trash"></i> Hapus</button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach

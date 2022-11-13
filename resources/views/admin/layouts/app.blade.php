@@ -21,6 +21,7 @@
         @include('admin.layouts.partials.sidebar')
         <div class="page-wrapper">
             <div class="content container-fluid">
+                @include('sweetalert::alert')
                 @yield('content')
             </div>
         </div>

@@ -30,32 +30,40 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="font-weight-bold">NIK</label>
-                            <input class="form-control" type="text" placeholder="NIK" name="nik" required>
+                            <input class="form-control" type="text" placeholder="NIK" name="nik" value="{{ old('nik') }}" required>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="font-weight-bold">Nama</label>
-                            <input class="form-control" type="text" placeholder="Nama Penerima" name="nama" required>
+                            <input class="form-control" type="text" placeholder="Nama Penerima" name="nama" value="{{ old('nama') }}" required>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="font-weight-bold">Jenis Kelamin</label>
                             <select class="form-control" name="jk">
-                                <option>-- Select --</option>
+                                <option value="pria">Pria</option>
+                                <option value="wanita">Wanita</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Kelurahan</label>
+                            <input class="form-control" type="text" placeholder="{{ $kelurahan->nama}}"
+                                name="kelurahan_id" value="{{$kelurahan->id}}" readonly>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="font-weight-bold">Alamat</label>
                             <input class="form-control" type="text" placeholder="Alamat Penerima"
-                                name="alamat" required>
+                                name="alamat" value="{{ old('alamat') }}" required>
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Tambah Kelurahan</button>
+                <button type="submit" class="btn btn-primary">Tambah Penerima</button>
             </form>
         </div>
     </div>
