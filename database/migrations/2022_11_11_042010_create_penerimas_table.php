@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nama');
             $table->enum('jk', ['pria', 'wanita']);
             $table->string('alamat');
-            $table->foreignId('kelurahan_id')->nullable()->constrained();
+            $table->foreignId('kelurahan_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -36,6 +36,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
+                                    <th>Kelurahan</th>
                                     <th>Username</th>
                                     <th>Level</th>
                                     <th>Action</th>
@@ -46,11 +47,16 @@
                                 <tr>
                                     <td>{{ $loop->iteration}}</td>
                                     <td>{{ $user->name}}</td>
+                                    <td>{{ $user->kelurahan->nama ?? '-'}}</td>
                                     <td>{{ $user->username}}</td>
                                     <td>{{ $user->role}}</td>
                                     <td>
-                                        <a href="" class="pr-3"><i class="fas fa-edit"></i> Edit</a>
-                                        <a href=""><i class="fas fa-trash"></i> Hapus</a>
+                                        <a href="#" class="col-sm-5 float-left btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
+                                        <form action="#" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                                <button type="submit" class="col-sm-6 btn btn-danger float-right"><i class="fas fa-trash"></i> Hapus</button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach

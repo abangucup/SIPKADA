@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('email')->nullable()->unique();
             $table->string('password');
             $table->enum('role', ['admin', 'kelurahan']);
-            $table->foreignId('kelurahan_id')->nullable()->constrained();
+            $table->foreignId('kelurahan_id')->nullable()->constrained()->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

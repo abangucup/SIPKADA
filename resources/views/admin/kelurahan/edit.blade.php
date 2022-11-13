@@ -15,7 +15,7 @@
                                     class="text-primary ps-4">Dashboard</a></h5>
                             <h5 class="breadcrumb-item active" aria-current="dashbaord"><a href="{{ route('kelurahan.index')}}"
                                 class="text-primary ps-4">Kelurahan</a></h5>
-                            <h5 class="breadcrumb-item active" aria-current="dashbaord">Edit Kelurahan</h5>
+                            <h5 class="breadcrumb-item active" aria-current="dashbaord">Edit Kelurahan <b>{{$kelurahan->nama}}</b></h5>
                         </ol>
                     </nav>
                 </div>
@@ -24,18 +24,20 @@
     </section>
     <div class="row d-flex justify-content-center">
         <div class="col-lg-6">
-            <form>
+            <form action="{{ route('kelurahan.update', $kelurahan->id)}}" method="POST">
+                @csrf
+                @method('PUT')
                 <div class="row mt-3">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="font-weight-bold">Kelurahan</label>
-                            <input class="form-control" type="text" placeholder="Nama Kelurahan" name="nama" required>
+                            <input class="form-control" type="text" placeholder="Nama Kelurahan" name="nama" value="{{ old('nama', $kelurahan->nama)}}" required>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="font-weight-bold">Lokasi</label>
-                            <input class="form-control" type="text" placeholder="Lokasi / Tempat Kelurahan" name="lokasi" required>
+                            <input class="form-control" type="text" placeholder="Lokasi / Tempat Kelurahan" name="lokasi" value="{{ old('lokasi', $kelurahan->lokasi)}}" required>
                         </div>
                     </div>
                 </div>

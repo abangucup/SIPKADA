@@ -34,6 +34,7 @@
                                     <th>Nama</th>
                                     <th>Jenis Kelamin</th>
                                     <th>Alamat</th>
+                                    <th>Kelurahan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -47,6 +48,7 @@
                                     <td>{{ $penerima->nama}}</td>
                                     <td>{{ $penerima->jk}}</td>
                                     <td>{{ $penerima->alamat}}</td>
+                                    <td>{{ $penerima->kelurahan->nama}}</td>
                                     <td>
                                         <button class="btn btn-success">Survey</button>
                                     </td>

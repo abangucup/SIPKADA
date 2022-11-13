@@ -47,12 +47,16 @@
 
                                     <td>{{ $loop->iteration}}</td>
                                     <td>{{ $kelurahan->nama}}</td>
-                                    <td>{{ $kelurahan->user->name}}</td>
+                                    <td>{{ $kelurahan->user->name ?? 'Belum Ada User'}}</td>
                                     <td>{{ $kelurahan->lokasi}}</td>
 
                                     <td>
-                                        <a href="{{ route('kelurahan.edit', $kelurahan->id)}}" class="pr-3"><i class="fas fa-edit"></i> Edit</a>
-                                        <a href=""><i class="fas fa-trash"></i> Hapus</a>
+                                        <a href="{{ route('kelurahan.edit', $kelurahan->id)}}" class="col-sm-5 float-left btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
+                                        <form action="{{ route('kelurahan.destroy', $kelurahan->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                                <button type="submit" class="col-sm-6 btn btn-danger float-right"><i class="fas fa-trash"></i> Hapus</button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach
