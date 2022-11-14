@@ -4,7 +4,6 @@
 
 @section('content')
 
-
 <div class="page-header mt-5">
     <section class="comp-section">
         <div class="card">
@@ -19,8 +18,8 @@
                         </ol>
                     </nav>
                 </div>
-                <div class="card-body col-md-6 col-sm-12 text-right">
-                    <button class="btn btn-primary">Tambah User</button>
+                <div class="card-body col-md-6 col-sm-12">
+                    <a href="{{ route('user.create')}}" class="btn btn-primary float-right veiwbutton"><i class="fas fa-plus pr-2"></i> Tambah User</a>
                 </div>
 
             </div>
@@ -51,8 +50,8 @@
                                     <td>{{ $user->username}}</td>
                                     <td>{{ $user->role}}</td>
                                     <td>
-                                        <a href="#" class="col-sm-5 float-left btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
-                                        <form action="#" method="POST">
+                                        <a href="{{ route('user.edit', $user->id)}}" class="col-sm-5 float-left btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
+                                        <form action="{{ route('user.destroy', $user->id)}}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                                 <button type="submit" class="col-sm-6 btn btn-danger float-right"><i class="fas fa-trash"></i> Hapus</button>
