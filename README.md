@@ -39,7 +39,7 @@ _Judul:_ __Implementasi Metode SMART Pada Sistem Rekomendasi Pemilihan Smartphon
 
 *Cukup Sekian* :+1:
 
-## Screenshots
+<!-- ## Screenshots
 
 ### User Page
 #### Homepage
@@ -117,4 +117,4 @@ Halaman Data Manajemen User
 
 #### Configuration Page
 ![config](https://i.imgur.com/U6Lsn5K.png)
-Halaman Konfigurasi
+Halaman Konfigurasi -->
