@@ -23,29 +23,48 @@
         </div>
     </section>
     <div class="row d-flex justify-content-center">
-        <div class="col-lg-6">
+        <div class="col-lg-10">
             <form action="{{ route('kriteria.store')}}" method="POST">
                 @csrf
-                <div class="row mt-3">
-                    <div class="col-md-12">
+                <div class="row mt-3 justify-content-center">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label class="font-weight-bold">Kriteria</label>
-                            <input class="form-control" type="text" placeholder="Kritieria" name="nama" required>
+                            <label class="font-weight-bold">Kode <span class="text-danger">*
+                            </span></label>
+                            <input class="form-control" type="text" placeholder="Kritieria" name="kode" 
+                            value="{{"C".$count+1}}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-bold">Kriteria <span class="text-danger">*
+                                </span></label>
+                            <input class="form-control" type="text" placeholder="Contoh : Kewarganegaraan" name="nama" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-bold">Keterangan <span class="text-danger">*
+                                </span></label>
+                            <textarea class="form-control" rows="5" name="keterangan" placeholder="Keterangan Kriteria"
+                                required></textarea>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label class="font-weight-bold">Bobot Kriteria</label>
-                            <input class="form-control" type="number" placeholder="Bobot" name="bobot" required>
+                            <label class="font-weight-bold">Bobot Kriteria <span class="text-danger">*
+                                </span></label>
+                            <input class="number form-control" type="number" placeholder="0-100" name="bobot" required>
                         </div>
-                    </div>
-                    <div class="col-md-12">
                         <div class="form-group">
-                            <label class="font-weight-bold">Keterangan</label>
-                            <textarea class="form-control" rows="5" name="keterangan" placeholder="Keterangan Kriteria" required></textarea>
+                            <label class="font-weight-bold">Jenis Kriteria</label>
+                            <select class="form-control" name="jenis">
+                                <option value="benefit">Benefit</option>
+                                <option value="cost">Cost</option>
+                            </select>
+                            {{-- <span class="font-weight">Keterangan :</span> <br> --}}
+                            <span class="text-danger">*benefit : kriteria berdasarkan keuntungan</span><br>
+                            <span class="text-danger">*cost : kriteria berdasarkan biaya</span>
                         </div>
                     </div>
                 </div>
+
                 <button type="submit" class="btn btn-primary">Tambah Kriteria</button>
             </form>
         </div>

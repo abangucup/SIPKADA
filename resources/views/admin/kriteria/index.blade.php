@@ -34,8 +34,10 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Kode</th>
                                     <th>Kriteria</th>
                                     <th>Bobot</th>
+                                    <th>Jenis</th>
                                     <th>Keterangan</th>
                                     <th>Action</th>
                                 </tr>
@@ -46,9 +48,11 @@
 
 
                                     <td>{{ $loop->iteration}}</td>
+                                    <td>{{ $kriteria->kode}}</td>
                                     <td>{{ $kriteria->nama}}</td>
                                     <td>{{ $kriteria->bobot}}</td>
-                                    <td>{{ $kriteria->keterangan}}</td>
+                                    <td>{{ Str::ucfirst($kriteria->jenis) }}</td>
+                                    <td>{{ Str::ucfirst($kriteria->keterangan)}}</td>
                                     <td>
                                         <a href="{{ route('kriteria.edit', $kriteria->id)}}" class="pr-3"><i class="fas fa-edit"></i> Edit</a>
                                         <a href=""><i class="fas fa-trash"></i> Hapus</a>

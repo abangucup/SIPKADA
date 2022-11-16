@@ -15,12 +15,13 @@ class KriteriaController extends Controller
 
     public function create()
     {
-        return view('admin.kriteria.create');
+        $count = count(Kriteria::all());
+        return view('admin.kriteria.create', compact(['count']));
     }
 
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         $validasi = $this->validate($request,[
             'nama' => 'required',
             'bobot' => 'required',
