@@ -1,66 +1,120 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Backup Project Tugas Akhir
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+_Judul:_ __Implementasi Metode SMART Pada Sistem Rekomendasi Pemilihan Smartphone Android__
 
-## About Laravel
+> Backup Program untuk TA :rocket:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+\*link for this repo : [git.io/om-smart](https://git.io/om-smart)\*
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+> Seperti judul,
+> Project ini dibuat untuk implementasi metode SPK yaitu SMART (Simple Multi-Attribute Rating Technique) menggunakan framework CodeIgniter dan Bootstrap sebagai CSS
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Table of Contents
+* [Features](#features)
+* [Screenshots](#screenshots)
+	* [User Page](#user-page)
+	* [Admin Page](#admin-page)
 
-## Learning Laravel
+## Features
+- [x] Framework CodeIgniter
+- [x] Framework Bootstrap
+- [x] DSS Method (SMART)
+- [x] CRUD Ajax \*CRUD with File included\*
+- [x] CRUD Modal
+- [x] DataTable
+- [x] Responsive Layout for User \*perhaps\*
+- [x] Ajax Pagination
+- [x] Summernote Text Editor
+- [x] Javascript validation (before input data, select phones, account registration, etc)
+- [x] Admin Management by Super Admin
+- [x] SweetAlert for pop-up info & confirmation
+- [x] Registration feature (for user)
+- [x] Forgot Password (for user)
+- [x] Username checker using Ajax Jquery
+- [x] Chart
+- [x] Searched data log
+- [x] Sorting data (part of pagination)
+- [ ] Rating System
+- [ ] DSS Method Implementation with Ajax \*still can't figured\*
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+*Cukup Sekian* :+1:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Screenshots
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### User Page
+#### Homepage
+![beranda](https://i.imgur.com/nTo2Ia3.png)
+Halaman Beranda
 
-## Laravel Sponsors
+#### Login Page
+![login](https://i.imgur.com/wNIZwF6.png)
+Halaman Login
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+#### Registration Page
+![regist](https://i.imgur.com/03euZ9Y.png)
+Halaman Mendaftar
 
-### Premium Partners
+#### Forgot Password Page
+![forgot](https://i.imgur.com/V1oONBs.png)
+Halaman Lupa Password
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+#### List Smartphone Page
+![list](https://i.imgur.com/coYxqJX.png)
+Halaman Daftar Smartphone
 
-## Contributing
+#### Option Page
+![option](https://i.imgur.com/0nQ2SXV.png)
+Halaman Opsi
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### Searching Page
+![search](https://i.imgur.com/53iu0ub.png)
+Halaman Pencarian
 
-## Code of Conduct
+#### Question Page
+![question](https://i.imgur.com/tssI4E9.png)
+Halaman Pertanyaan
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### Result Page (1)
+![result1](https://i.imgur.com/5BpTfud.png)
+Halaman Hasil
 
-## Security Vulnerabilities
+#### Result Page (2)
+![result2](https://i.imgur.com/DCxDWiz.png)
+Halaman Hasil - lanjutan
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#### Help Page
+![help](https://i.imgur.com/8wGg8Cp.png)
+Halaman Bantuan
 
-## License
+#### Search Log Page
+![history](https://i.imgur.com/s5ESxYC.png)
+Halaman Riwayat
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Admin Page
+#### Dashboard Page
+![dashboard](https://i.imgur.com/jiTE3at.png)
+Halaman Dashboard
+
+#### Smartphone Data Page
+![smartphone](https://i.imgur.com/fC731XB.png)
+Halaman Data Smartphone
+
+#### Criteria Data Page
+![criteria](https://i.imgur.com/EhQvIw5.png)
+Halaman Data Kriteria
+
+#### Question Data Page
+![question](https://i.imgur.com/0zviOxg.png)
+Halaman Data Pertanyaan
+
+#### Counted Data Page
+![log](https://i.imgur.com/ZCAwdTk.png)
+Halaman Data Perhitungan
+
+#### User Data Management Page
+![user](https://i.imgur.com/Xk8xQ9J.png)
+Halaman Data Manajemen User
+
+#### Configuration Page
+![config](https://i.imgur.com/U6Lsn5K.png)
+Halaman Konfigurasi
