@@ -1,41 +1,36 @@
 # Backup Project Tugas Akhir
 
-_Judul:_ __Implementasi Metode SMART Pada Sistem Rekomendasi Pemilihan Smartphone Android__
+_Judul:_ __SISTEM INFORMASI PENDUKUNG KEPUTUSAN PEMBERIAN BANTUAN DI DINAS DAERAH__
 
 > Backup Program untuk TA :rocket:
 
-\*link for this repo : [git.io/om-smart](https://git.io/om-smart)\*
+\*link for this repo : [github abangucup](https://github.com/abangucup/SIPKADA)\*
 
 > Seperti judul,
-> Project ini dibuat untuk implementasi metode SPK yaitu SMART (Simple Multi-Attribute Rating Technique) menggunakan framework CodeIgniter dan Bootstrap sebagai CSS
+> Project dibuat untuk membantu dinas daerah dalam menentukan penerima bantuan yang harus di prioritaskan terlebih dahulu. sistem dibuat mengguankan framework laravel 9
 
 ## Table of Contents
 * [Features](#features)
 * [Screenshots](#screenshots)
-	* [User Page](#user-page)
-	* [Admin Page](#admin-page)
+	* [Admin Kantor](#user-page)
+	* [Admin Kelurahan](#admin-page)
 
 ## Features
-- [x] Framework CodeIgniter
+- [x] Framework Laravel
 - [x] Framework Bootstrap
 - [x] DSS Method (SMART)
-- [x] CRUD Ajax \*CRUD with File included\*
-- [x] CRUD Modal
+- [x] CRUD Menggunakan Templeting Blade
+- [x] Survey Modal
 - [x] DataTable
-- [x] Responsive Layout for User \*perhaps\*
+- [x] Responsive Layout for User*
 - [x] Ajax Pagination
-- [x] Summernote Text Editor
-- [x] Javascript validation (before input data, select phones, account registration, etc)
-- [x] Admin Management by Super Admin
-- [x] SweetAlert for pop-up info & confirmation
-- [x] Registration feature (for user)
-- [x] Forgot Password (for user)
-- [x] Username checker using Ajax Jquery
+- [x] Admin Memanagemet User Setiap Kelurahan
+- [x] SweetAlert for pop-up info & status
+- [x] Username checker using Middleware Logic
 - [x] Chart
 - [x] Searched data log
 - [x] Sorting data (part of pagination)
-- [ ] Rating System
-- [ ] DSS Method Implementation with Ajax \*still can't figured\*
+- [x] DSS Method Implementation di controller*
 
 *Cukup Sekian* :+1:
 
