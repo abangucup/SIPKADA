@@ -30,6 +30,8 @@
 
     @include('admin.layouts.partials.script')
 
+    @stack('scripts')
+
 </body>
 
 </html>

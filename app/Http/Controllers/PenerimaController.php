@@ -11,8 +11,9 @@ class PenerimaController extends Controller
 {
     public function index()
     {
+        $count = Penerima::all()->count();
         $penerimas = Penerima::where('kelurahan_id', auth()->user()->kelurahan_id)->get();
-        return view('kelurahan.penerima.index', compact(['penerimas']));
+        return view('kelurahan.penerima.index', compact(['penerimas', 'count']));
     }
 
     public function create()

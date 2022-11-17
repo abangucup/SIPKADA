@@ -24,27 +24,49 @@
     </section>
     <div class="row d-flex justify-content-center">
         <div class="col-lg-6">
-            <form>
-                <div class="row mt-3">
-                    <div class="col-md-12">
+            <form action="{{ route('kriteria.update', $kriterium->id)}}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="row mt-3 justify-content-center">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label class="font-weight-bold">Kriteria</label>
-                            <input class="form-control" type="text" placeholder="Kritieria" name="nama" required>
+                            <label class="font-weight-bold">Kode <span class="text-danger">*
+                            </span></label>
+                            <input class="form-control" type="text" placeholder="Kritieria" name="kode" 
+                            value="{{old('kode',$kriterium->kode)}}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-bold">Kriteria <span class="text-danger">*
+                                </span></label>
+                            <input class="form-control" type="text" placeholder="Contoh : Kewarganegaraan" name="nama" value="{{ old('nama', $kriterium->nama)}}" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-bold">Keterangan <span class="text-danger">*
+                                </span></label>
+                            <textarea class="form-control" rows="5" name="keterangan" placeholder="Keterangan Kriteria"
+                                required>{{old('keterangan', $kriterium->keterangan)}}</textarea>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label class="font-weight-bold">Bobot Kriteria</label>
-                            <input class="form-control" type="number" placeholder="Bobot" name="bobot" required>
+                            <label class="font-weight-bold">Bobot Kriteria <span class="text-danger">*
+                                </span></label>
+                            <input class="number form-control" type="number" placeholder="0-100" name="bobot" value="{{old('bobot', $kriterium->bobot)}}" required>
                         </div>
-                    </div>
-                    <div class="col-md-12">
                         <div class="form-group">
-                            <label class="font-weight-bold">Keterangan</label>
-                            <textarea class="form-control" rows="5" name="keterangan" placeholder="Keterangan Kriteria" required></textarea>
+                            <label class="font-weight-bold">Jenis Kriteria</label>
+                            <select class="form-control" name="jenis">
+                                <option value="{{old('jenis', $kriterium->jenis)}}">{{Str::ucfirst($kriterium->jenis)}}</option>
+                                <option value="benefit">Benefit</option>
+                                <option value="cost">Cost</option>
+                            </select>
+                            {{-- <span class="font-weight">Keterangan :</span> <br> --}}
+                            <span class="text-danger">*benefit : kriteria berdasarkan keuntungan <br>(makin besar, lebih baik)</span><br>
+                            <span class="text-danger">*cost : kriteria berdasarkan biaya <br>(makin kecil, lebih baik)</span>
                         </div>
                     </div>
                 </div>
+
                 <button type="submit" class="btn btn-primary">Edit Kriteria</button>
             </form>
         </div>

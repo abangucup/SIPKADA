@@ -29,6 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::resource('/kriteria', KriteriaController::class);
             Route::resource('/survey', SurveyController::class);
             Route::get('rank', [SurveyController::class, 'rank'])->name('rank');
+            Route::get('hitung', [SurveyController::class, 'hitung'])->name('hitung');
             Route::resource('/user', UserController::class);
             Route::resource('/kelurahan', KelurahanController::class);
         });

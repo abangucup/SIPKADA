@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class SurveyController extends Controller
 {
+    public function hitung()
+    {
+        return view('admin.survey.hitung');
+    }
 
     public function rank()
     {

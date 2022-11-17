@@ -58,9 +58,8 @@
                                 <option value="benefit">Benefit</option>
                                 <option value="cost">Cost</option>
                             </select>
-                            {{-- <span class="font-weight">Keterangan :</span> <br> --}}
-                            <span class="text-danger">*benefit : kriteria berdasarkan keuntungan</span><br>
-                            <span class="text-danger">*cost : kriteria berdasarkan biaya</span>
+                            <span class="text-danger">*benefit : kriteria berdasarkan keuntungan <br>(makin besar, lebih baik)</span><br>
+                            <span class="text-danger">*cost : kriteria berdasarkan biaya <br>(makin kecil, lebih baik)</span>
                         </div>
                     </div>
                 </div>

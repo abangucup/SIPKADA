@@ -14,8 +14,11 @@
                 <li class="{{Request::is('dashboard/survey') ? 'active' : ''}}">
                     <a href="{{ route('survey.index')}}"><i class="fa fa-hand-holding-heart"></i><span>Survey Penerima</span></a>
                 </li>
+                <li class="{{Request::is('dashboard/hitung') ? 'active' : ''}}">
+                    <a href="{{ route('hitung')}}"><i class="fa fe-table"></i><span>Hasil Perhitungan</span></a>
+                </li>
                 <li class="{{Request::is('dashboard/rank') ? 'active' : ''}}">
-                    <a href="{{ route('rank')}}"><i class="fa fe-table"></i><span>Rangking</span></a>
+                    <a href="{{ route('rank')}}"><i class="fa fa-trophy"></i><span>Rangking</span></a>
                 </li>
                 <li class="{{Request::is('dashboard/kelurahan') ? 'active' : ''}}">
                     <a href="{{ route('kelurahan.index')}}"><i class="fa fa-map"></i><span>Kelurahan</span></a>
