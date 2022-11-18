@@ -35,27 +35,26 @@
                                     <th>No</th>
                                     <th>Kode</th>
                                     <th>Kriteria</th>
-                                    <th>Bobot</th>
-                                    <th>Normalisasi</th>
+                                    <th class="text-center">Bobot</th>
+                                    <th class="text-center">Normalisasi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($kriterias as $kriteria)
-                                    
+                                @foreach ($bobot as $item)
                                 <tr>
                                     <td class="font-weight-bold">{{$loop->iteration}}</td>
-                                    <td>{{$kriteria->kode}}</td>
-                                    <td>{{$kriteria->nama}}</td>
-                                    <td>{{$kriteria->bobot}}</td>
-                                    <td>{{$kriteria->bobot/$sum}}</td>
+                                    <td>{{$item['kode']}}</td>
+                                    <td>{{$item['kriteria']}}</td>
+                                    <td class="text-center">{{$item['bobot']}}</td>
+                                    <td class="text-center">{{$item['normalisasi']}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
                             <tfoot>
-                                <tr class="thead-light">
-                                    <th colspan="3" class="text-center">TOTAL NILAI</th>
-                                    <th>{{$kriteria->sum('bobot')}}</th>
-                                    <th></th>
+                                <tr class="thead-light text-center">
+                                    <th colspan="3">TOTAL NILAI</th>
+                                    <th>{{$item['total']}}</th>
+                                    <th>{{$bobot->sum('normalisasi')}}</th>
                                 </tr>
                             </tfoot>
                         </table>

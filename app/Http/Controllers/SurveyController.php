@@ -10,49 +10,32 @@ class SurveyController extends Controller
 {
     public function hitung()
     {
-        /*
-        RUMUS:
-        W => bobot stiap kriteria
-        M => jumlah bobot dari smua kriteria
-        */
-        // variable jumlah bobot kriteria
-        $sum = Kriteria::select('bobot')->get()->sum('bobot');
+        // variable bobot dari setiap kriteria
+        $bobot = Kriteria::all()->map(function ($item) {
 
-        // $bobots = Kriteria::all();
-        // // dd(response()->json($bobots));
+            // variable jumlah bobot kriteria
+            $sum = Kriteria::sum('bobot');
 
-        // $normalisasi = array();
-        // // dd(response()->json($bobots));
+            return ([
+                /*
+                RUMUS:
+                N = W/M
+                W => bobot stiap kriteria
+                M => jumlah bobot dari smua kriteria
+                */
+                'normalisasi' => $item->bobot / $sum,
 
-        // $normalisasi = array();
-        // // dd(response()->json($bobots));
+                // Get Data Kriteria
+                'kriteria' => $item->nama,
+                'bobot' => $item->bobot,
+                'kode' => $item->kode,
+                'keterangan' => $item->keterangan,
+                'jenis' => $item->jenis,
+                'total' => $item->sum('bobot'),
+            ]);
+        });
 
-        // $normalisasi = array();
-
-        // dd(sizeof());
-        // foreach ($bobots as $data) {
-        //     // dd($data->all());
-        //     $item = strlen($data['bobot']);
-        //     // dd($item);
-        //     for ($i = 0; $i < $item; $i++) {
-        //         $normal = substr($data['bobot'], $i) / $sum;
-        //         arr
-        //     }
-
-        //     $result = array('normalisasi' => $normalisasi);
-        // }
-
-        // dd($result);
-
-        // for($i = 0; $i < sizeof($data['bobot']); $i++) {
-        // 	$temp_normal = 0;
-        // 	$temp_normal = $data['bobot'][$i] / $jum;
-        // 	array_push($normalisasi, $temp_normal);
-        // }
-
-
-        $kriterias = Kriteria::all();
-        return view('admin.survey.hitung', compact(['kriterias', 'sum']));
+        return view('admin.survey.hitung', compact(['bobot']));
     }
 
     public function rank()
