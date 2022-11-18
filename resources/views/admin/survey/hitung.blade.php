@@ -13,7 +13,7 @@
                         <ol class="breadcrumb mb-0">
                             <h5 class="breadcrumb-item pl-4"><a href="{{ route('dashboard')}}"
                                     class="text-primary ps-4">Dashboard</a></h5>
-                            <h5 class="breadcrumb-item active" aria-current="dashbaord">Ranking</h5>
+                            <h5 class="breadcrumb-item active" aria-current="dashbaord">Hasil Perhitungan</h5>
                         </ol>
                     </nav>
                 </div>
@@ -24,33 +24,40 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Normalisasi Kriteria</h4>
+                </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="datatable table table-stripped">
-                            <thead>
+                        <table class="table table-striped mb-0">
+                            <thead class="thead-light">
                                 <tr>
                                     <th>No</th>
-                                    <th>NIK</th>
-                                    <th>Nama</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Alamat</th>
-                                    <th>Total Nilai</th>
+                                    <th>Kode</th>
+                                    <th>Kriteria</th>
+                                    <th>Bobot</th>
+                                    <th>Normalisasi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach ($penerimas as $penerima) --}}
+                                @foreach ($kriterias as $kriteria)
+                                    
                                 <tr>
-
-
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>#</td>
-                                    <td>2000</td>
+                                    <td class="font-weight-bold">{{$loop->iteration}}</td>
+                                    <td>{{$kriteria->kode}}</td>
+                                    <td>{{$kriteria->nama}}</td>
+                                    <td>{{$kriteria->bobot}}</td>
+                                    <td>{{$kriteria->bobot/$sum}}</td>
                                 </tr>
-                                {{-- @endforeach --}}
+                                @endforeach
                             </tbody>
+                            <tfoot>
+                                <tr class="thead-light">
+                                    <th colspan="3" class="text-center">TOTAL NILAI</th>
+                                    <th>{{$kriteria->sum('bobot')}}</th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>

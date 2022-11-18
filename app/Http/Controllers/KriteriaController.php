@@ -73,9 +73,9 @@ class KriteriaController extends Controller
         return to_route('kriteria.index');
     }
     
-    public function destroy(Kriteria $kriteria)
+    public function destroy(Kriteria $kriterium)
     {
-        $kriteria->delete();
+        $kriterium->delete();
         toast('Kriteria Berhasil Dihapus', 'success');
         return back();
     }

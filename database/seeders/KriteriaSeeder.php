@@ -16,8 +16,8 @@ class KriteriaSeeder extends Seeder
     public function run()
     {
         $kriterias = [
-            ['kode' => "C1", 'nama' => "Kepedudukan", 'bobot' => 0.25, 'jenis' => 'cost', 'keterangan' => 'kependudukan jenis cost'],
-            ['kode' => "C2", 'nama' => "Kemiskinan", 'bobot' => 0.75, 'jenis' => 'benefit', 'keterangan' => 'kependudukan jenis cost'],
+            ['kode' => "C1", 'nama' => "Kepedudukan", 'bobot' => 70, 'jenis' => 'cost', 'keterangan' => 'kependudukan jenis cost'],
+            ['kode' => "C2", 'nama' => "Kemiskinan", 'bobot' => 80, 'jenis' => 'benefit', 'keterangan' => 'kependudukan jenis cost'],
         ];
 
         foreach ($kriterias as $kriteria) {
