@@ -19,7 +19,8 @@
                     </nav>
                 </div>
                 <div class="card-body col-md-6 col-sm-12">
-                    <a href="{{ route('user.create')}}" class="btn btn-primary float-right veiwbutton"><i class="fas fa-plus pr-2"></i> Tambah User</a>
+                    <a href="{{ route('user.create')}}" class="btn btn-primary float-right veiwbutton"><i
+                            class="fas fa-plus pr-2"></i> Tambah User</a>
                 </div>
 
             </div>
@@ -38,7 +39,7 @@
                                     <th>Kelurahan</th>
                                     <th>Username</th>
                                     <th>Level</th>
-                                    <th>Action</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -49,13 +50,23 @@
                                     <td>{{ $user->kelurahan->nama ?? '-'}}</td>
                                     <td>{{ $user->username}}</td>
                                     <td>{{ $user->role}}</td>
-                                    <td>
-                                        <a href="{{ route('user.edit', $user->id)}}" class="col-sm-5 float-left btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
-                                        <form action="{{ route('user.destroy', $user->id)}}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                                <button type="submit" class="col-sm-6 btn btn-danger float-right"><i class="fas fa-trash"></i> Hapus</button>
-                                        </form>
+                                    <td class="text-center">
+                                        <div class="dropdown dropdown-action">
+                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                aria-expanded="false"><i
+                                                    class="fas fa-ellipsis-v ellipse_color"></i></a>
+                                            <div class="dropdown-menu dropdown-menu-left">
+                                                <a class="dropdown-item" href="{{ route('user.edit', $user->id)}}"><i
+                                                        class="fas fa-pencil-alt m-r-5"></i>
+                                                    Edit</a>
+                                                <form action="{{ route('user.destroy', $user->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="dropdown-item"><i
+                                                            class="fas fa-trash-alt m-r-5"></i> Hapus</button>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                                 @endforeach

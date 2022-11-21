@@ -21,4 +21,9 @@ class Penerima extends Model
     {
         return $this->belongsTo(Kelurahan::class);
     }
+
+    public function survey()
+    {
+        return $this->hasOne(Survey::class);
+    }
 }

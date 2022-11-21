@@ -2041,10 +2041,10 @@ html.menu-opened body {
 
 .sidebar-menu li.active a {
     border-radius: 8px;
-    color: #fff !important;
-    box-shadow: 0 7px 12px 0 rgba(95, 118, 232, .21);
+    color: #009688 !important;
+    /* box-shadow: 0 7px 12px 0 rgba(95, 118, 232, .21); */
     opacity: 1;
-    background: #009688
+    /* background: #009688 */
 }
 
 .menu-title {

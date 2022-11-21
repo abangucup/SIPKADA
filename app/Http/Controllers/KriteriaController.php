@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kriteria;
+use App\Models\SubKriteria;
+use App\Models\Survey;
 use Illuminate\Http\Request;
 
 class KriteriaController extends Controller
@@ -28,8 +30,9 @@ class KriteriaController extends Controller
             'bobot' => 'required',
             'keterangan' => 'required',
             'jenis' => 'required',
-
         ]);
+
+        
 
         $kriteria = new Kriteria();
         $kriteria->kode = $request->kode;
@@ -37,12 +40,18 @@ class KriteriaController extends Controller
         $kriteria->bobot = $request->bobot;
         $kriteria->keterangan = $request->keterangan;
         $kriteria->jenis = $request->jenis;
-
         $kriteria->save();
 
         toast('Berhasil Menambahkan Kriteria', 'success');
         return to_route('kriteria.index');
 
+    }
+
+    public function show(Kriteria $kriterium)
+    {
+        $kriteria = Kriteria::where('id', $kriterium->id)->first();
+        // dd($kriterias);
+        return view('admin.kriteria.detail', compact(['kriteria', 'kriterium']));
     }
 
     public function edit(Kriteria $kriterium)

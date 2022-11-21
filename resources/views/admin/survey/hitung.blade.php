@@ -22,6 +22,7 @@
         </div>
     </section>
     <div class="row">
+        {{-- Normalisasi Kriteria --}}
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
@@ -46,7 +47,7 @@
                                     <td>{{$item['kode']}}</td>
                                     <td>{{$item['kriteria']}}</td>
                                     <td class="text-center">{{$item['bobot']}}</td>
-                                    <td class="text-center">{{$item['normalisasi']}}</td>
+                                    <td class="text-center">{{round($item['normalisasi'], 4)}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -62,6 +63,95 @@
                 </div>
             </div>
         </div>
+        {{-- End Normaliasasi Kriteria --}}
+
+
+        {{-- Nilai Alternatif (Bobot atau Nilai Penerima Berdasarkan Setiap Kriteria) --}}
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Data Penerima (Nilai Alternatif)</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Kode</th>
+                                    <th>Kriteria</th>
+                                    <th class="text-center">Bobot</th>
+                                    <th class="text-center">Normalisasi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($bobot as $item)
+                                <tr>
+                                    <td class="font-weight-bold">{{$loop->iteration}}</td>
+                                    <td>{{$item['kode']}}</td>
+                                    <td>{{$item['kriteria']}}</td>
+                                    <td class="text-center">{{$item['bobot']}}</td>
+                                    <td class="text-center">{{round($item['normalisasi'], 4)}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                            <tfoot>
+                                <tr class="thead-light text-center">
+                                    <th colspan="3">TOTAL NILAI</th>
+                                    <th>{{$item['total']}}</th>
+                                    <th>{{$bobot->sum('normalisasi')}}</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- End Nilai Alternatif --}}
+
+
+        {{-- Normalisasi Nilai Alternatif --}}
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Normalisasi Data Penerima (Nilai Alternatif)</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Kode</th>
+                                    <th>Kriteria</th>
+                                    <th class="text-center">Bobot</th>
+                                    <th class="text-center">Normalisasi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($bobot as $item)
+                                <tr>
+                                    <td class="font-weight-bold">{{$loop->iteration}}</td>
+                                    <td>{{$item['kode']}}</td>
+                                    <td>{{$item['kriteria']}}</td>
+                                    <td class="text-center">{{$item['bobot']}}</td>
+                                    <td class="text-center">{{round($item['normalisasi'], 4)}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                            <tfoot>
+                                <tr class="thead-light text-center">
+                                    <th colspan="3">TOTAL NILAI</th>
+                                    <th>{{$item['total']}}</th>
+                                    <th>{{$bobot->sum('normalisasi')}}</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- End Normalisasi Nilai Alternatif --}}
     </div>
 </div>
 @endsection

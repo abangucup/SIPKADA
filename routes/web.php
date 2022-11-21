@@ -5,6 +5,7 @@ use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PenerimaController;
+use App\Http\Controllers\SubKriteriaController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['middleware' => ['role:admin']], function () {
             Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
             Route::resource('/kriteria', KriteriaController::class);
+            Route::resource('/sub', SubKriteriaController::class);
             Route::resource('/survey', SurveyController::class);
             Route::get('rank', [SurveyController::class, 'rank'])->name('rank');
             Route::get('hitung', [SurveyController::class, 'hitung'])->name('hitung');

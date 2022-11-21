@@ -10,7 +10,17 @@ class Survey extends Model
     use HasFactory;
 
     protected $fillable = [
-        'kriteria_id',
+        'sub_kriteria_id',
         'penerima_id'
     ];
+
+    public function sub()
+    {
+        return $this->belongsTo(SubKriteria::class);
+    }
+
+    public function penerima()
+    {
+        return $this->belongsTo(Penerima::class);
+    }
 }

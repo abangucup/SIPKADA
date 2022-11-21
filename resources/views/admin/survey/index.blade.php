@@ -21,6 +21,7 @@
             </div>
         </div>
     </section>
+
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
@@ -41,8 +42,6 @@
                             <tbody>
                                 @foreach ($penerimas as $penerima)
                                 <tr>
-
-
                                     <td>{{ $loop->iteration}}</td>
                                     <td>{{ $penerima->nik}}</td>
                                     <td>{{ $penerima->nama}}</td>
@@ -50,9 +49,17 @@
                                     <td>{{ $penerima->alamat}}</td>
                                     <td>{{ $penerima->kelurahan->nama}}</td>
                                     <td>
-                                        <button class="btn btn-success">Survey</button>
+                                        @if ($penerima->survey == null)
+                                        <button class="btn btn-success" type="button" data-toggle="modal"
+                                        data-target="#survey-{{$penerima->id}}">Survey</button>
+                                        @else
+                                        <button class="btn btn-danger" disabled>Selesai Survey</button>
+                                        @endif
                                     </td>
                                 </tr>
+
+                                @include('admin.survey.modal')
+
                                 @endforeach
                             </tbody>
                         </table>
@@ -62,4 +69,5 @@
         </div>
     </div>
 </div>
+
 @endsection

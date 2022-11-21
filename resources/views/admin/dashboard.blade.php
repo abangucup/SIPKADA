@@ -57,6 +57,50 @@
             </div>
         </div>
     </div>
+
+    <div class="col-xl-6 col-sm-6 col-12">
+        <div class="card board1 fill">
+            <div class="card-body">
+                <div class="dash-widget-header">
+                    <div>
+                        <h3 class="card_widget_header">{{ $kriteria}}</h3>
+                        <h6 class="text-bold">Total Kriteria</h6>
+                    </div>
+                    <div class="ml-auto mt-md-3 mt-lg-0">
+                        <span class="opacity-7 text-muted">
+                            <div class="widget-icon">
+                                <div class="icon h1" data-color="#00eccf">
+                                    <i class="icon-copy fa fa-percent" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-sm-6 col-12">
+        <div class="card board1 fill">
+            <div class="card-body">
+                <div class="dash-widget-header">
+                    <div>
+                        <h3 class="card_widget_header">{{ $user}}</h3>
+                        <h6 class="text-bold">Total User</h6>
+                    </div>
+                    <div class="ml-auto mt-md-3 mt-lg-0">
+                        <span class="opacity-7 text-muted">
+                            <div class="widget-icon">
+                                <div class="icon h1" data-color="#00eccf">
+                                    <i class="icon-copy fa fa-users" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="row">

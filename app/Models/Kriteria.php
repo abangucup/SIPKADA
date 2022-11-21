@@ -16,4 +16,14 @@ class Kriteria extends Model
         'keterangan',
         'jenis',
     ];
+
+    public function survey()
+    {
+        return $this->hasOne(Survey::class);
+    }
+
+    public function subkriteria()
+    {
+        return $this->hasMany(SubKriteria::class);
+    }
 }

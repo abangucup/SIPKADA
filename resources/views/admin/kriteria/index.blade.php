@@ -18,7 +18,6 @@
                     </nav>
                 </div>
                 <div class="card-body col-md-6 col-sm-12">
-                    {{-- <button class="btn btn-primary">Tambah User</button> --}}
                     <a href="{{ route('kriteria.create')}}" class="btn btn-primary float-right veiwbutton"><i
                             class="fas fa-plus pr-2"></i> Tambah Kriteria</a>
                 </div>
@@ -37,39 +36,51 @@
                                     <th>No</th>
                                     <th>Kode</th>
                                     <th>Kriteria</th>
-                                    <th>Jenis</th>
-                                    <th>Keterangan</th>
                                     <th>Bobot</th>
-                                    <th>Action</th>
+                                    <th>Jenis</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
 
                                 @foreach ($kriterias as $kriteria)
                                 <tr>
-
-
                                     <td>{{ $loop->iteration}}</td>
                                     <td>{{ $kriteria->kode}}</td>
                                     <td>{{ $kriteria->nama}}</td>
-                                    <td>{{ Str::ucfirst($kriteria->jenis) }}</td>
-                                    <td>{{ Str::ucfirst($kriteria->keterangan)}}</td>
                                     <td>{{ $kriteria->bobot}}</td>
-                                    <td>
-                                        <a href="{{ route('kriteria.edit', $kriteria->id)}}" class="col-sm-5 float-left btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
-                                        <form action="{{ route('kriteria.destroy', $kriteria->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                                <button type="submit" class="col-sm-6 btn btn-danger float-right"><i class="fas fa-trash"></i> Hapus</button>
-                                        </form>
+                                    <td>{{ Str::ucfirst($kriteria->jenis) }}</td>
+                                    <td class="text-center">
+                                        <div class="dropdown dropdown-action">
+                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                aria-expanded="false"><i
+                                                    class="fas fa-ellipsis-v ellipse_color"></i></a>
+                                            <div class="dropdown-menu dropdown-menu-left">
+                                                <a class="dropdown-item"
+                                                    href="{{ route('kriteria.show', $kriteria->id)}}"><i
+                                                        class="fas fa-eye mr-2"></i>
+                                                    Detail</a>
+                                                <a class="dropdown-item"
+                                                    href="{{ route('kriteria.edit', $kriteria->id)}}"><i
+                                                        class="fas fa-pencil-alt mr-2"></i>
+                                                    Edit</a>
+                                                <form action="{{ route('kriteria.destroy', $kriteria->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="dropdown-item"><i
+                                                            class="fas fa-trash mr-2"></i> Hapus</button>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                             <tfoot>
                                 <tr class="thead-light">
-                                    <th colspan="5" class="text-center">Total Bobot</td>
-                                    <th colspan="2">{{$sum}}</td>
+                                    <th colspan="3" class="text-center">Total Bobot</td>
+                                    <th colspan="3">{{$sum}}</td>
                                 </tr>
                             </tfoot>
                         </table>

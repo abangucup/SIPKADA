@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Kriteria;
 use App\Models\Penerima;
+use App\Models\SubKriteria;
+use App\Models\Survey;
 use Illuminate\Http\Request;
 
 class SurveyController extends Controller
@@ -11,6 +13,7 @@ class SurveyController extends Controller
     public function hitung()
     {
         // variable bobot dari setiap kriteria
+        $kriterias = Kriteria::all();
         $bobot = Kriteria::all()->map(function ($item) {
 
             // variable jumlah bobot kriteria
@@ -43,9 +46,28 @@ class SurveyController extends Controller
         return view('admin.survey.rank');
     }
     public function index()
-    {
-        $kriterias = Kriteria::all();
+    {        
         $penerimas = Penerima::all();
+        $kriterias = Kriteria::all();
         return view('admin.survey.index', compact(['kriterias', 'penerimas']));
+    }
+
+    public function store(Request $request)
+    {
+
+        for($i = 0; $i < count($request->sub_kriteria_id); $i++)
+        {
+            $sub[] = [
+                'penerima_id' => $request->penerima_id,
+                'sub_kriteria_id' => $request->sub_kriteria_id[$i],
+                'created_at' => now(),
+                'updated_at' => now()
+            ];
+        }
+
+        Survey::insert($sub);
+
+        toast('Survey Selesai', 'success');
+        return back();
     }
 }

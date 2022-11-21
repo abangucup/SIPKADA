@@ -6,17 +6,29 @@
                 <li class="{{Request::is('dashboard') ? 'active' : ''}}">
                     <a href="{{ route('dashboard')}}"><i class="fas fa-home"></i> <span>Dashboard</span></a>
                 </li>
+                <li class="list-divider"></li>  
                 <li class="{{Request::is('dashboard/kriteria') ? 'active' : ''}}">
                     <a href="{{ route('kriteria.index')}}"><i class="fa fa-percent"></i> 
                         <span>Kriteria</span>
                     </a>
                 </li>
-                <li class="{{Request::is('dashboard/survey') ? 'active' : ''}}">
-                    <a href="{{ route('survey.index')}}"><i class="fa fa-hand-holding-heart"></i><span>Survey Penerima</span></a>
+                
+
+                <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Survey </span> <span class="menu-arrow"></span></a>
+                    <ul class="submenu_class" style="display: none;">
+                        {{-- <li>
+                            <a href="{{ route('sub.index')}}" class="{{Request::is('dashboard/sub') ? 'active' : ''}}"> Sub Kriteria </a>
+                        </li> --}}
+                        <li>
+                            <a href="{{ route('survey.index')}}" class="{{Request::is('dashboard/survey') ? 'active' : ''}}"> Penerima Bantuan </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('hitung')}}" class="{{Request::is('dashboard/hitung') ? 'active' : ''}}"> Hasil Perhitungan </a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="{{Request::is('dashboard/hitung') ? 'active' : ''}}">
-                    <a href="{{ route('hitung')}}"><i class="fa fe-table"></i><span>Hasil Perhitungan</span></a>
-                </li>
+
+                
                 <li class="{{Request::is('dashboard/rank') ? 'active' : ''}}">
                     <a href="{{ route('rank')}}"><i class="fa fa-trophy"></i><span>Rangking</span></a>
                 </li>
