@@ -10,19 +10,24 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('sub.store')}}" method="POST">
+                <form action="{{ route('sub.update', $sub->id)}}" method="POST">
                     @csrf
+                    @method('PUT')
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="list-group notification-list mb-4">
                                 <li>
                                     <div class="form-group">
+                                        <label for="">Kriteria ID</label>
+                                        <input type="text" class="form-control" name="kriteria_id" value="{{old('kriteria_id', $sub->kriteria_id)}}" readonly>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="">Sub Kriteria</label>
-                                        <input type="text" class="form-control" value="{{old('sub', $sub->sub)}}">
+                                        <input type="text" class="form-control" name="sub" value="{{old('sub', $sub->sub)}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Bobot</label>
-                                        <input type="text" class="form-control" value="{{old('bobot', $sub->bobot)}}">
+                                        <input type="text" class="form-control" name="bobot" value="{{old('bobot', $sub->bobot)}}">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Simpan</button>
                                 </li>

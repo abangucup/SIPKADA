@@ -24,6 +24,6 @@ class Kriteria extends Model
 
     public function subkriteria()
     {
-        return $this->hasMany(SubKriteria::class);
+        return $this->hasMany(SubKriteria::class)->orderByDesc('bobot');
     }
 }

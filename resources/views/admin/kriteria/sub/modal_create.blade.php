@@ -17,12 +17,16 @@
                             <ul class="list-group notification-list mb-4">
                                 <li>
                                     <div class="form-group">
+                                        <label for="">Kriteria</label>
+                                        <input type="text" class="form-control" name="kriteria_id" value="{{old('kriteria_id', $kriterium->id)}}" readonly>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="">Sub Kriteria</label>
-                                        <input type="text" class="form-control" value="{{old('sub')}}">
+                                        <input type="text" class="form-control" name="sub" value="{{old('sub')}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Bobot</label>
-                                        <input type="text" class="form-control" value="{{old('bobot')}}">
+                                        <input type="number" class="number form-control" name="bobot" value="{{old('bobot')}}">
                                     </div>
                                 </li>
                             </ul>

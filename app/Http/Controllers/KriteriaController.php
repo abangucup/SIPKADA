@@ -50,7 +50,7 @@ class KriteriaController extends Controller
     public function show(Kriteria $kriterium)
     {
         $kriteria = Kriteria::where('id', $kriterium->id)->first();
-        // dd($kriterias);
+        // dd($kriteria);
         return view('admin.kriteria.detail', compact(['kriteria', 'kriterium']));
     }
 
