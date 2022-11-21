@@ -16,7 +16,6 @@
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="list-group notification-list mb-4">
-
                                 @foreach ($kriterias as $kriteria)
                                 <li class="list-group-item">
                                     <div class="d-flex flex-row float-left col-sm-7">
@@ -29,7 +28,7 @@
                                         <div class="p-2">
                                             <div class="form-group">
                                                 <select class="form-control" name="sub_kriteria_id[]">
-                                                    @foreach ($kriteria->sub as $sub)
+                                                    @foreach ($kriteria->subkriteria as $sub)
                                                     <option value="{{$sub->id}}">
                                                         {{$sub->sub}}</option>
                                                     @endforeach
@@ -39,7 +38,6 @@
                                     </div>
                                 </li>
                                 @endforeach
-                                
                             </ul>
                         </div>
                     </div>

@@ -91,21 +91,3 @@
     </div>
 </div>
 @endsection
-
-{{-- @push('scripts')
-<link href="https://unpkg.com/bootstrap-table@1.21.0/dist/bootstrap-table.min.css" rel="stylesheet">
-<script src="https://unpkg.com/bootstrap-table@1.21.0/dist/bootstrap-table.min.js"></script>
-<script>
-    function idFormatter(data, footerValue) {
-      return footerValue
-    }
-  
-    function nameFormatter(data, footerValue) {
-      return footerValue
-    }
-  
-    function priceFormatter(data, footerValue) {
-      return footerValue
-    }
-</script>
-@endpush --}}

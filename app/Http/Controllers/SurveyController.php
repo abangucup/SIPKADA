@@ -46,7 +46,7 @@ class SurveyController extends Controller
         return view('admin.survey.rank');
     }
     public function index()
-    {        
+    {
         $penerimas = Penerima::all();
         $kriterias = Kriteria::all();
         return view('admin.survey.index', compact(['kriterias', 'penerimas']));

@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('surveys', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sub_kriteria_id')->constrained();
-            $table->foreignId('penerima_id')->constrained();
+            $table->foreignId('sub_kriteria_id')->constrained()->onDelete('cascade');
+            $table->foreignId('penerima_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

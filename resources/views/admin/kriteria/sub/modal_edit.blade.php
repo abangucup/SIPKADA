@@ -4,8 +4,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Sub Kriteria
-                    <b>{{$sub->sub}}</b></h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Sub Kriteria</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -16,31 +15,20 @@
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="list-group notification-list mb-4">
-                                <li class="list-group-item">
-                                    {{-- <div class="d-flex flex-row float-left col-sm-7">
-                                        <div class="p-2"><i class="fas fa-eye mr-3" data-toggle="tooltip"
-                                                data-placement="left" title="{{$kriteria->keterangan}}"></i></div>
-                                        <div class="p-2">{{$kriteria->nama}}</div>
+                                <li>
+                                    <div class="form-group">
+                                        <label for="">Sub Kriteria</label>
+                                        <input type="text" class="form-control" value="{{old('sub', $sub->sub)}}">
                                     </div>
-
-                                    <div class="d-flex flex-row-reverse float-right col-sm-5">
-                                        <div class="p-2">
-                                            <div class="form-group">
-                                                <select class="form-control" name="sub_kriteria_id[]">
-                                                    @foreach ($kriteria->sub as $sub)
-                                                    <option value="{{$sub->id}}">
-                                                        {{$sub->sub}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div> --}}
+                                    <div class="form-group">
+                                        <label for="">Bobot</label>
+                                        <input type="text" class="form-control" value="{{old('bobot', $sub->bobot)}}">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Simpan
-                        Survey</button>
 
                 </form>
             </div>

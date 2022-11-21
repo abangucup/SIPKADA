@@ -18,14 +18,14 @@
                         </ol>
                     </nav>
                 </div>
-                <div class="card-body col-md-6 col-sm-12">
+                {{-- <div class="card-body col-md-6 col-sm-12">
                     <a href="#" class="btn btn-primary float-right veiwbutton" data-toggle="modal"
                         data-target="#createsub">
                         <i class="fas fa-plus pr-2"></i> Tambah Sub Kriteria</a>
                 </div>
 
-                @include('admin.kriteria.sub.modal_create')
-                
+                @include('admin.kriteria.sub.modal_create') --}}
+
             </div>
         </div>
     </section>
@@ -33,9 +33,16 @@
         <div class="col-sm-8">
             <div class="card">
                 <div class="card-header bg-info">
-                    <h6>
+                    <h6 class="float-left col-md-9">
                         {{$kriterium->nama}}
                     </h6>
+                    <div class="float-right col-md-3">
+                        <a href="#" class="float-right btn btn-primary veiwbutton" data-toggle="modal"
+                            data-target="#createsub">
+                            <i class="fas fa-plus pr-2"></i> Tambah Sub Kriteria</a>
+                    </div>
+
+                    @include('admin.kriteria.sub.modal_create')
                 </div>
 
                 <div class="card-body">
