@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use \Znck\Eloquent\Traits\BelongsToThrough;
 
 class Penerima extends Model
 {
@@ -24,6 +25,11 @@ class Penerima extends Model
 
     public function survey()
     {
-        return $this->hasOne(Survey::class);
+        return $this->hasMany(Survey::class);
+    }
+
+    public function subkriteria()
+    {
+        return $this->hasManyThrough(Survey::class, Subkriteria::class);
     }
 }

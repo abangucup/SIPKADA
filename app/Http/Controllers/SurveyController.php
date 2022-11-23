@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kriteria;
 use App\Models\Penerima;
-use App\Models\SubKriteria;
+use App\Models\Subkriteria;
 use App\Models\Survey;
 use Illuminate\Http\Request;
 
@@ -12,8 +12,8 @@ class SurveyController extends Controller
 {
     public function hitung()
     {
-        // variable bobot dari setiap kriteria
-        $kriterias = Kriteria::all();
+        // $surveys = Survey::all();
+        $penerimas = Penerima::with('survey.subkriteria')->get();
         $bobot = Kriteria::all()->map(function ($item) {
 
             // variable jumlah bobot kriteria
@@ -38,7 +38,7 @@ class SurveyController extends Controller
             ]);
         });
 
-        return view('admin.survey.hitung', compact(['bobot']));
+        return view('admin.survey.hitung', compact(['bobot', 'penerimas']));
     }
 
     public function rank()
@@ -55,17 +55,18 @@ class SurveyController extends Controller
     public function store(Request $request)
     {
 
-        for($i = 0; $i < count($request->sub_kriteria_id); $i++)
-        {
-            $sub[] = [
-                'penerima_id' => $request->penerima_id,
-                'sub_kriteria_id' => $request->sub_kriteria_id[$i],
-                'created_at' => now(),
-                'updated_at' => now()
-            ];
-        }
+            for ($i = 0; $i < count($request->subkriteria_id); $i++) {
 
-        Survey::insert($sub);
+                $survey[] = [
+                    'penerima_id' => $request->penerima_id,
+                    'subkriteria_id' => $request->subkriteria_id[$i],
+                    'status' => $request->status,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+
+                ];
+            }
+            Survey::insert($survey);
 
         toast('Survey Selesai', 'success');
         return back();

@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Znck\Eloquent\Relations\BelongsToThrough;
 
-class SubKriteria extends Model
+class Subkriteria extends Model
 {
     use HasFactory;
 
@@ -20,9 +21,13 @@ class SubKriteria extends Model
         return $this->belongsTo(Kriteria::class);
     }
 
-    public function survey()
+    public function penerima()
     {
-        return $this->hasMany(Survey::class);
+        return $this->belongsToThrough(Survey::class, Penerima::class);
     }
 
+    public function survey()
+    {
+        return $this->hasOne(Survey::class);
+    }
 }

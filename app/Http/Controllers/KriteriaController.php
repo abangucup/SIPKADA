@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kriteria;
-use App\Models\SubKriteria;
+use App\Models\Subkriteria;
 use App\Models\Survey;
 use Illuminate\Http\Request;
 
@@ -32,8 +32,6 @@ class KriteriaController extends Controller
             'jenis' => 'required',
         ]);
 
-        
-
         $kriteria = new Kriteria();
         $kriteria->kode = $request->kode;
         $kriteria->nama = $request->nama;
@@ -49,9 +47,10 @@ class KriteriaController extends Controller
 
     public function show(Kriteria $kriterium)
     {
+        // $sum = Subkriteria::withS('bobot');
+        $sum = Subkriteria::where('id', $kriterium->id)->sum('bobot');
         $kriteria = Kriteria::where('id', $kriterium->id)->first();
-        // dd($kriteria);
-        return view('admin.kriteria.detail', compact(['kriteria', 'kriterium']));
+        return view('admin.kriteria.detail', compact(['kriteria', 'kriterium', 'sum']));
     }
 
     public function edit(Kriteria $kriterium)

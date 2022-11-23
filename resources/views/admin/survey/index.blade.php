@@ -49,7 +49,10 @@
                                     <td>{{ $penerima->alamat}}</td>
                                     <td>{{ $penerima->kelurahan->nama}}</td>
                                     <td>
-                                        @if ($penerima->survey == null)
+                                        {{-- @foreach ($penerima->survey as $survey)
+                                        @endforeach
+                                             --}}
+                                        @if ($penerima->survey->isEmpty())
                                         <button class="btn btn-success" type="button" data-toggle="modal"
                                         data-target="#survey-{{$penerima->id}}">Survey</button>
                                         @else

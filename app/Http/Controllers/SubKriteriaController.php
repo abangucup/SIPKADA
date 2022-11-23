@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SubKriteria;
+use App\Models\Subkriteria;
 use Illuminate\Http\Request;
 
 class SubKriteriaController extends Controller
@@ -15,7 +15,7 @@ class SubKriteriaController extends Controller
             'bobot' => 'required',
         ]);
 
-        $sub = new SubKriteria();
+        $sub = new Subkriteria();
         $sub->kriteria_id = $request->kriteria_id;
         $sub->sub = $request->sub;
         $sub->bobot = $request->bobot;
@@ -25,10 +25,8 @@ class SubKriteriaController extends Controller
         return back();
     }
     
-    public function update(Request $request, SubKriteria $sub)
+    public function update(Request $request, Subkriteria $sub)
     {
-
-        // dd($request->all());
         $this->validate($request,[
             'kriteria_id' => 'required',
             'sub' => 'required',
@@ -45,7 +43,7 @@ class SubKriteriaController extends Controller
         return back();
     }
 
-    public function destroy(SubKriteria $sub)
+    public function destroy(Subkriteria $sub)
     {
         $sub->delete();
         toast('Sub Kriteria Berhasil Dihapus', 'success');

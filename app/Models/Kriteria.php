@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Znck\Eloquent\Relations\BelongsToThrough;
 
 class Kriteria extends Model
 {
@@ -24,6 +25,11 @@ class Kriteria extends Model
 
     public function subkriteria()
     {
-        return $this->hasMany(SubKriteria::class)->orderByDesc('bobot');
+        return $this->hasMany(Subkriteria::class)->orderByDesc('bobot');
     }
+
+    // public function penerima()
+    // {
+    //     return $this->belongsToThrough(Subkriteria::class, Survey::class, Penerima::class);
+    // }
 }

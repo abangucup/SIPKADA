@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Rangking')
+@section('title', 'Perhitungan')
 
 @section('content')
 <div class="page-header mt-5">
@@ -21,7 +21,9 @@
             </div>
         </div>
     </section>
+
     <div class="row">
+
         {{-- Normalisasi Kriteria --}}
         <div class="col-sm-12">
             <div class="card">
@@ -78,30 +80,36 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th>No</th>
-                                    <th>Kode</th>
-                                    <th>Kriteria</th>
-                                    <th class="text-center">Bobot</th>
-                                    <th class="text-center">Normalisasi</th>
+                                    <th>Nama Penerima</th>
+                                    @foreach ($bobot as $item)
+                                    <th>{{$item['kode']}}</th>
+                                    @endforeach
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($bobot as $item)
+                                @foreach ($penerimas as $penerima => $item)
+                                @if(!$item->survey->isEmpty())
+                                    
                                 <tr>
-                                    <td class="font-weight-bold">{{$loop->iteration}}</td>
-                                    <td>{{$item['kode']}}</td>
-                                    <td>{{$item['kriteria']}}</td>
-                                    <td class="text-center">{{$item['bobot']}}</td>
-                                    <td class="text-center">{{round($item['normalisasi'], 4)}}</td>
+                                    <td>{{++$penerima}}</td>
+                                    <td>{{$item->nama}}</td>
+                                    @foreach ($item->survey as $survey)
+                                        
+                                    <td>{{$survey->subkriteria->bobot}}</td>
+                                    @endforeach
                                 </tr>
+                                @endif
                                 @endforeach
+                                    
+                                    {{-- {{$penerima->survey}} --}}
                             </tbody>
-                            <tfoot>
+                            {{-- <tfoot>
                                 <tr class="thead-light text-center">
                                     <th colspan="3">TOTAL NILAI</th>
                                     <th>{{$item['total']}}</th>
                                     <th>{{$bobot->sum('normalisasi')}}</th>
                                 </tr>
-                            </tfoot>
+                            </tfoot> --}}
                         </table>
                     </div>
                 </div>

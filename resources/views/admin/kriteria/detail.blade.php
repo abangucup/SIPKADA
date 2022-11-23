@@ -94,6 +94,7 @@
 
                                 @foreach ($kriteria->subkriteria as $sub)
                                 <tr>
+                                    
                                     <td>{{ $loop->iteration}}</td>
                                     <td>{{ $sub->sub}}</td>
                                     <td>{{ $sub->bobot}}</td>
@@ -125,8 +126,8 @@
                             </tbody>
                             <tfoot>
                                 <tr class="thead-light">
-                                    <th colspan="2" class="text-center">Total Bobot</td>
-                                    <th colspan="2">OK</td>
+                                    <th colspan="2" class="text-center">Total Bobot Sub Kriteria</td>
+                                    <th colspan="2">{{$sum}}</td>
                                 </tr>
                             </tfoot>
                         </table>
