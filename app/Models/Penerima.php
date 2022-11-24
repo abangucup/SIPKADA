@@ -30,6 +30,11 @@ class Penerima extends Model
 
     public function subkriteria()
     {
-        return $this->hasManyThrough(Survey::class, Subkriteria::class);
+        return $this->hasManyThrough(Subkriteria::class, Survey::class);
+    }
+
+    public function kriteria()
+    {
+        return $this->hasManyThrough(Kriteria::class, Subkriteria::class, Survey::class);
     }
 }

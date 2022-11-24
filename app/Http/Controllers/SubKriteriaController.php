@@ -12,13 +12,13 @@ class SubKriteriaController extends Controller
         $this->validate($request,[
             'kriteria_id' => 'required',
             'sub' => 'required',
-            'bobot' => 'required',
+            'subbobot' => 'required',
         ]);
 
         $sub = new Subkriteria();
         $sub->kriteria_id = $request->kriteria_id;
         $sub->sub = $request->sub;
-        $sub->bobot = $request->bobot;
+        $sub->subbobot = $request->subbobot;
         $sub->save();
 
         toast('Berhasil Menambahkan Sub Kriteria', 'success');
@@ -30,13 +30,13 @@ class SubKriteriaController extends Controller
         $this->validate($request,[
             'kriteria_id' => 'required',
             'sub' => 'required',
-            'bobot' => 'required',
+            'subbobot' => 'required',
         ]);
 
         $sub->update([
             'kriteria_id' => $request->kriteria_id,
             'sub' => $request->sub,
-            'bobot' => $request->bobot,
+            'subbobot' => $request->subbobot,
         ]);
 
         toast('Berhasil Update Sub Kriteria', 'success');

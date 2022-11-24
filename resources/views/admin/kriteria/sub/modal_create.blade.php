@@ -25,8 +25,8 @@
                                         <input type="text" class="form-control" name="sub" value="{{old('sub')}}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Bobot</label>
-                                        <input type="number" class="number form-control" name="bobot" value="{{old('bobot')}}">
+                                        <label for="">Bobot Subkriteria</label>
+                                        <input type="number" class="number form-control" name="subbobot" value="{{old('subbobot')}}">
                                     </div>
                                 </li>
                             </ul>

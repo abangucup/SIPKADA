@@ -26,7 +26,7 @@ class KriteriaController extends Controller
     {
         $this->validate($request,[
             'kode' => 'required',
-            'nama' => 'required',
+            'kriteria' => 'required',
             'bobot' => 'required',
             'keterangan' => 'required',
             'jenis' => 'required',
@@ -34,7 +34,7 @@ class KriteriaController extends Controller
 
         $kriteria = new Kriteria();
         $kriteria->kode = $request->kode;
-        $kriteria->nama = $request->nama;
+        $kriteria->kriteria = $request->kriteria;
         $kriteria->bobot = $request->bobot;
         $kriteria->keterangan = $request->keterangan;
         $kriteria->jenis = $request->jenis;
@@ -47,10 +47,8 @@ class KriteriaController extends Controller
 
     public function show(Kriteria $kriterium)
     {
-        // $sum = Subkriteria::withS('bobot');
-        $sum = Subkriteria::where('id', $kriterium->id)->sum('bobot');
         $kriteria = Kriteria::where('id', $kriterium->id)->first();
-        return view('admin.kriteria.detail', compact(['kriteria', 'kriterium', 'sum']));
+        return view('admin.kriteria.detail', compact(['kriteria', 'kriterium']));
     }
 
     public function edit(Kriteria $kriterium)
@@ -63,7 +61,7 @@ class KriteriaController extends Controller
         // dd($request->all());
         $this->validate($request, [
             'kode' => 'required',
-            'nama' => 'required',
+            'kriteria' => 'required',
             'bobot' => 'required',
             'keterangan' => 'required',
             'jenis' => 'required'
@@ -71,7 +69,7 @@ class KriteriaController extends Controller
 
         $kriterium->update([
             'kode' => $request->kode,
-            'nama' => $request->nama,
+            'kriteria' => $request->kriteria,
             'bobot' => $request->bobot,
             'keterangan' => $request->keterangan,
             'jenis' => $request->jenis,

@@ -1,6 +1,6 @@
 # Backup Project Tugas Akhir
 
-_Judul:_ __SISTEM INFORMASI PENDUKUNG KEPUTUSAN PEMBERIAN BANTUAN DI DINAS DAERAH__
+_Judul:_ **SISTEM INFORMASI PENDUKUNG KEPUTUSAN PEMBERIAN BANTUAN DI DINAS DAERAH**
 
 > Backup Program untuk TA :rocket:
 
@@ -10,29 +10,31 @@ _Judul:_ __SISTEM INFORMASI PENDUKUNG KEPUTUSAN PEMBERIAN BANTUAN DI DINAS DAERA
 > Project dibuat untuk membantu dinas daerah dalam menentukan penerima bantuan yang harus di prioritaskan terlebih dahulu. sistem dibuat mengguankan framework laravel 9
 
 ## Table of Contents
-* [Features](#features)
-* [Screenshots](#screenshots)
-	* [Admin Kantor](#user-page)
-	* [Admin Kelurahan](#admin-page)
+
+-   [Features](#features)
+-   [Screenshots](#screenshots)
+    -   [Admin Kantor](#user-page)
+    -   [Admin Kelurahan](#admin-page)
 
 ## Features
-- [x] Framework Laravel
-- [x] Framework Bootstrap
-- [x] DSS Method (SMART)
-- [x] CRUD Menggunakan Templeting Blade
-- [x] Survey Modal
-- [x] DataTable
-- [x] Responsive Layout for User*
-- [x] Ajax Pagination
-- [x] Admin Memanagemet User Setiap Kelurahan
-- [x] SweetAlert for pop-up info & status
-- [x] Username checker using Middleware Logic
-- [x] Chart
-- [x] Searched data log
-- [x] Sorting data (part of pagination)
-- [x] DSS Method Implementation di controller*
 
-*Cukup Sekian* :+1:
+-   [x] Framework Laravel
+-   [x] Framework Bootstrap
+-   [x] DSS Method (SMART)
+-   [x] CRUD Menggunakan Templeting Blade
+-   [x] Survey Modal
+-   [x] DataTable
+-   [x] Responsive Layout for User\*
+-   [x] Ajax Pagination
+-   [x] Admin Memanagemet User Setiap Kelurahan
+-   [x] SweetAlert for pop-up info & status
+-   [x] Username checker using Middleware Logic
+-   [x] Chart
+-   [x] Searched data log
+-   [x] Sorting data (part of pagination)
+-   [x] DSS Method Implementation di controller\*
+
+_Cukup Sekian_ :+1:
 
 <!-- ## Screenshots
 
@@ -113,3 +115,89 @@ Halaman Data Manajemen User
 #### Configuration Page
 ![config](https://i.imgur.com/U6Lsn5K.png)
 Halaman Konfigurasi -->
+
+        /*
+        Define Table {
+            table penerimas => {
+                nama, nik
+            }
+
+            table surveys => {
+                status, penerima_id, subkriteria_id
+            }
+
+            table subkriteria => {
+                namasub, kriteria_id, bobot
+            }
+
+            table kriteria => {
+                namakriteria, bobot
+            }
+        }
+
+        Define Data {
+            penerimas => {
+                nama => sincan
+                nik => 123
+            }
+
+            surveys => {
+                [
+                    id => 1
+                    status => selesai
+                    subkriteria_id => 1
+                    penerima_id => 1
+                ],
+                [
+                    id => 2
+                    status => selesai
+                    subkriteria_id => 2
+                    penerima_id => 1
+                ]
+            }
+
+            subkriteria => {
+               [
+                id => 1
+                namasub => sub kriteria 1 dari kriteria 1
+                bobot => 80
+                kriteria_id => 1
+               ],
+               [
+                id => 2
+                namasub => sub kriteria 2 dari kriteria 1
+                bobot => 50
+                kriteria_id => 1
+               ],
+               [
+                id => 3
+                namasub => sub kriteria 1 dari kriteria 2
+                bobot => 100
+                kriteria_id => 2
+               ],
+               [
+                id => 4
+                namasub => sub kriteria 2 dari kriteria 2
+                bobot => 80
+                kriteria_id => 2
+               ],
+
+            }
+
+            kriteria => {
+                [
+                    id => 1
+                    nama => kriteria 1
+                    bobot => 100
+                ],
+                [
+                    id => 2
+                    nama => kriteria 2
+                    bobot => 70
+                ],
+            }
+
+            Bagaimana
+        }
+
+        */

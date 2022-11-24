@@ -7,13 +7,24 @@ use App\Models\Penerima;
 use App\Models\Subkriteria;
 use App\Models\Survey;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SurveyController extends Controller
 {
     public function hitung()
     {
-        // $surveys = Survey::all();
-        $penerimas = Penerima::with('survey.subkriteria')->get();
+
+        $penerimas = Penerima::with('survey.subkriteria.kriteria')->get();
+
+        // filter data hanya menampilkan subbobot dan sub dari table sub kriteria dan kode dari kriteria
+        $filter = DB::table('kriterias')
+        ->join('subkriterias', 'kriterias.id', '=', 'subkriterias.kriteria_id')
+        ->join('surveys', 'surveys.subkriteria_id', '=', 'subkriterias.id')
+        ->get(['subbobot', 'sub', 'kode']);
+        // Membuat Variabel Data Sesusai Kode Kriteria
+        $data = $filter->groupBy('kode');
+
+
         $bobot = Kriteria::all()->map(function ($item) {
 
             // variable jumlah bobot kriteria
@@ -38,7 +49,7 @@ class SurveyController extends Controller
             ]);
         });
 
-        return view('admin.survey.hitung', compact(['bobot', 'penerimas']));
+        return view('admin.survey.hitung', compact(['bobot', 'penerimas', 'data']));
     }
 
     public function rank()
@@ -55,18 +66,18 @@ class SurveyController extends Controller
     public function store(Request $request)
     {
 
-            for ($i = 0; $i < count($request->subkriteria_id); $i++) {
+        for ($i = 0; $i < count($request->subkriteria_id); $i++) {
 
-                $survey[] = [
-                    'penerima_id' => $request->penerima_id,
-                    'subkriteria_id' => $request->subkriteria_id[$i],
-                    'status' => $request->status,
-                    'created_at' => now(),
-                    'updated_at' => now(),
+            $survey[] = [
+                'penerima_id' => $request->penerima_id,
+                'subkriteria_id' => $request->subkriteria_id[$i],
+                'status' => $request->status,
+                'created_at' => now(),
+                'updated_at' => now(),
 
-                ];
-            }
-            Survey::insert($survey);
+            ];
+        }
+        Survey::insert($survey);
 
         toast('Survey Selesai', 'success');
         return back();

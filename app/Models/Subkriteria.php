@@ -13,7 +13,7 @@ class Subkriteria extends Model
     protected $fillable = [
         'kriteria_id',
         'sub',
-        'bobot'
+        'subbobot'
     ];
 
     public function kriteria()
@@ -23,7 +23,7 @@ class Subkriteria extends Model
 
     public function penerima()
     {
-        return $this->belongsToThrough(Survey::class, Penerima::class);
+        return $this->belongsToThrough(Penerima::class, Survey::class);
     }
 
     public function survey()

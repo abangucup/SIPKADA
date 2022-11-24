@@ -26,8 +26,8 @@
                                         <input type="text" class="form-control" name="sub" value="{{old('sub', $sub->sub)}}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Bobot</label>
-                                        <input type="text" class="form-control" name="bobot" value="{{old('bobot', $sub->bobot)}}">
+                                        <label for="">Bobot Subkriteria</label>
+                                        <input type="text" class="form-control" name="subbobot" value="{{old('subbobot', $sub->subbobot)}}">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Simpan</button>
                                 </li>

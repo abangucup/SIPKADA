@@ -26,7 +26,7 @@
                                     <div class="d-flex flex-row float-left col-sm-7">
                                         <div class="p-2"><i class="fas fa-eye mr-3" data-toggle="tooltip"
                                                 data-placement="left" title="{{$kriteria->keterangan}}"></i></div>
-                                        <div class="p-2">{{$kriteria->nama}}</div>
+                                        <div class="p-2">{{$kriteria->kriteria}}</div>
                                     </div>
 
                                     <div class="d-flex flex-row-reverse float-right col-sm-5">

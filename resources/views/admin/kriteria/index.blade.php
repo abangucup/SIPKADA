@@ -47,7 +47,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration}}</td>
                                     <td>{{ $kriteria->kode}}</td>
-                                    <td>{{ $kriteria->nama}}</td>
+                                    <td>{{ $kriteria->kriteria}}</td>
                                     <td>{{ $kriteria->bobot}}</td>
                                     <td>{{ Str::ucfirst($kriteria->jenis) }}</td>
                                     <td class="text-center">

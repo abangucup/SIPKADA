@@ -84,32 +84,39 @@
                                     @foreach ($bobot as $item)
                                     <th>{{$item['kode']}}</th>
                                     @endforeach
+                                    {{-- <th>Total</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($penerimas as $penerima => $item)
-                                @if(!$item->survey->isEmpty())
-                                    
+                                @foreach ($penerimas as $penerima)
+                                @if(!$penerima->survey->isEmpty())
                                 <tr>
-                                    <td>{{++$penerima}}</td>
-                                    <td>{{$item->nama}}</td>
-                                    @foreach ($item->survey as $survey)
-                                        
-                                    <td>{{$survey->subkriteria->bobot}}</td>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{$penerima->nama}}</td>
+                                    @foreach ($penerima->survey as $survey)
+                                    <td>{{$survey->subkriteria->subbobot}}</td>
                                     @endforeach
+                                    {{-- <td>{{$penerima->survey->sum('subkriteria.subbobot')}}</td> --}}
                                 </tr>
                                 @endif
                                 @endforeach
-                                    
-                                    {{-- {{$penerima->survey}} --}}
                             </tbody>
-                            {{-- <tfoot>
+                            <tfoot>
                                 <tr class="thead-light text-center">
-                                    <th colspan="3">TOTAL NILAI</th>
-                                    <th>{{$item['total']}}</th>
-                                    <th>{{$bobot->sum('normalisasi')}}</th>
+                                    <th colspan="2" class="text-center">MIN</th>
+                                    @foreach ($data as $item)
+                                    <th class="text-left">{{$item->min('subbobot')}}</th>
+                                    @endforeach
+                                    {{-- <th></th> --}}
                                 </tr>
-                            </tfoot> --}}
+                                <tr class="thead-light">
+                                    <th colspan="2" class="text-center">MAX</th>
+                                    @foreach ($data as $item)
+                                    <th class="text-left">{{$item->max('subbobot')}}</th>
+                                    @endforeach
+                                    {{-- <th></th> --}}
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>

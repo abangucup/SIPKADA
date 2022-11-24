@@ -38,7 +38,7 @@
                         <div class="form-group">
                             <label class="font-weight-bold">Kriteria <span class="text-danger">*
                                 </span></label>
-                            <input class="form-control" type="text" placeholder="Contoh : Kewarganegaraan" name="nama" value="{{ old('nama', $kriterium->nama)}}" required>
+                            <input class="form-control" type="text" placeholder="Contoh : Kewarganegaraan" name="kriteria" value="{{ old('kriteria', $kriterium->kriteria)}}" required>
                         </div>
                         <div class="form-group">
                             <label class="font-weight-bold">Keterangan <span class="text-danger">*

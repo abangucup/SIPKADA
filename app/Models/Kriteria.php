@@ -12,7 +12,7 @@ class Kriteria extends Model
 
     protected $fillable = [
         'kode',
-        'nama',
+        'kriteria',
         'bobot',
         'keterangan',
         'jenis',
@@ -20,16 +20,16 @@ class Kriteria extends Model
 
     public function survey()
     {
-        return $this->hasOne(Survey::class);
+        return $this->belongsToThrough(Survey::class, Subkriteria::class);
     }
 
     public function subkriteria()
     {
-        return $this->hasMany(Subkriteria::class)->orderByDesc('bobot');
+        return $this->hasMany(Subkriteria::class)->orderByDesc('subbobot');
     }
 
-    // public function penerima()
-    // {
-    //     return $this->belongsToThrough(Subkriteria::class, Survey::class, Penerima::class);
-    // }
+    public function penerima()
+    {
+        return $this->belongsToThrough(Penerima::class, Survey::class, Subkriteria::class);
+    }
 }
