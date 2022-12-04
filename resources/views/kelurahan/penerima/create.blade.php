@@ -30,7 +30,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="font-weight-bold">NIK</label>
-                            <input class="form-control" type="text" placeholder="NIK" name="nik" value="{{ old('nik') }}" required>
+                            <input class="number form-control" type="number" placeholder="NIK" name="nik" value="{{ old('nik') }}" required>
                         </div>
                     </div>
                     <div class="col-md-12">

@@ -18,6 +18,28 @@
                     </nav>
                 </div>
 
+                {{-- Menu Filter --}}
+                <div class="card-body">
+                    <form action="{{route('survey.index')}}" method="GET">
+                        @csrf
+                        <div class="row float-right">
+                            <div class="p-2">
+                                <select name="kelurahan" class="form-control" id="kelurahan">
+                                    <option value="">Pilih Kelurahan</option>
+                                    @foreach ($kelurahans as $kelurahan)
+                                    <option value="{{$kelurahan->id}}">{{$kelurahan->nama}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="p-2 pr-4">
+                                <button type="submit" id="filter" class="btn btn-primary">Filter</button>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+                {{-- End FIlter --}}
+
             </div>
         </div>
     </section>
@@ -27,7 +49,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="datatable table table-stripped">
+                        <table class="table table-striped" id="filterTable">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -49,21 +71,17 @@
                                     <td>{{ $penerima->alamat}}</td>
                                     <td>{{ $penerima->kelurahan->nama}}</td>
                                     <td>
-                                        {{-- @foreach ($penerima->survey as $survey)
-                                        @endforeach
-                                             --}}
                                         @if ($penerima->survey->isEmpty())
-                                        <button class="btn btn-success" type="button" data-toggle="modal"
-                                        data-target="#survey-{{$penerima->id}}">Survey</button>
-                                        @else
-                                        <button class="btn btn-danger" disabled>Selesai Survey</button>
-                                        @endif
-                                    </td>
-                                </tr>
+                                        <button class=" btn btn-success" type="button" data-toggle="modal"
+                            data-target="#survey-{{$penerima->id}}">Survey</button>
+                            @else
+                            <button class="btn btn-danger" disabled>Selesai Survey</button>
+                            @endif
+                            </td>
+                            </tr>
 
-                                @include('admin.survey.modal')
-
-                                @endforeach
+                            @include('admin.survey.modal')
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -71,6 +89,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
 @endsection

@@ -24,7 +24,7 @@ Route::middleware(['guest'])->group(function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::prefix('dashboard')->group(function () {
-
+        
         Route::group(['middleware' => ['role:admin']], function () {
             Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
             Route::resource('/kriteria', KriteriaController::class);

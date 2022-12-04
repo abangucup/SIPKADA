@@ -46,18 +46,18 @@
                                 @foreach ($bobot as $item)
                                 <tr>
                                     <td class="font-weight-bold">{{$loop->iteration}}</td>
-                                    <td>{{$item['kode']}}</td>
-                                    <td>{{$item['kriteria']}}</td>
-                                    <td class="text-center">{{$item['bobot']}}</td>
-                                    <td class="text-center">{{round($item['normalisasi'], 4)}}</td>
+                                    <td>{{$item['kode'] ?? 'Data Kosong'}}</td>
+                                    <td>{{$item['kriteria'] ?? 'Data Kosong'}}</td>
+                                    <td class="text-center">{{$item['bobot'] ?? 'Data Kosong'}}</td>
+                                    <td class="text-center">{{round($item['normalisasi'], 4) ?? 'Data Kosong'}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
                             <tfoot>
                                 <tr class="thead-light text-center">
                                     <th colspan="3">TOTAL NILAI</th>
-                                    <th>{{$item['total']}}</th>
-                                    <th>{{$bobot->sum('normalisasi')}}</th>
+                                    <th>{{$item['total'] ?? 'Data Kosong'}}</th>
+                                    <th>{{$bobot->sum('normalisasi') ?? 'Data Kosong'}}</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -82,7 +82,7 @@
                                     <th>No</th>
                                     <th>Nama Penerima</th>
                                     @foreach ($bobot as $item)
-                                    <th>{{$item['kode']}}</th>
+                                    <th>{{$item['kode'] ?? 'Data Kosong'}}</th>
                                     @endforeach
                                     {{-- <th>Total</th> --}}
                                 </tr>
@@ -92,9 +92,9 @@
                                 @if(!$penerima->survey->isEmpty())
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{$penerima->nama}}</td>
+                                    <td>{{$penerima->nama ?? 'Data Kosong'}}</td>
                                     @foreach ($penerima->survey as $survey)
-                                    <td>{{$survey->subkriteria->subbobot}}</td>
+                                    <td>{{$survey->subkriteria->subbobot ?? 'Data Kosong'}}</td>
                                     @endforeach
                                     {{-- <td>{{$penerima->survey->sum('subkriteria.subbobot')}}</td> --}}
                                 </tr>
@@ -105,14 +105,14 @@
                                 <tr class="thead-light text-center">
                                     <th colspan="2" class="text-center">MIN</th>
                                     @foreach ($data as $item)
-                                    <th class="text-left">{{$item->min('subbobot')}}</th>
+                                    <th class="text-left">{{$item->min('subbobot') ?? 'Data Kosong'}}</th>
                                     @endforeach
                                     {{-- <th></th> --}}
                                 </tr>
                                 <tr class="thead-light">
                                     <th colspan="2" class="text-center">MAX</th>
                                     @foreach ($data as $item)
-                                    <th class="text-left">{{$item->max('subbobot')}}</th>
+                                    <th class="text-left">{{$item->max('subbobot') ?? 'Data Kosong'}}</th>
                                     @endforeach
                                     {{-- <th></th> --}}
                                 </tr>
@@ -126,7 +126,7 @@
 
 
         {{-- Normalisasi Nilai Alternatif --}}
-        <div class="col-sm-12">
+        {{-- <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Normalisasi Data Penerima (Nilai Alternatif)</h4>
@@ -165,7 +165,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         {{-- End Normalisasi Nilai Alternatif --}}
     </div>
 </div>

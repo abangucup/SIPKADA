@@ -93,7 +93,7 @@
                                     
                                     <td>{{ $loop->iteration}}</td>
                                     <td>{{ $sub->sub}}</td>
-                                    <td>{{ $sub->bobot}}</td>
+                                    <td>{{ $sub->subbobot}}</td>
                                     <td class="text-center">
                                         <div class="dropdown dropdown-action">
                                             <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
@@ -123,7 +123,7 @@
                             <tfoot>
                                 <tr class="thead-light">
                                     <th colspan="2" class="text-center">Total Bobot Sub Kriteria</td>
-                                    <th colspan="2">{{$kriteria->subkriteria->sum('bobot')}}</td>
+                                    <th colspan="2">{{$kriteria->subkriteria->sum('subbobot')}}</td>
                                 </tr>
                             </tfoot>
                         </table>

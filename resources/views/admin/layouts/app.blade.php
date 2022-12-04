@@ -9,6 +9,8 @@
 
     @include('admin.layouts.partials.style')
 
+    {{-- @laravelViewsStyles(laravel-views) --}}
+
 </head>
 
 <body>
@@ -31,6 +33,7 @@
     @include('admin.layouts.partials.script')
 
     @stack('scripts')
+    {{-- @laravelViewsScripts(laravel-views) --}}
 
 </body>
 

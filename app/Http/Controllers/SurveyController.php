@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelurahan;
 use App\Models\Kriteria;
 use App\Models\Penerima;
 use App\Models\Subkriteria;
@@ -11,25 +12,26 @@ use Illuminate\Support\Facades\DB;
 
 class SurveyController extends Controller
 {
+
     public function hitung()
     {
 
         $penerimas = Penerima::with('survey.subkriteria.kriteria')->get();
 
+        // Mencari Nilai Terkecil Dan Terbesai
         // filter data hanya menampilkan subbobot dan sub dari table sub kriteria dan kode dari kriteria
         $filter = DB::table('kriterias')
-        ->join('subkriterias', 'kriterias.id', '=', 'subkriterias.kriteria_id')
-        ->join('surveys', 'surveys.subkriteria_id', '=', 'subkriterias.id')
-        ->get(['subbobot', 'sub', 'kode']);
+            ->join('subkriterias', 'kriterias.id', '=', 'subkriterias.kriteria_id')
+            ->join('surveys', 'surveys.subkriteria_id', '=', 'subkriterias.id')
+            ->get(['subbobot', 'sub', 'kode']);
         // Membuat Variabel Data Sesusai Kode Kriteria
         $data = $filter->groupBy('kode');
+        // Batas
 
-
+        // Mencari Normalisasi
         $bobot = Kriteria::all()->map(function ($item) {
-
             // variable jumlah bobot kriteria
             $sum = Kriteria::sum('bobot');
-
             return ([
                 /*
                 RUMUS:
@@ -38,9 +40,8 @@ class SurveyController extends Controller
                 M => jumlah bobot dari smua kriteria
                 */
                 'normalisasi' => $item->bobot / $sum,
-
                 // Get Data Kriteria
-                'kriteria' => $item->nama,
+                'kriteria' => $item->kriteria,
                 'bobot' => $item->bobot,
                 'kode' => $item->kode,
                 'keterangan' => $item->keterangan,
@@ -48,38 +49,82 @@ class SurveyController extends Controller
                 'total' => $item->sum('bobot'),
             ]);
         });
+        // Batas
 
         return view('admin.survey.hitung', compact(['bobot', 'penerimas', 'data']));
     }
 
     public function rank()
     {
+        // mencari nilai utility
+        /*
+            kriteria COST :
+            ui(ai) = cmax - cout / cmax - cmin * 100%
+            ket : 
+            cmax = nilai kriteria maksimal
+            cmin = nilai kriteria minimal
+            cout = nilai kriteria ke i
+
+
+            kriteria BENEFIT :
+            ui(ai) = cout - cmin / cmax - cmin * 100%
+
+            contoh : 
+            cmin = 125
+            cmax = 479
+            cout = 234
+
+            contoh = 
+            cmin = 0,1297
+            cmax = 0,2277
+            cout = 234
+
+            
+            COST :
+            ui(ai) = 479-234 / 479-125 * 100%
+            ui(ai) = 0,692090395
+
+            BENEFIT :
+            ui(ai) = 234-125 / 479-125 * 100%
+
+
+        */
         return view('admin.survey.rank');
     }
     public function index()
     {
         $penerimas = Penerima::all();
+        $kelurahans = Kelurahan::all();
         $kriterias = Kriteria::all();
-        return view('admin.survey.index', compact(['kriterias', 'penerimas']));
+        return view('admin.survey.index', compact(['kriterias', 'kelurahans', 'penerimas']));
     }
 
     public function store(Request $request)
     {
+        $count = $request->subkriteria_id;
 
-        for ($i = 0; $i < count($request->subkriteria_id); $i++) {
+        if ($count != null) {
+            $count = count($request->subkriteria_id);
+            // dd($count);
+            for ($i = 0; $i < $count; $i++) {
 
-            $survey[] = [
-                'penerima_id' => $request->penerima_id,
-                'subkriteria_id' => $request->subkriteria_id[$i],
-                'status' => $request->status,
-                'created_at' => now(),
-                'updated_at' => now(),
+                $survey[] = [
+                    'penerima_id' => $request->penerima_id,
+                    'subkriteria_id' => $request->subkriteria_id[$i],
+                    'status' => $request->status,
+                    'created_at' => now(),
+                    'updated_at' => now(),
 
-            ];
+                ];
+            }
+            Survey::insert($survey);
+
+            toast('Survey Selesai', 'success');
+        } else {
+            // toast('Harap Masukan Kriteria dan Sub Kriteria Dulu', 'info');
+            alert()->info('Required Kriteria', 'Harap Inputkan Kriteria dan SubKriteria Dahulu');
         }
-        Survey::insert($survey);
 
-        toast('Survey Selesai', 'success');
         return back();
     }
 }
