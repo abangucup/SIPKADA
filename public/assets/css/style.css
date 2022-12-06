@@ -215,7 +215,7 @@ table.table td h2 span {
 
 .table thead tr th {
     font-weight: 700;
-    border: 0
+    border: 2;
 }
 
 .table tbody tr {

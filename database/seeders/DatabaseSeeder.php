@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             PenerimaSeeder::class,
             KriteriaSeeder::class,
-            SubkriteriaSeeder::class
+            // SubkriteriaSeeder::class
         ]);
     }
 }

@@ -3,12 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelurahan;
+use App\Models\Kriteria;
 use App\Models\Penerima;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use PDF;
 
 class PenerimaController extends Controller
 {
+    // Menu Detail
+    /*
+        menampilkan detail perhitungan setiap penerima sesuai kelurahannya
+    */
+    public function detail()
+    {
+        $penerimas = Penerima::where('kelurahan_id', auth()->user()->kelurahan_id)->get();
+        $kriterias = Kriteria::all();
+        return view('kelurahan.penerima.detail', compact('kriterias', 'penerimas'));
+    }
+
     public function index()
     {
         $count = Penerima::all()->count();

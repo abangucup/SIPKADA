@@ -17,8 +17,8 @@ class KelurahanSeeder extends Seeder
     {
         // Dummy Data Kelurahan
         $kelurahans = [
-            ['nama' => 'Kelurahan 1', 'lokasi' => 'Sepanjang Kelurahan 1'],
-            ['nama' => 'Kelurahan 2', 'lokasi' => 'Sepanjang Kelurahan 2'],
+            ['nama' => 'Kota Bolmut', 'lokasi' => 'Jalan Kota Bolmut'],
+            ['nama' => 'Kabupaten Bolmut', 'lokasi' => 'Jalan Kabupaten Bolmut'],
         ];
 
         foreach ($kelurahans as $kelurahan) {

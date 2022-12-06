@@ -14,8 +14,8 @@ class Kriteria extends Model
         'kode',
         'kriteria',
         'bobot',
-        'keterangan',
-        'jenis',
+        'normalisasi'
+    
     ];
 
     public function survey()

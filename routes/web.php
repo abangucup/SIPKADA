@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\KriteriaController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PenerimaController;
 use App\Http\Controllers\SubKriteriaController;
@@ -42,6 +43,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['middleware' => ['role:kelurahan']], function () {
             Route::get('/', [DashboardController::class, 'kelurahan'])->name('dashboard.kelurahan');
             Route::resource('/penerima', PenerimaController::class);
+            Route::get('/detail', [PenerimaController::class, 'detail'])->name('penerima.detail');
+            Route::get('/cetak-penerima', [LaporanController::class, 'cetak_penerima'])->name('penerima.cetak');
+            Route::get('/laporan', [LaporanController::class, 'laporan_penerima'])->name('laporan.penerima');
+            Route::get('/cetak-laporan', [LaporanController::class, 'cetak_laporan_penerima'])->name('cetak_laporan_penerima');
         });
     });
 

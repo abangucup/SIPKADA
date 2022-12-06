@@ -15,11 +15,10 @@ return new class extends Migration
     {
         Schema::create('kriterias', function (Blueprint $table) {
             $table->id();
-            $table->char('kode', 4)->unique();
+            $table->char('kode', 2)->unique();
             $table->string('kriteria');
             $table->integer('bobot');
-            $table->enum('jenis', ['cost', 'benefit']);
-            $table->text('keterangan');
+            $table->float('normalisasi');
             $table->timestamps();
         });
     }

@@ -50,8 +50,11 @@
                 <li class="{{Request::is('kelurahan/penerima') ? 'active' : ''}}">
                     <a href="{{ route('penerima.index')}}"><i class="fa fa-hand-holding-heart"></i><span>Data Penerima</span></a>
                 </li>
-                <li class="{{Request::is('dashboard/laporan') ? 'active' : ''}}">
-                    <a href="pricing.html"><i class="fas fa-book"></i> <span>Laporan</span></a>
+                <li class="{{Request::is('kelurahan/detail') ? 'active' : ''}}">
+                    <a href="{{ route('penerima.detail')}}"><i class="fa fa-hand-holding-heart"></i><span>Detail Perhitungan</span></a>
+                </li>
+                <li class="{{Request::is('kelurahan/laporan') ? 'active' : ''}}">
+                    <a href="{{route('laporan.penerima')}}"><i class="fas fa-book"></i> <span>Laporan</span></a>
                 </li>
             </ul>
             @endauth
