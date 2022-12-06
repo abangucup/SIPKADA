@@ -99,6 +99,14 @@ class SurveyController extends Controller
         return view('admin.survey.index', compact(['kriterias', 'kelurahans', 'penerimas']));
     }
 
+    public function filter(Request $request)
+    {
+        $penerimas = Penerima::where('kelurahan_id', $request->kelurahan)->get();
+        $kelurahans = Kelurahan::all();
+        $kriterias = Kriteria::all();
+        return view('admin.survey.index', compact(['kriterias', 'kelurahans', 'penerimas']));
+    }
+
     public function store(Request $request)
     {
         $count = $request->subkriteria_id;

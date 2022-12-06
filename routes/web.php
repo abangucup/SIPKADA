@@ -24,7 +24,7 @@ Route::middleware(['guest'])->group(function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::prefix('dashboard')->group(function () {
-        
+
         Route::group(['middleware' => ['role:admin']], function () {
             Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
             Route::resource('/kriteria', KriteriaController::class);
@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('hitung', [SurveyController::class, 'hitung'])->name('hitung');
             Route::resource('/user', UserController::class);
             Route::resource('/kelurahan', KelurahanController::class);
+            Route::post('/survey/filter', [SurveyController::class, 'filter']);
         });
     });
 
