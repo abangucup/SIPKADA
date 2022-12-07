@@ -31,9 +31,9 @@
                 <li class="{{Request::is('dashboard/user') ? 'active' : ''}}">
                     <a href="{{ route('user.index')}}"><i class="fa fa-user"></i><span>User</span></a>
                 </li>
-                <li class="{{Request::is('dashboard/laporan') ? 'active' : ''}}">
+                {{-- <li class="{{Request::is('dashboard/laporan') ? 'active' : ''}}">
                     <a href="pricing.html"><i class="fas fa-book"></i> <span>Laporan</span></a>
-                </li>
+                </li> --}}
             </ul>
             @elseif(auth()->user()->role == 'kelurahan')
             <ul>
