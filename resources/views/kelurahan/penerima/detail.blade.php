@@ -48,9 +48,9 @@
                                     <td>{{++$key}}</td>
                                     <td>{{$penerima->nik}}</td>
                                     <td>{{$penerima->nama}}</td>
-                                    @foreach ($penerima->survey as $survey)
+                                    {{-- @foreach ($penerima->survey as $survey)
                                     <td>{{$survey->subkriteria->bobot ?? '-'}}</td>
-                                    @endforeach
+                                    @endforeach --}}
                                     @foreach ($kriterias as $kriteria)
                                     <td>{{$kriteria->kode}}</td>
                                     @endforeach
