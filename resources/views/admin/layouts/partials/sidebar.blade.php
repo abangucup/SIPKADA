@@ -13,23 +13,16 @@
                     </a>
                 </li>
                 
-
                 <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Survey </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
-                        {{-- <li>
-                            <a href="{{ route('sub.index')}}" class="{{Request::is('dashboard/sub') ? 'active' : ''}}"> Sub Kriteria </a>
-                        </li> --}}
                         <li>
                             <a href="{{ route('survey.index')}}" class="{{Request::is('dashboard/survey') ? 'active' : ''}}"> Penerima Bantuan </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('hitung')}}" class="{{Request::is('dashboard/hitung') ? 'active' : ''}}"> Hasil Perhitungan </a>
                         </li>
                     </ul>
                 </li>
 
                 
-                <li class="{{Request::is('dashboard/rank') ? 'active' : ''}}">
+                <li class="{{Request::is('dashboard/rank') ?? Request::is('dashboard/rank/filter') ? 'active' : ''}}">
                     <a href="{{ route('rank')}}"><i class="fa fa-trophy"></i><span>Rangking</span></a>
                 </li>
                 <li class="{{Request::is('dashboard/kelurahan') ? 'active' : ''}}">

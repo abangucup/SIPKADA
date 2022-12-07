@@ -16,15 +16,20 @@ class SubkriteriaSeeder extends Seeder
     public function run()
     {
         $subkriterias = [
-            ['kriteria_id' => 1, 'sub' => 'Lengkap', 'subbobot' => '100'],
-            ['kriteria_id' => 1, 'sub' => 'Kurang Lengkap', 'subbobot' => '50'],
-            ['kriteria_id' => 1, 'sub' => 'Tidak Ada', 'subbobot' => '0'],
-            ['kriteria_id' => 2, 'sub' => 'Miskin', 'subbobot' => '100'],
-            ['kriteria_id' => 2, 'sub' => 'Berkecukupan', 'subbobot' => '70'],
-            ['kriteria_id' => 2, 'sub' => 'Sederhana', 'subbobot' => '20'],
-            ['kriteria_id' => 3, 'sub' => 'Sangat Disiplin', 'subbobot' => '100'],
-            ['kriteria_id' => 3, 'sub' => 'Kurang DIsiplin', 'subbobot' => '60'],
-            ['kriteria_id' => 3, 'sub' => 'TIdak Disiplin', 'subbobot' => '10'],
+            ['kriteria_id' => 1, 'sub' => 'Milik sendiri', 'subbobot' => '90'],
+            ['kriteria_id' => 1, 'sub' => 'Warisan', 'subbobot' => '80'],
+            ['kriteria_id' => 1, 'sub' => 'Numpang / Sewa', 'subbobot' => '70'],
+            ['kriteria_id' => 2, 'sub' => 'Tanah / bambu kayu', 'subbobot' => '90'],
+            ['kriteria_id' => 2, 'sub' => 'Semen', 'subbobot' => '80'],
+            ['kriteria_id' => 2, 'sub' => 'Keramik', 'subbobot' => '70'],
+            ['kriteria_id' => 3, 'sub' => 'Anyaman bambu / papan', 'subbobot' => '90'],
+            ['kriteria_id' => 3, 'sub' => 'Seng / tripleks', 'subbobot' => '80'],
+            ['kriteria_id' => 3, 'sub' => 'Tembok / beton', 'subbobot' => '70'],
+            ['kriteria_id' => 4, 'sub' => 'Seng / injuk', 'subbobot' => '90'],
+            ['kriteria_id' => 4, 'sub' => 'Genteng / asbes', 'subbobot' => '80'],
+            ['kriteria_id' => 4, 'sub' => 'Beton', 'subbobot' => '70'],
+            ['kriteria_id' => 5, 'sub' => 'Sumur', 'subbobot' => '90'],
+            ['kriteria_id' => 5, 'sub' => 'PDAM', 'subbobot' => '80'],
         ];
 
         foreach ($subkriterias as $subkriteria) {

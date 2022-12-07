@@ -25,7 +25,7 @@
                                 <li class="list-group-item">
                                     <div class="d-flex flex-row float-left col-sm-7">
                                         <div class="p-2"><i class="fas fa-eye mr-3" data-toggle="tooltip"
-                                                data-placement="left" title="{{$kriteria->keterangan}}"></i></div>
+                                                data-placement="left" title="Bobot : {{$kriteria->bobot}}, Normalisasi : {{$kriteria->normalisasi}}"></i></div>
                                         <div class="p-2">{{$kriteria->kriteria}}</div>
                                     </div>
 
@@ -43,13 +43,13 @@
                                     </div>
                                 </li>
                                 @endforeach
-                                <div class="form-group mt-3">
+                                {{-- <div class="form-group mt-3">
                                     <label class="font-weight-bold">Status</label>
                                     <select class="form-control" name="status">
                                         <option value="selesai">Selesai</option>
                                         <option value="belum">Belum</option>
                                     </select>
-                                </div>
+                                </div> --}}
                             </ul>
                         </div>
                     </div>

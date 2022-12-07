@@ -29,10 +29,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['middleware' => ['role:admin']], function () {
             Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
             Route::resource('/kriteria', KriteriaController::class);
+            Route::get('/kriteria/refresh/{kriterium}', [KriteriaController::class, 'refresh'])->name('kriteria.refresh');
             Route::resource('/sub', SubKriteriaController::class);
             Route::resource('/survey', SurveyController::class);
             Route::get('rank', [SurveyController::class, 'rank'])->name('rank');
-            Route::get('hitung', [SurveyController::class, 'hitung'])->name('hitung');
+            Route::get('cetak-ranking', [LaporanController::class, 'cetak_rank'])->name('rank.cetak');
+            Route::post('/rank/filter', [SurveyController::class, 'filter_rank']);
             Route::resource('/user', UserController::class);
             Route::resource('/kelurahan', KelurahanController::class);
             Route::post('/survey/filter', [SurveyController::class, 'filter']);

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('penerima_id')->constrained()->onDelete('cascade');
             $table->foreignId('subkriteria_id')->constrained()->onDelete('cascade');
-            $table->enum('status', ['belum', 'selesai']);
+            // $table->enum('status', ['belum', 'selesai']);
             $table->timestamps();
         });
     }

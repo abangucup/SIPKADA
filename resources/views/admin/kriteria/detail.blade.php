@@ -57,12 +57,8 @@
                             <input class="form-control" type="text" value="{{$kriterium->bobot}}" readonly>
                         </div>
                         <div class="mt-2">
-                            <label>Jenis Kriteria</label>
-                            <input class="form-control" type="text" value="{{$kriterium->jenis}}" readonly>
-                        </div>
-                        <div class="mt-2">
-                            <label>Keterangan</label>
-                            <input class="form-control" type="text" value="{{$kriterium->keterangan}}" readonly>
+                            <label>Normalisasi</label>
+                            <input class="form-control" type="text" value="{{$kriterium->normalisasi}}" readonly>
                         </div>
                     </div>
                 </div>

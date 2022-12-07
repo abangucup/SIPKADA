@@ -13,6 +13,7 @@ class KriteriaController extends Controller
     {
         $sum = Kriteria::sum('bobot');
         $kriterias = Kriteria::all();
+
         return view('admin.kriteria.index', compact(['kriterias', 'sum']));
     }
 
@@ -24,25 +25,34 @@ class KriteriaController extends Controller
 
     public function store(Request $request)
     {
+        $sum = Kriteria::sum('bobot');
+
         $this->validate($request,[
             'kode' => 'required',
             'kriteria' => 'required',
             'bobot' => 'required',
-            'keterangan' => 'required',
-            'jenis' => 'required',
         ]);
 
         $kriteria = new Kriteria();
         $kriteria->kode = $request->kode;
         $kriteria->kriteria = $request->kriteria;
         $kriteria->bobot = $request->bobot;
-        $kriteria->keterangan = $request->keterangan;
-        $kriteria->jenis = $request->jenis;
+        $kriteria->normalisasi = $request->bobot / $sum;
         $kriteria->save();
 
         toast('Berhasil Menambahkan Kriteria', 'success');
         return to_route('kriteria.index');
 
+    }
+
+    public function refresh(Kriteria $kriterium)
+    {
+        $sum = Kriteria::sum('bobot');
+        $refresh = Kriteria::where('id', $kriterium->id)->first();
+        $kriterium->update([
+            'normalisasi' => $refresh->bobot / $sum,
+        ]);
+        return back();
     }
 
     public function show(Kriteria $kriterium)
@@ -58,21 +68,18 @@ class KriteriaController extends Controller
 
     public function update(Request $request, Kriteria $kriterium)
     {
-        // dd($request->all());
+        $sum = Kriteria::sum('bobot');
         $this->validate($request, [
             'kode' => 'required',
             'kriteria' => 'required',
             'bobot' => 'required',
-            'keterangan' => 'required',
-            'jenis' => 'required'
         ]);
 
         $kriterium->update([
             'kode' => $request->kode,
             'kriteria' => $request->kriteria,
             'bobot' => $request->bobot,
-            'keterangan' => $request->keterangan,
-            'jenis' => $request->jenis,
+            'normalisasi' => $request->bobot / $sum,
         ]);
 
         toast('Berhasil Update Kriteria', 'success');

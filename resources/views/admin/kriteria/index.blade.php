@@ -37,7 +37,8 @@
                                     <th>Kode</th>
                                     <th>Kriteria</th>
                                     <th>Bobot</th>
-                                    <th>Jenis</th>
+                                    <th>Normalisasi</th>
+                                    <th>Sub Kriteria</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
@@ -49,7 +50,14 @@
                                     <td>{{ $kriteria->kode}}</td>
                                     <td>{{ $kriteria->kriteria}}</td>
                                     <td>{{ $kriteria->bobot}}</td>
-                                    <td>{{ Str::ucfirst($kriteria->jenis) }}</td>
+                                    <td>{{ round($kriteria->normalisasi, 1)}}</td>
+                                    <td>
+                                        @foreach ($kriteria->subkriteria as $subkriteria)
+                                            <ul>
+                                                <li>{{$subkriteria->sub}}</li>
+                                            </ul>
+                                        @endforeach
+                                    </td>
                                     <td class="text-center">
                                         <div class="dropdown dropdown-action">
                                             <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
@@ -60,6 +68,10 @@
                                                     href="{{ route('kriteria.show', $kriteria->id)}}"><i
                                                         class="fas fa-eye mr-2"></i>
                                                     Detail</a>
+                                                <a class="dropdown-item"
+                                                    href="{{ route('kriteria.refresh', $kriteria->id)}}"><i
+                                                        class="fas fa-sync mr-2"></i>
+                                                    Refresh</a>
                                                 <a class="dropdown-item"
                                                     href="{{ route('kriteria.edit', $kriteria->id)}}"><i
                                                         class="fas fa-pencil-alt mr-2"></i>
@@ -79,8 +91,9 @@
                             </tbody>
                             <tfoot>
                                 <tr class="thead-light">
-                                    <th colspan="3" class="text-center">Total Bobot</td>
-                                    <th colspan="3">{{$sum}}</td>
+                                    <th colspan="3" class="text-center">Total Bobot</th>
+                                    <th colspan="0">{{$sum}}</th>
+                                    <th colspan="3">{{round($kriterias->sum('normalisasi'), 1)}}</th>
                                 </tr>
                             </tfoot>
                         </table>

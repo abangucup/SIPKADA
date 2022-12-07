@@ -32,4 +32,13 @@ class LaporanController extends Controller
         $pdf = PDF::loadview('kelurahan.laporan.pdf-laporan', compact('penerimas', 'kelurahan'));
         return $pdf->download('laporan-penerima.pdf');
     }
+
+    public function cetak_rank()
+    {
+        $kelurahans = Kelurahan::all();
+        $penerimas = Penerima::all();
+        $kriterias = Kriteria::all();
+        $pdf = PDF::loadview('admin.survey.pdf-rank', compact('penerimas', 'kelurahans', 'kriterias'));
+        return $pdf->download('detail-perhitungan-data-penerima.pdf');
+    }
 }

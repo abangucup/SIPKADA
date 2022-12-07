@@ -27,8 +27,6 @@
                         <p class="text-center mt-2">{{auth()->user()->kelurahan->nama ?? ''}}</p>
                     </div>
                 </div>
-                {{-- <a class="dropdown-item" href="profile.html">My Profile</a>
-                <a class="dropdown-item" href="settings.html">Account Settings</a> --}}
                 <form action="{{route('logout')}}" method="post">
                     @csrf
                     <button class="dropdown-item" type="submit">Logout</button>

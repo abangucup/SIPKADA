@@ -32,7 +32,7 @@
                             <label class="font-weight-bold">Kode <span class="text-danger">*
                             </span></label>
                             <input class="form-control" type="text" placeholder="Kritieria" name="kode" 
-                            value="{{"C".$count+1}}" readonly>
+                            value="{{"K".$count+1}}" readonly>
                         </div>
                         <div class="form-group">
                             <label class="font-weight-bold">Kriteria <span class="text-danger">*
@@ -40,31 +40,15 @@
                             <input class="form-control" type="text" placeholder="Contoh : Kewarganegaraan" name="kriteria" required>
                         </div>
                         <div class="form-group">
-                            <label class="font-weight-bold">Keterangan <span class="text-danger">*
-                                </span></label>
-                            <textarea class="form-control" rows="5" name="keterangan" placeholder="Keterangan Kriteria"
-                                required></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
                             <label class="font-weight-bold">Bobot Kriteria <span class="text-danger">*
                                 </span></label>
                             <input class="number form-control" type="number" placeholder="0-100" name="bobot" required>
                         </div>
-                        <div class="form-group">
-                            <label class="font-weight-bold">Jenis Kriteria</label>
-                            <select class="form-control" name="jenis">
-                                <option value="benefit">Benefit</option>
-                                <option value="cost">Cost</option>
-                            </select>
-                            <span class="text-danger">*benefit : kriteria berdasarkan keuntungan <br>(makin besar, lebih baik)</span><br>
-                            <span class="text-danger">*cost : kriteria berdasarkan biaya <br>(makin kecil, lebih baik)</span>
-                        </div>
+                        <button type="submit" class="btn btn-primary justify-content-center">Tambah Kriteria</button>
                     </div>
                 </div>
-
-                <button type="submit" class="btn btn-primary">Tambah Kriteria</button>
+                
+                
             </form>
         </div>
     </div>

@@ -1,53 +1,25 @@
-@extends('admin.layouts.app')
+<!DOCTYPE html>
+<html>
 
-@section('title', 'Rangking')
+<head>
+    <title>RANGKING</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
 
-@section('content')
-<div class="page-header mt-5">
-    <section class="comp-section">
-        <div class="card">
-            <div class="row">
+<body>
+    <style type="text/css">
+        table tr td,
+        table tr th {
+            font-size: 9pt;
+        }
+    </style>
+    <center>
+        <h5>Perengkingan Data Penerima Bantuan</h4>
+    </center>
 
-                <div class="card-body col-md-6 col-sm-12">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb mb-0">
-                            <h5 class="breadcrumb-item pl-4"><a href="{{ route('dashboard')}}"
-                                    class="text-primary ps-4">Dashboard</a></h5>
-                            <h5 class="breadcrumb-item active" aria-current="dashbaord">Hasil Perhitungan</h5>
-                        </ol>
-                    </nav>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    {{-- Menu Filter --}}
-    <div class="card-body">
-        <form action="{{ url('dashboard/rank/filter') }}" method="POST">
-            @csrf
-            @method('POST')
-            <div class="row float-right">
-                <div class="p-2">
-                    <select name="kelurahan" class="form-control" id="kelurahan" name="kelurahan">
-                        <option value="">Pilih Kelurahan</option>
-                        @foreach ($kelurahans as $kelurahan)
-                            <option value="{{ $kelurahan->id }}">{{ $kelurahan->nama }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="p-2 pr-4">
-                    <button type="submit" id="filter" class="btn btn-primary">Filter</button>
-                </div>
-            </div>
-        </form>
-    </div>
-    <a class="btn btn-danger mb-3" href="{{route('rank.cetak')}}" target="_blank">CETAK PDF</a>
-    {{-- End FIlter --}}
-    
     <div class="row">
-        
-        {{-- Normalisasi Kriteria --}}
+
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
@@ -79,9 +51,7 @@
                 </div>
             </div>
         </div>
-        {{-- End Normaliasasi Kriteria --}}
 
-        {{-- Nilai Alternatif (Bobot atau Nilai Penerima Berdasarkan Setiap Kriteria) --}}
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
@@ -106,7 +76,7 @@
                                 @php $i = 1; @endphp
                                 @foreach ($penerimas as $key => $penerima)
                                 @if (!$penerima->survey->isEmpty())
-                                    
+
                                 <tr class="text-center">
                                     <td>{{$i++}}</td>
                                     <td>{{$penerima->nama}}</td>
@@ -132,8 +102,8 @@
                 </div>
             </div>
         </div>
-        {{-- End Nilai Alternatif --}}
 
     </div>
-</div>
-@endsection
+</body>
+
+</html>

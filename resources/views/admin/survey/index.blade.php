@@ -36,7 +36,6 @@
                                     <button type="submit" id="filter" class="btn btn-primary">Filter</button>
                                 </div>
                             </div>
-
                         </form>
                     </div>
                     {{-- End FIlter --}}
@@ -80,7 +79,6 @@
                                                 @endif
                                             </td>
                                         </tr>
-
                                         @include('admin.survey.modal')
                                     @endforeach
                                 </tbody>
@@ -90,7 +88,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
 @endsection

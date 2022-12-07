@@ -12,7 +12,7 @@ class Survey extends Model
     protected $fillable = [
         'penerima_id', 
         'subkriteria_id',
-        'status',
+        // 'status',
     ];
 
     public function penerima()
