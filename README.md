@@ -201,3 +201,37 @@ Halaman Konfigurasi -->
         }
 
         */
+
+<!-- RUMUS BACKUP  -->
+
+        // Mencari Nilai Terkecil Dan Terbesai
+        // filter data hanya menampilkan subbobot dan sub dari table sub kriteria dan kode dari kriteria
+        // $filter = DB::table('kriterias')
+        //     ->join('subkriterias', 'kriterias.id', '=', 'subkriterias.kriteria_id')
+        //     ->join('surveys', 'surveys.subkriteria_id', '=', 'subkriterias.id')
+        //     ->get(['subbobot', 'sub', 'kode']);
+        // // Membuat Variabel Data Sesusai Kode Kriteria
+        // $data = $filter->groupBy('kode');
+        // Batas
+
+        // Mencari Normalisasi
+        // $bobot = Kriteria::all()->map(function ($item) {
+        //     // variable jumlah bobot kriteria
+        //     $sum = Kriteria::sum('bobot');
+        //     return ([
+        //         /*
+        //         RUMUS:
+        //         N = W/M
+        //         W => bobot stiap kriteria
+        //         M => jumlah bobot dari smua kriteria
+        //         */
+        //         'normalisasi' => $item->bobot / $sum,
+        //         // Get Data Kriteria
+        //         'kriteria' => $item->kriteria,
+        //         'bobot' => $item->bobot,
+        //         'kode' => $item->kode,
+        //         'keterangan' => $item->keterangan,
+        //         'jenis' => $item->jenis,
+        //         'total' => $item->sum('bobot'),
+        //     ]);
+        // });

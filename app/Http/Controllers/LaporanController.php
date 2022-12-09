@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kelurahan;
 use App\Models\Kriteria;
 use App\Models\Penerima;
+use App\Models\Subkriteria;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -38,7 +39,15 @@ class LaporanController extends Controller
         $kelurahans = Kelurahan::all();
         $penerimas = Penerima::all();
         $kriterias = Kriteria::all();
-        $pdf = PDF::loadview('admin.survey.pdf-rank', compact('penerimas', 'kelurahans', 'kriterias'));
+        $subkriterias = Subkriteria::all();
+
+        // NILAI MAX DAN MIN
+        foreach ($subkriterias as $sub) {
+            $min = $sub->min('subbobot');
+            $max = $sub->max('subbobot');
+        }
+
+        $pdf = PDF::loadview('admin.survey.pdf-rank', compact('penerimas', 'kelurahans', 'kriterias', 'min', 'max'));
         return $pdf->download('detail-perhitungan-data-penerima.pdf');
     }
 }

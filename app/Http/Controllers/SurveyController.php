@@ -59,43 +59,25 @@ class SurveyController extends Controller
     public function rank()
     {
         $kelurahans = Kelurahan::all();
-        // $penerimas = Penerima::with('survey.subkriteria.kriteria')->get();
         $penerimas = Penerima::all();
-
-        // Mencari Nilai Terkecil Dan Terbesai
-        // filter data hanya menampilkan subbobot dan sub dari table sub kriteria dan kode dari kriteria
-        // $filter = DB::table('kriterias')
-        //     ->join('subkriterias', 'kriterias.id', '=', 'subkriterias.kriteria_id')
-        //     ->join('surveys', 'surveys.subkriteria_id', '=', 'subkriterias.id')
-        //     ->get(['subbobot', 'sub', 'kode']);
-        // // Membuat Variabel Data Sesusai Kode Kriteria
-        // $data = $filter->groupBy('kode');
-        // Batas
-
-        // Mencari Normalisasi
-        // $bobot = Kriteria::all()->map(function ($item) {
-        //     // variable jumlah bobot kriteria
-        //     $sum = Kriteria::sum('bobot');
-        //     return ([
-        //         /*
-        //         RUMUS:
-        //         N = W/M
-        //         W => bobot stiap kriteria
-        //         M => jumlah bobot dari smua kriteria
-        //         */
-        //         'normalisasi' => $item->bobot / $sum,
-        //         // Get Data Kriteria
-        //         'kriteria' => $item->kriteria,
-        //         'bobot' => $item->bobot,
-        //         'kode' => $item->kode,
-        //         'keterangan' => $item->keterangan,
-        //         'jenis' => $item->jenis,
-        //         'total' => $item->sum('bobot'),
-        //     ]);
-        // });
         $kriterias = Kriteria::all();
+        $subkriterias = Subkriteria::all();
 
-        return view('admin.survey.rank', compact(['kriterias', 'penerimas', 'kelurahans']));
+        // NILAI MAX DAN MIN
+        foreach ($subkriterias as $sub) {
+            $min = $sub->min('subbobot');
+            $max = $sub->max('subbobot');
+        }
+
+        // foreach ($kriterias as $kriteria) {
+        //     foreach ($penerimas as $penerima) {
+        //         $nilai[] = $kriteria->subkriteria;
+        //     }
+        // }
+
+        // dd($nilai);
+
+        return view('admin.survey.rank', compact(['kriterias', 'penerimas', 'kelurahans', 'min', 'max']));
     }
     public function filter_rank(Request $request)
     {
