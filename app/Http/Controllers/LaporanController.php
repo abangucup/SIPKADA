@@ -6,8 +6,9 @@ use App\Models\Kelurahan;
 use App\Models\Kriteria;
 use App\Models\Penerima;
 use App\Models\Subkriteria;
-use Illuminate\Http\Request;
+// use Barryvdh\DomPDF\PDF;
 use PDF;
+use Illuminate\Http\Request;
 
 class LaporanController extends Controller
 {
@@ -22,14 +23,14 @@ class LaporanController extends Controller
 
     public function laporan_penerima()
     {
-        $penerimas = Penerima::where('kelurahan_id', auth()->user()->kelurahan_id)->get();
+        $penerimas = Penerima::where('kelurahan_id', auth()->user()->kelurahan_id)->get()->sortByDesc('rangking');
         return view('kelurahan.laporan.laporan', compact('penerimas'));
     }
 
     public function cetak_laporan_penerima()
     {
         $kelurahan = Kelurahan::where('nama', auth()->user()->kelurahan->nama)->first();
-        $penerimas = Penerima::where('kelurahan_id', auth()->user()->kelurahan_id)->get();
+        $penerimas = Penerima::where('kelurahan_id', auth()->user()->kelurahan_id)->get()->sortByDesc('rangking');
         $pdf = PDF::loadview('kelurahan.laporan.pdf-laporan', compact('penerimas', 'kelurahan'));
         return $pdf->download('laporan-penerima.pdf');
     }

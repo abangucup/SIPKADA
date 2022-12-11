@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kelurahan;
 use App\Models\Kriteria;
 use App\Models\Penerima;
+use App\Models\Subkriteria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use PDF;
@@ -17,9 +18,31 @@ class PenerimaController extends Controller
     */
     public function detail()
     {
+        // dd(Penerima::);
+        // $penerimas = Penerima::where('kelurahan_id', auth()->user()->kelurahan_id)->get();
+        // $kriterias = Kriteria::all();
+        // return view('kelurahan.penerima.detail', compact('kriterias', 'penerimas'));
+        // $kelurahans = Kelurahan::all();
         $penerimas = Penerima::where('kelurahan_id', auth()->user()->kelurahan_id)->get();
         $kriterias = Kriteria::all();
-        return view('kelurahan.penerima.detail', compact('kriterias', 'penerimas'));
+        $subkriterias = Subkriteria::all();
+
+        // NILAI MAX DAN MIN
+        foreach ($subkriterias as $sub) {
+            $min = $sub->min('subbobot');
+            $max = $sub->max('subbobot');
+        }
+
+        $rankings = $penerimas->sortByDesc('rangking');
+
+        return view('kelurahan.penerima.detail', compact([
+            'kriterias',
+            'penerimas',
+            // 'kelurahans',
+            'min',
+            'max',
+            'rankings'
+        ]));
     }
 
     public function index()

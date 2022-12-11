@@ -35,19 +35,25 @@
                                     <th>Nama</th>
                                     <th>Jenis Kelamin</th>
                                     <th>Alamat</th>
+                                    <th>Nilai</th>
                                     <th>Rangking</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $no = 1;
+                                    $i = 1;
+                                @endphp
                                 @foreach ($penerimas as $key => $penerima)
                                 <tr>
 
-                                    <td class="text-center">{{++$key}}</td>
+                                    <td class="text-center">{{$no++}}</td>
                                     <td>{{$penerima->nik}}</td>
                                     <td>{{$penerima->nama}}</td>
                                     <td>{{$penerima->jk}}</td>
                                     <td>{{$penerima->alamat}}</td>
-                                    <td class="text-center">{{++$key}}</td>
+                                    <td>{{$penerima->rangking}}</td>
+                                    <td class="text-center">Rangking {{$i++}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

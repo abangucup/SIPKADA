@@ -8,9 +8,6 @@ use App\Models\Penerima;
 use App\Models\Subkriteria;
 use App\Models\Survey;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
-use function GuzzleHttp\Promise\all;
 
 class SurveyController extends Controller
 {
@@ -30,8 +27,6 @@ class SurveyController extends Controller
 
         $rankings = Penerima::all()->sortByDesc('rangking');
 
-        // $count = Survey::where('penerima_id', '>', 0)->first()->count();
-
         return view('admin.survey.rank', compact([
             'kriterias',
             'penerimas',
@@ -43,11 +38,34 @@ class SurveyController extends Controller
     }
     public function filter_rank(Request $request)
     {
-        $rankings = Penerima::all()->sortByDesc('rangking');
+        if($request->kelurahan == 0){
+            $rankings = Penerima::all();
+            $penerimas = Penerima::all();
+        } else {
+            $rankings = Penerima::where('kelurahan_id', $request->kelurahan)->get()->sortByDesc('rangking');
+            $penerimas = Penerima::where('kelurahan_id', $request->kelurahan)->get();
+        }
         $kelurahans = Kelurahan::all();
-        $penerimas = Penerima::where('kelurahan_id', $request->kelurahan)->get();
+        $filter = Kelurahan::where('id', $request->kelurahan)->first();
+
         $kriterias = Kriteria::all();
-        return view('admin.survey.rank', compact(['kriterias', 'penerimas', 'kelurahans','rankings']));
+        $subkriterias = Subkriteria::all();
+
+        // NILAI MAX DAN MIN
+        foreach ($subkriterias as $sub) {
+            $min = $sub->min('subbobot');
+            $max = $sub->max('subbobot');
+        }
+
+        return view('admin.survey.rank', compact([
+            'kriterias',
+            'penerimas',
+            'kelurahans',
+            'min',
+            'max',
+            'rankings',
+            'filter'
+        ]));
     }
 
     public function index()
@@ -62,6 +80,7 @@ class SurveyController extends Controller
     {
         $penerimas = Penerima::where('kelurahan_id', $request->kelurahan)->get();
         $kelurahans = Kelurahan::all();
+        // $filter = Kelurahan::where('id', $request->kelurahan)->first();
         $kriterias = Kriteria::all();
         return view('admin.survey.index', compact(['kriterias', 'kelurahans', 'penerimas']));
     }

@@ -31,8 +31,9 @@
                 <div class="p-2">
                     <select name="kelurahan" class="form-control" id="kelurahan" name="kelurahan">
                         <option value="">Pilih Kelurahan</option>
+                        <option value="0">Semua</option>
                         @foreach ($kelurahans as $kelurahan)
-                        <option value="{{ $kelurahan->id }}">{{ $kelurahan->nama }}</option>
+                        <option value="{{$kelurahan->id}}">{{ $kelurahan->nama}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -42,7 +43,7 @@
             </div>
         </form>
     </div>
-    <a class="btn btn-danger mb-3" href="{{route('rank.cetak')}}" target="_blank">CETAK PDF</a>
+    <a class="btn btn-danger mb-3" href="{{route('rank.cetak')}}" target="_blank">Cetak PDF</a>
     {{-- End FIlter --}}
 
     <div class="row">
@@ -157,7 +158,7 @@
                             </thead>
                             <tbody>
                                 @php $i = 1; @endphp
-                                @foreach ($penerimas as $key => $penerima)
+                                @foreach ($penerimas as $penerima)
                                 @if (!$penerima->survey->isEmpty())
 
                                 <tr class="text-center">
@@ -194,18 +195,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
-                                    $i=1;
-                                @endphp
-                                @foreach ($rankings as $penerima)
-                                    
-                                    @if (!$penerima->survey->isEmpty())
-                                        <tr class="text-center">
-                                            <td>{{$penerima->nama}}</td>
-                                            <td>{{$penerima->rangking}}</td>
-                                            <td>Rangking {{$i++}}</td>
-                                        </tr>
-                                    @endif
+                                @php $i=1; @endphp
+                                @foreach ($rankings as $rank)
+                                @if (!$rank->survey->isEmpty())
+                                <tr class="text-center">
+                                    <td>{{$rank->nama}}</td>
+                                    <td>{{$rank->rangking}}</td>
+                                    <td>Rangking {{$i++}}</td>
+                                </tr>
+                                @endif
                                 @endforeach
                             </tbody>
                         </table>

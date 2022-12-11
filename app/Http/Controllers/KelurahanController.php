@@ -52,7 +52,6 @@ class KelurahanController extends Controller
             'lokasi' => 'required'
         ]);
 
-        // $cek_nik = kelurahan::where('nik', $request->nik)->first();
         if ($request->nama != $kelurahan->nama) {
             $validate = Validator::make($request->all(), [
                 'nama' => 'required|unique:kelurahans',

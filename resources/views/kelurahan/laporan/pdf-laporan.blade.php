@@ -30,15 +30,19 @@
             </tr>
         </thead>
         <tbody>
+            @php
+                $no = 1;
+                $i = 1;
+            @endphp
             @foreach ($penerimas as $key => $penerima)
             <tr>
 
-                <td class="text-center">{{++$key}}</td>
+                <td class="text-center">{{$no++}}</td>
                 <td>{{$penerima->nik}}</td>
                 <td>{{$penerima->nama}}</td>
                 <td>{{$penerima->jk}}</td>
                 <td>{{$penerima->alamat}}</td>
-                <td class="text-center">{{++$key}}</td>
+                <td class="text-center">{{$i++}}</td>
             </tr>
             @endforeach
         </tbody>

@@ -64,7 +64,6 @@ class UserController extends Controller
             'kelurahan_id' => 'required'
         ]);
 
-        // $cek_nik = kelurahan::where('nik', $request->nik)->first();
         if ($request->username != $user->username) {
             $validate = Validator::make($request->all(), [
                 'username' => 'required|unique:users',

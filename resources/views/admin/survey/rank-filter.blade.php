@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Penerima')
+@section('title', 'Rangking')
 
 @section('content')
 <div class="page-header mt-5">
@@ -11,9 +11,9 @@
                 <div class="card-body col-md-6 col-sm-12">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0">
-                            <h4 class="breadcrumb-item pl-4"><a href="{{ route('dashboard')}}"
-                                    class="text-primary ps-4">Dashboard</a></h4>
-                            <h4 class="breadcrumb-item active" aria-current="dashbaord">Detail Perhitungan</h4>
+                            <h5 class="breadcrumb-item pl-4"><a href="{{ route('dashboard')}}"
+                                    class="text-primary ps-4">Dashboard</a></h5>
+                            <h5 class="breadcrumb-item active" aria-current="dashbaord">Hasil Perhitungan</h5>
                         </ol>
                     </nav>
                 </div>
@@ -21,6 +21,30 @@
             </div>
         </div>
     </section>
+
+    {{-- Menu Filter --}}
+    <div class="card-body">
+        <form action="{{ url('dashboard/rank/filter') }}" method="POST">
+            @csrf
+            @method('POST')
+            <div class="row float-right">
+                <div class="p-2">
+                    <select name="kelurahan" class="form-control" id="kelurahan" name="kelurahan">
+                        <option value="">Pilih Kelurahan</option>
+                        <option value="0">Semua</option>
+                        @foreach ($kelurahans as $kelurahan)
+                        <option value="{{$kelurahan->id}}">{{ $kelurahan->nama }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="p-2 pr-4">
+                    <button type="submit" id="filter" class="btn btn-primary">Filter</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <a class="btn btn-danger mb-3" href="{{route('rank.cetak')}}" target="_blank">Cetak PDF</a>
+    {{-- End FIlter --}}
 
     <div class="row">
 
@@ -91,12 +115,6 @@
                                     <td>{{$survey->nilai}}</td>
                                     @endforeach
                                 </tr>
-                                @elseif ($penerima->survey->isEmpty())
-                                <tr class="text-center">
-                                    <td>{{$i++}}</td>
-                                    <td>{{$penerima->nama}}</td>
-                                    <td colspan="{{$kriterias->count()}}">Belum Survey</td>
-                                </tr>
                                 @endif
                                 @endforeach
                             </tbody>
@@ -142,19 +160,13 @@
                                 @php $i = 1; @endphp
                                 @foreach ($penerimas as $penerima)
                                 @if (!$penerima->survey->isEmpty())
-                                
+
                                 <tr class="text-center">
                                     <td>{{$i++}}</td>
                                     <td>{{$penerima->nama}}</td>
                                     @foreach ($penerima->survey as $survey)
                                     <td>{{$survey->utility}}</td>
                                     @endforeach
-                                </tr>
-                                @elseif ($penerima->survey->isEmpty())
-                                <tr class="text-center">
-                                    <td>{{$i++}}</td>
-                                    <td>{{$penerima->nama}}</td>
-                                    <td colspan="{{$kriterias->count()}}">Belum Survey</td>
                                 </tr>
                                 @endif
                                 @endforeach
@@ -191,12 +203,6 @@
                                     <td>{{$rank->rangking}}</td>
                                     <td>Rangking {{$i++}}</td>
                                 </tr>
-
-                                @elseif ($penerima->survey->isEmpty())
-                                <tr class="text-center">
-                                    <td>{{$penerima->nama}}</td>
-                                    <td colspan="2">Belum Ada Nilai</td>
-                                </tr>
                                 @endif
                                 @endforeach
                             </tbody>
@@ -209,4 +215,4 @@
 
     </div>
 </div>
-@endsection
+@endsection;
