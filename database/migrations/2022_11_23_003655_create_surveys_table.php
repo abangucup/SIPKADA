@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('penerima_id')->constrained()->onDelete('cascade');
             $table->foreignId('subkriteria_id')->constrained()->onDelete('cascade');
-            // $table->enum('status', ['belum', 'selesai']);
+            $table->integer('nilai')->nullable();
+            $table->integer('hitung')->nullable();
+            $table->integer('utility')->nullable();
             $table->timestamps();
         });
     }

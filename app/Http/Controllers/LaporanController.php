@@ -40,6 +40,7 @@ class LaporanController extends Controller
         $penerimas = Penerima::all();
         $kriterias = Kriteria::all();
         $subkriterias = Subkriteria::all();
+        $rankings = Penerima::all()->sortByDesc('rangking');
 
         // NILAI MAX DAN MIN
         foreach ($subkriterias as $sub) {
@@ -47,7 +48,7 @@ class LaporanController extends Controller
             $max = $sub->max('subbobot');
         }
 
-        $pdf = PDF::loadview('admin.survey.pdf-rank', compact('penerimas', 'kelurahans', 'kriterias', 'min', 'max'));
+        $pdf = PDF::loadview('admin.survey.pdf-rank', compact('penerimas', 'kelurahans', 'kriterias', 'min', 'max', 'rankings'));
         return $pdf->download('detail-perhitungan-data-penerima.pdf');
     }
 }

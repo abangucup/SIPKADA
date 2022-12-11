@@ -111,7 +111,7 @@
                                     <td>{{$i++}}</td>
                                     <td>{{$penerima->nama}}</td>
                                     @foreach ($penerima->survey as $survey)
-                                    <td>{{$survey->subkriteria->subbobot}}</td>
+                                    <td>{{$survey->nilai}}</td>
                                     @endforeach
                                 </tr>
                                 @endif
@@ -164,10 +164,7 @@
                                     <td>{{$i++}}</td>
                                     <td>{{$penerima->nama}}</td>
                                     @foreach ($penerima->survey as $survey)
-                                    @php
-                                    $utility = ($survey->subkriteria->subbobot-$min)/($max-$min)*100
-                                    @endphp
-                                    <td>{{$utility}}</td>
+                                    <td>{{$survey->utility}}</td>
                                     @endforeach
                                 </tr>
                                 @endif
@@ -197,20 +194,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($penerimas as $penerima)
-                                @if (!$penerima->survey->isEmpty())
-                                <tr>
-                                    <td class="text-center">{{$penerima->nama}}</td>
-                                    @foreach ($penerima->survey as $survey)
-                                    {{-- @php
-                                        $utility = ($survey->subkriteria->subbobot-$min)/($max-$min)*100
-                                    @endphp
-                                    <td>
-                                        {{ $utility }}
-                                    </td> --}}
-                                    @endforeach
-                                </tr>
-                                @endif
+                                @php
+                                    $i=1;
+                                @endphp
+                                @foreach ($rankings as $penerima)
+                                    
+                                    @if (!$penerima->survey->isEmpty())
+                                        <tr class="text-center">
+                                            <td>{{$penerima->nama}}</td>
+                                            <td>{{$penerima->rangking}}</td>
+                                            <td>Rangking {{$i++}}</td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>
@@ -222,4 +217,4 @@
 
     </div>
 </div>
-@endsection
+@endsection;

@@ -16,6 +16,7 @@ class Penerima extends Model
         'jk',
         'alamat',
         'kelurahan_id',
+        'rangking'
     ];
 
     public function kelurahan()

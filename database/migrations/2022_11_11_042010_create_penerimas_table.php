@@ -20,6 +20,7 @@ return new class extends Migration
             $table->enum('jk', ['pria', 'wanita']);
             $table->string('alamat');
             $table->foreignId('kelurahan_id')->nullable()->constrained()->onDelete('cascade');
+            $table->integer('rangking')->nullable();
             $table->timestamps();
         });
     }

@@ -104,23 +104,13 @@
 </div>
 
 <div class="row">
-    <div class="col-md-12 col-lg-6">
+    <div class="col-md-12">
         <div class="card card-chart">
             <div class="card-header">
                 <h4 class="card-title">VISITORS</h4>
             </div>
             <div class="card-body">
                 <div id="line-chart"></div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12 col-lg-6">
-        <div class="card card-chart">
-            <div class="card-header">
-                <h4 class="card-title">ROOMS BOOKED</h4>
-            </div>
-            <div class="card-body">
-                <div id="donut-chart"></div>
             </div>
         </div>
     </div>

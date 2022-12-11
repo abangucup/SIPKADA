@@ -50,7 +50,7 @@
                                     <td>{{ $kriteria->kode}}</td>
                                     <td>{{ $kriteria->kriteria}}</td>
                                     <td>{{ $kriteria->bobot}}</td>
-                                    <td>{{ round($kriteria->normalisasi, 2)}}</td>
+                                    <td>{{ round($kriteria->normalisasi, 4)}}</td>
                                     <td>
                                         @foreach ($kriteria->subkriteria as $subkriteria)
                                             <ul>
