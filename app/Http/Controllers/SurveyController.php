@@ -39,7 +39,7 @@ class SurveyController extends Controller
     public function filter_rank(Request $request)
     {
         if ($request->kelurahan == 0) {
-            $rankings = Penerima::all();
+            $rankings = Penerima::all()->sortByDesc('rangking');
             $penerimas = Penerima::all();
         } else {
             $rankings = Penerima::where('kelurahan_id', $request->kelurahan)->get()->sortByDesc('rangking');
