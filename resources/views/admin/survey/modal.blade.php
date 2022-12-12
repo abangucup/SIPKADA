@@ -43,13 +43,6 @@
                                     </div>
                                 </li>
                                 @endforeach
-                                {{-- <div class="form-group mt-3">
-                                    <label class="font-weight-bold">Status</label>
-                                    <select class="form-control" name="status">
-                                        <option value="selesai">Selesai</option>
-                                        <option value="belum">Belum</option>
-                                    </select>
-                                </div> --}}
                             </ul>
                         </div>
                     </div>

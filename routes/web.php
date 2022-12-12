@@ -37,7 +37,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/rank/filter', [SurveyController::class, 'filter_rank']);
             Route::resource('/user', UserController::class);
             Route::resource('/kelurahan', KelurahanController::class);
-            Route::post('/survey/filter', [SurveyController::class, 'filter']);
+            Route::post('/survey/filter', [SurveyController::class, 'filter'])->name('filter');
+            // Route::get('/survey/filter/{survey}', [SurveyController::class, 'filter'])->name('filter');
         });
     });
 

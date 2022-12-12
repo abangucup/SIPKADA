@@ -38,7 +38,7 @@ class SurveyController extends Controller
     }
     public function filter_rank(Request $request)
     {
-        if($request->kelurahan == 0){
+        if ($request->kelurahan == 0) {
             $rankings = Penerima::all();
             $penerimas = Penerima::all();
         } else {
@@ -78,13 +78,22 @@ class SurveyController extends Controller
 
     public function filter(Request $request)
     {
-        $penerimas = Penerima::where('kelurahan_id', $request->kelurahan)->get();
+        if ($request->kelurahan == 0) {
+            $penerimas = Penerima::all();
+        } else {
+            $penerimas = Penerima::where('kelurahan_id', $request->kelurahan)->get();
+        }
         $kelurahans = Kelurahan::all();
-        // $filter = Kelurahan::where('id', $request->kelurahan)->first();
         $kriterias = Kriteria::all();
         return view('admin.survey.index', compact(['kriterias', 'kelurahans', 'penerimas']));
     }
 
+    // public function show(Kelurahan $kelurahan){
+    //     $kelurahan = Kelurahan::where('id', $kelurahan->id)->first();
+    //     $penerimas = Penerima::where('kelurahan_id', $kelurahan->id)->get();
+    //     $kriterias = Kriteria::all();
+    //     return view('admin.survey.filter', compact('kelurahans', 'penerimas', 'kriterias'));
+    // }
 
     public function store(Request $request)
     {
@@ -97,7 +106,7 @@ class SurveyController extends Controller
         }
 
         $kriterias = Kriteria::all();
-        foreach($kriterias as $kriteria){
+        foreach ($kriterias as $kriteria) {
             $k[] = $kriteria->normalisasi;
         }
 
@@ -121,12 +130,12 @@ class SurveyController extends Controller
             Survey::insert($survey);
 
             // Survey::update($hitungs);
-            $coba = Survey::where('penerima_id', $request->penerima_id)->get();
+            $sum = Survey::where('penerima_id', $request->penerima_id)->get();
 
             $penerimas = Penerima::where('id', $request->penerima_id)->first();
 
             $penerimas->update([
-                'rangking' => $coba->sum('hitung'),
+                'rangking' => $sum->sum('hitung'),
             ]);
 
             toast('Survey Selesai', 'success');
@@ -135,6 +144,6 @@ class SurveyController extends Controller
             alert()->info('Required Kriteria', 'Harap Inputkan Kriteria dan SubKriteria Dahulu');
         }
 
-        return back();
+        return redirect()->route('survey.index');
     }
 }

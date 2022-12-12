@@ -29,6 +29,7 @@
                                         <option value="">Pilih Kelurahan</option>
                                         <option value="0">Semua</option>
                                         @foreach ($kelurahans as $kelurahan)
+
                                             <option value="{{ $kelurahan->id }}">{{ $kelurahan->nama }}</option>
                                         @endforeach
                                     </select>
