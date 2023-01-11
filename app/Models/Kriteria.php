@@ -14,7 +14,7 @@ class Kriteria extends Model
         'kode',
         'kriteria',
         'bobot',
-        'normalisasi'
+        // 'normalisasi'
     
     ];
 

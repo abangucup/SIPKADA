@@ -22,167 +22,252 @@
         </div>
     </section>
 
-    {{-- Menu Filter --}}
-    <div class="card-body">
-        <form action="{{ url('dashboard/rank/filter') }}" method="POST">
-            @csrf
-            @method('POST')
-            <div class="row float-right">
-                <div class="p-2">
-                    <select name="kelurahan" class="form-control" id="kelurahan" name="kelurahan">
-                        <option value="">Pilih Kelurahan</option>
-                        <option value="0">Semua</option>
-                        @foreach ($kelurahans as $kelurahan)
-                        <option value="{{$kelurahan->id}}">{{ $kelurahan->nama}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="p-2 pr-4">
-                    <button type="submit" id="filter" class="btn btn-primary">Filter</button>
-                </div>
-            </div>
-        </form>
-    </div>
-    <a class="btn btn-danger mb-3" href="{{route('rank.cetak')}}" target="_blank">Cetak PDF</a>
-    {{-- End FIlter --}}
+    <ul class="nav nav-pills" id="pills-tab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="pills-perhitungan-tab" data-toggle="pill" href="#pills-perhitungan"
+                role="tab" aria-controls="pills-perhitungan" aria-selected="true">Data Perhitungan</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-penerima-tab" data-toggle="pill" href="#pills-penerima" role="tab"
+                aria-controls="pills-penerima" aria-selected="false">Penerima Berhak</a>
+        </li>
+    </ul>
 
-    <div class="row">
-
-        {{-- Normalisasi Kriteria --}}
-        <div class="col-sm-12">
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-perhitungan" role="tabpanel"
+            aria-labelledby="pills-perhitungan-tab">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Normalisasi Kriteria</h4>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped mb-0">
-                            <thead class="thead-light">
-                                <tr class="text-center">
-                                    <th>No</th>
-                                    <th>Kode</th>
-                                    <th>Bobot</th>
-                                    <th>Normalisasi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($kriterias as $kriteria)
-                                <tr class="text-center">
-                                    <td>{{$loop->iteration}}</td>
-                                    <td>{{$kriteria->kode}}</td>
-                                    <td>{{$kriteria->bobot}}</td>
-                                    <td>{{$kriteria->normalisasi}}</td>
-                                </tr>
+
+            {{-- Menu Filter --}}
+            <div class="card-body">
+                <form action="{{ url('dashboard/rank/filter') }}" method="POST">
+                    @csrf
+                    @method('POST')
+                    <div class="row float-right">
+                        <div class="p-2">
+                            <select name="kelurahan" class="form-control" id="kelurahan" name="kelurahan">
+                                <option value="">Pilih Kelurahan</option>
+                                <option value="0">Semua</option>
+                                @foreach ($kelurahans as $kelurahan)
+                                <option value="{{$kelurahan->id}}">{{ $kelurahan->nama}}</option>
                                 @endforeach
-                            </tbody>
-                        </table>
+                            </select>
+                        </div>
+                        <div class="p-2 pr-4">
+                            <button type="submit" id="filter" class="btn btn-primary">Filter</button>
+                        </div>
+                    </div>
+                </form>
+                <a class="btn btn-danger mb-3" href="{{route('rank.cetak')}}" target="_blank">Cetak PDF</a>
+            </div>
+            {{-- End FIlter --}}
+
+            {{-- PERHITUGAN --}}
+            <div class="row">
+                {{-- Normalisasi Kriteria --}}
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Normalisasi Kriteria</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped mb-0">
+                                    <thead class="thead-light">
+                                        <tr class="text-center">
+                                            <th>No</th>
+                                            <th>Kode</th>
+                                            <th>Bobot</th>
+                                            <th>Normalisasi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($kriterias as $kriteria)
+                                        <tr class="text-center">
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{$kriteria->kode}}</td>
+                                            <td>{{$kriteria->bobot}}</td>
+                                            <td>{{round($kriteria->bobot/$sum, 4)}}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        {{-- End Normaliasasi Kriteria --}}
+                {{-- End Normaliasasi Kriteria --}}
 
-        {{-- Nilai Alternatif (Bobot atau Nilai Penerima Berdasarkan Setiap Kriteria) --}}
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Nilai Parameter Alternatif</h4>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped mb-0">
-                            <thead>
-                                <tr class="table-primary text-center">
-                                    <th rowspan="2">No</th>
-                                    <th rowspan="2">Alternatif</th>
-                                    <th colspan="{{$kriterias->count()}}" class="text-center">Kriteria</th>
-                                </tr>
-                                <tr class="text-center">
-                                    @foreach ($kriterias as $kriteria)
-                                    <th>{{$kriteria->kode}}</th>
-                                    @endforeach
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php $i = 1; @endphp
-                                @foreach ($penerimas as $key => $penerima)
-                                @if (!$penerima->survey->isEmpty())
+                {{-- Nilai Alternatif (Bobot atau Nilai Penerima Berdasarkan Setiap Kriteria) --}}
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Nilai Parameter Alternatif</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped mb-0">
+                                    <thead>
+                                        <tr class="table-primary text-center">
+                                            <th rowspan="2">No</th>
+                                            <th rowspan="2">Alternatif</th>
+                                            <th colspan="{{$kriterias->count()}}" class="text-center">Kriteria</th>
+                                        </tr>
+                                        <tr class="text-center">
+                                            @foreach ($kriterias as $kriteria)
+                                            <th>{{$kriteria->kode}}</th>
+                                            @endforeach
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php $i = 1; @endphp
+                                        @foreach ($penerimas as $key => $penerima)
+                                        @if (!$penerima->survey->isEmpty())
 
-                                <tr class="text-center">
-                                    <td>{{$i++}}</td>
-                                    <td>{{$penerima->nama}}</td>
-                                    @foreach ($penerima->survey as $survey)
-                                    <td>{{$survey->nilai}}</td>
-                                    @endforeach
-                                </tr>
-                                @endif
-                                @endforeach
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th colspan="4" class="text-center">MIN</th>
-                                    <th colspan="3">{{$min}}</th>
-                                </tr>
-                                <tr>
-                                    <th colspan="4" class="text-center">MAX</th>
-                                    <th colspan="3">{{$max}}</th>
-                                </tr>
-                            </tfoot>
-                        </table>
+                                        <tr class="text-center">
+                                            <td>{{$i++}}</td>
+                                            <td>{{$penerima->nama}}</td>
+                                            @foreach ($penerima->survey as $survey)
+                                            <td>{{$survey->nilai}}</td>
+                                            @endforeach
+                                        </tr>
+                                        @endif
+                                        @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th colspan="2" class="text-center">MIN</th>
+                                            <th colspan="2">{{$min??'0'}}</th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2" class="text-center">MAX</th>
+                                            <th colspan="2">{{$max??'0'}}</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        {{-- End Nilai Alternatif --}}
+                {{-- End Nilai Alternatif --}}
 
-        {{-- Nilai Utility Setiap Alternatif --}}
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Nilai Utility Alternatif</h4>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped mb-0">
-                            <thead>
-                                <tr class="table-primary text-center">
-                                    <th rowspan="2">No</th>
-                                    <th rowspan="2">Alternatif</th>
-                                    <th colspan="{{$kriterias->count()}}" class="text-center">Utility</th>
-                                </tr>
-                                <tr class="text-center">
-                                    @foreach ($kriterias as $kriteria)
-                                    <th>{{$kriteria->kode}}</th>
-                                    @endforeach
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php $i = 1; @endphp
-                                @foreach ($penerimas as $penerima)
-                                @if (!$penerima->survey->isEmpty())
+                {{-- Nilai Utility Setiap Alternatif --}}
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Nilai Utility Alternatif</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped mb-0">
+                                    <thead>
+                                        <tr class="table-primary text-center">
+                                            <th rowspan="2">No</th>
+                                            <th rowspan="2">Alternatif</th>
+                                            <th colspan="{{$kriterias->count()}}" class="text-center">Utility</th>
+                                        </tr>
+                                        <tr class="text-center">
+                                            @foreach ($kriterias as $kriteria)
+                                            <th>{{$kriteria->kode}}</th>
+                                            @endforeach
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php $i = 1; @endphp
+                                        @foreach ($penerimas as $penerima)
+                                        @if (!$penerima->survey->isEmpty())
 
-                                <tr class="text-center">
-                                    <td>{{$i++}}</td>
-                                    <td>{{$penerima->nama}}</td>
-                                    @foreach ($penerima->survey as $survey)
-                                    <td>{{$survey->utility}}</td>
-                                    @endforeach
-                                </tr>
-                                @endif
-                                @endforeach
-                            </tbody>
-                        </table>
+                                        <tr class="text-center">
+                                            <td>{{$i++}}</td>
+                                            <td>{{$penerima->nama}}</td>
+                                            @foreach ($penerima->survey as $survey)
+                                            <td>{{$survey->utility}}</td>
+                                            @endforeach
+                                        </tr>
+                                        @endif
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        {{-- End Nilai Utility --}}
+                {{-- End Nilai Utility --}}
 
-        {{-- RANKING ALTERNATIF BERDASARAKAN NILAI UTILITY --}}
-        <div class="col-sm-12">
+                {{-- RANKING ALTERNATIF BERDASARAKAN NILAI UTILITY --}}
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Perengkingan Nilai Akhir</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped mb-0">
+                                    <thead>
+                                        <tr class="table-primary text-center">
+                                            <th>Alternatif</th>
+                                            <th>Nilai Akhir</th>
+                                            <th>Rangking</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php $i=1; @endphp
+                                        @foreach ($rankings as $rank)
+                                        @if (!$rank->survey->isEmpty())
+                                        <tr class="text-center">
+                                            <td>{{$rank->nama}}</td>
+                                            <td>{{$rank->rangking}}</td>
+                                            <td>Rangking {{$i++}}</td>
+                                            @if ($rank->rangking<60)
+                                            <td class="text-danger">Tidak Berhak Menerima</td>
+                                            @else
+                                            <td class="text-info">Penerima Bantuan</td>
+                                            @endif
+                                        </tr>
+                                        @endif
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- End RANGKING --}}
+
+            </div>
+            {{-- END PERHITUNGAN --}}
+
+        </div>
+
+        </div>
+        <div class="tab-pane fade" id="pills-penerima" role="tabpanel" aria-labelledby="pills-penerima-tab">
             <div class="card">
+
+                <div class="card-body">
+                    <form action="{{ url('dashboard/rank/filter') }}" method="POST">
+                        @csrf
+                        @method('POST')
+                        <div class="row float-right">
+                            <div class="p-2">
+                                <select name="kelurahan" class="form-control" id="kelurahan" name="kelurahan">
+                                    <option value="">Pilih Kelurahan</option>
+                                    <option value="0">Semua</option>
+                                    @foreach ($kelurahans as $kelurahan)
+                                    <option value="{{$kelurahan->id}}">{{ $kelurahan->nama}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="p-2 pr-4">
+                                <button type="submit" id="filter" class="btn btn-primary">Filter</button>
+                            </div>
+                        </div>
+                    </form>
+                    <a class="btn btn-danger mb-3" href="{{route('rank.cetak')}}" target="_blank">Cetak PDF</a>
+                </div>
+
                 <div class="card-header">
-                    <h4 class="card-title">Perengkingan Nilai Akhir</h4>
+                    <h4 class="card-title">Penerima Yang Berhak Menerima Bantuan</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -192,17 +277,21 @@
                                     <th>Alternatif</th>
                                     <th>Nilai Akhir</th>
                                     <th>Rangking</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php $i=1; @endphp
                                 @foreach ($rankings as $rank)
                                 @if (!$rank->survey->isEmpty())
+                                @if ($rank->rangking>=60)
                                 <tr class="text-center">
                                     <td>{{$rank->nama}}</td>
                                     <td>{{$rank->rangking}}</td>
                                     <td>Rangking {{$i++}}</td>
+                                    <td class="text-info">Penerima Bantuan</td>
                                 </tr>
+                                @endif
                                 @endif
                                 @endforeach
                             </tbody>
@@ -211,8 +300,8 @@
                 </div>
             </div>
         </div>
-        {{-- End RANGKING --}}
-
     </div>
+
+
 </div>
 @endsection;

@@ -17,13 +17,9 @@ class SurveyController extends Controller
         $kelurahans = Kelurahan::all();
         $penerimas = Penerima::all();
         $kriterias = Kriteria::all();
-        $subkriterias = Subkriteria::all();
-
-        // NILAI MAX DAN MIN
-        foreach ($subkriterias as $sub) {
-            $min = $sub->min('subbobot');
-            $max = $sub->max('subbobot');
-        }
+        $sum = Kriteria::sum('bobot');
+        $min = Subkriteria::min('subbobot');
+        $max = Subkriteria::max('subbobot');
 
         $rankings = Penerima::all()->sortByDesc('rangking');
 
@@ -33,7 +29,8 @@ class SurveyController extends Controller
             'kelurahans',
             'min',
             'max',
-            'rankings'
+            'rankings',
+            'sum'
         ]));
     }
     public function filter_rank(Request $request)
@@ -49,13 +46,9 @@ class SurveyController extends Controller
         $filter = Kelurahan::where('id', $request->kelurahan)->first();
 
         $kriterias = Kriteria::all();
-        $subkriterias = Subkriteria::all();
-
-        // NILAI MAX DAN MIN
-        foreach ($subkriterias as $sub) {
-            $min = $sub->min('subbobot');
-            $max = $sub->max('subbobot');
-        }
+        $min = Subkriteria::min('subbobot');
+        $max = Subkriteria::max('subbobot');
+        $sum = Kriteria::sum('bobot');
 
         return view('admin.survey.rank', compact([
             'kriterias',
@@ -63,6 +56,7 @@ class SurveyController extends Controller
             'kelurahans',
             'min',
             'max',
+            'sum',
             'rankings',
             'filter'
         ]));
@@ -88,13 +82,6 @@ class SurveyController extends Controller
         return view('admin.survey.index', compact(['kriterias', 'kelurahans', 'penerimas']));
     }
 
-    // public function show(Kelurahan $kelurahan){
-    //     $kelurahan = Kelurahan::where('id', $kelurahan->id)->first();
-    //     $penerimas = Penerima::where('kelurahan_id', $kelurahan->id)->get();
-    //     $kriterias = Kriteria::all();
-    //     return view('admin.survey.filter', compact('kelurahans', 'penerimas', 'kriterias'));
-    // }
-
     public function store(Request $request)
     {
         $subkriterias = Subkriteria::all();
@@ -105,9 +92,11 @@ class SurveyController extends Controller
             $max = $sub->max('subbobot');
         }
 
+        $sum = Kriteria::sum('bobot');
+
         $kriterias = Kriteria::all();
         foreach ($kriterias as $kriteria) {
-            $k[] = $kriteria->normalisasi;
+            $k[] = $kriteria->bobot/$sum;
         }
 
         $count = $request->subkriteria_id;
@@ -129,7 +118,6 @@ class SurveyController extends Controller
 
             Survey::insert($survey);
 
-            // Survey::update($hitungs);
             $sum = Survey::where('penerima_id', $request->penerima_id)->get();
 
             $penerimas = Penerima::where('id', $request->penerima_id)->first();

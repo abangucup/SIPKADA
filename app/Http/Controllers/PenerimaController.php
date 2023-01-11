@@ -18,29 +18,20 @@ class PenerimaController extends Controller
     */
     public function detail()
     {
-        // dd(Penerima::);
-        // $penerimas = Penerima::where('kelurahan_id', auth()->user()->kelurahan_id)->get();
-        // $kriterias = Kriteria::all();
-        // return view('kelurahan.penerima.detail', compact('kriterias', 'penerimas'));
-        // $kelurahans = Kelurahan::all();
-        $penerimas = Penerima::where('kelurahan_id', auth()->user()->kelurahan_id)->get();
+        $penerimas = Penerima::where('kelurahan_id', auth()->user()->kelurahan_id)->get()->sortByDesc('rangking');
         $kriterias = Kriteria::all();
-        $subkriterias = Subkriteria::all();
-
-        // NILAI MAX DAN MIN
-        foreach ($subkriterias as $sub) {
-            $min = $sub->min('subbobot');
-            $max = $sub->max('subbobot');
-        }
+        $min = Subkriteria::min('subbobot');
+        $max = Subkriteria::max('subbobot');
+        $sum = Kriteria::sum('bobot');
 
         $rankings = $penerimas->sortByDesc('rangking');
 
         return view('kelurahan.penerima.detail', compact([
             'kriterias',
             'penerimas',
-            // 'kelurahans',
             'min',
             'max',
+            'sum',
             'rankings'
         ]));
     }
@@ -60,13 +51,12 @@ class PenerimaController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $this->validate($request, [
             'nik' => 'required|numeric',
             'nama' => 'required',
             'jk' => 'required',
             'alamat' => 'required',
-            'kelurahan_id' => 'required'
+            'kelurahan' => 'required'
         ]);
 
         $cek_nik = Penerima::where('nik', $request->nik)->first();
@@ -80,7 +70,7 @@ class PenerimaController extends Controller
         $penerima->nama = $request->nama;
         $penerima->jk = $request->jk;
         $penerima->alamat = $request->alamat;
-        $penerima->kelurahan_id = $request->kelurahan_id;
+        $penerima->kelurahan_id = $request->kelurahan;
         $penerima->save();
 
         toast('Penerima ' . $request->nama . ' Berhasil Ditambahkan', 'success');
@@ -94,12 +84,11 @@ class PenerimaController extends Controller
 
     public function update(Request $request, Penerima $penerima)
     {
-        // dd($request->all());
         $this->validate($request, [
             'nama' => 'required',
             'jk' => 'required',
             'alamat' => 'required',
-            'kelurahan_id' => 'required'
+            'kelurahan' => 'required'
         ]);
 
         // $cek_nik = Penerima::where('nik', $request->nik)->first();
@@ -119,7 +108,7 @@ class PenerimaController extends Controller
             'nama' => $request->nama,
             'jk' => $request->jk,
             'alamat' => $request->alamat,
-            'kelurahan_id' => $request->kelurahan_id
+            'kelurahan_id' => $request->kelurahan
         ]);
 
         toast('Penerima ' . $penerima->nama . ' Berhasil DiEdit', 'success');

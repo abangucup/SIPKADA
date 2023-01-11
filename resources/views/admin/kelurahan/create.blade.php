@@ -35,7 +35,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="font-weight-bold">Lokasi</label>
+                            <label class="font-weight-bold">Kecamatan</label>
                             <input class="form-control" type="text" placeholder="Lokasi / Tempat Kelurahan" name="lokasi" required>
                         </div>
                     </div>

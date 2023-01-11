@@ -6,6 +6,7 @@ use App\Models\Kriteria;
 use App\Models\Subkriteria;
 use App\Models\Survey;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class KriteriaController extends Controller
 {
@@ -13,8 +14,16 @@ class KriteriaController extends Controller
     {
         $sum = Kriteria::sum('bobot');
         $kriterias = Kriteria::all();
+        foreach ($kriterias as $kriteria) {
+            $normalisasi[] = $kriteria->bobot/$sum;
+        }
+        $collection = new Collection(
+            $normalisasi
+        );
+        $sumnormal = $collection->sum();
+        // dd($sumnormal);
 
-        return view('admin.kriteria.index', compact(['kriterias', 'sum']));
+        return view('admin.kriteria.index', compact(['kriterias', 'sum', 'sumnormal']));
     }
 
     public function create()
@@ -37,7 +46,7 @@ class KriteriaController extends Controller
         $kriteria->kode = $request->kode;
         $kriteria->kriteria = $request->kriteria;
         $kriteria->bobot = $request->bobot;
-        $kriteria->normalisasi = $request->bobot / $sum;
+        // $kriteria->normalisasi = $request->bobot / $sum;
         $kriteria->save();
 
         toast('Berhasil Menambahkan Kriteria', 'success');
@@ -45,20 +54,22 @@ class KriteriaController extends Controller
 
     }
 
-    public function refresh(Kriteria $kriterium)
-    {
-        $sum = Kriteria::sum('bobot');
-        $refresh = Kriteria::where('id', $kriterium->id)->first();
-        $kriterium->update([
-            'normalisasi' => $refresh->bobot / $sum,
-        ]);
-        return back();
-    }
+    // public function refresh(Kriteria $kriterium)
+    // {
+    //     // $sum = Kriteria::sum('bobot');
+    //     // $refresh = Kriteria::where('id', $kriterium->id)->first();
+    //     // $kriterium->update([
+    //     //     'normalisasi' => $refresh->bobot / $sum,
+    //     // ]);
+    //     // return back();
+        
+    // }
 
     public function show(Kriteria $kriterium)
     {
+        $sum = Kriteria::sum('bobot');
         $kriteria = Kriteria::where('id', $kriterium->id)->first();
-        return view('admin.kriteria.detail', compact(['kriteria', 'kriterium']));
+        return view('admin.kriteria.detail', compact(['kriteria', 'kriterium', 'sum']));
     }
 
     public function edit(Kriteria $kriterium)
@@ -68,7 +79,7 @@ class KriteriaController extends Controller
 
     public function update(Request $request, Kriteria $kriterium)
     {
-        $sum = Kriteria::sum('bobot');
+        // $sum = Kriteria::sum('bobot');
         $this->validate($request, [
             'kode' => 'required',
             'kriteria' => 'required',
@@ -79,7 +90,7 @@ class KriteriaController extends Controller
             'kode' => $request->kode,
             'kriteria' => $request->kriteria,
             'bobot' => $request->bobot,
-            'normalisasi' => $request->bobot / $sum,
+            // 'normalisasi' => $request->bobot / $sum,
         ]);
 
         toast('Berhasil Update Kriteria', 'success');

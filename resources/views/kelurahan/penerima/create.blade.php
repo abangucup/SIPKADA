@@ -51,8 +51,9 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="font-weight-bold">Kelurahan</label>
-                            <input class="form-control" type="text" placeholder="{{ $kelurahan->nama}}"
-                                name="kelurahan_id" value="{{$kelurahan->id}}" readonly>
+                                <select class="form-control" name="kelurahan">
+                                    <option value="{{$kelurahan->id}}">{{$kelurahan->nama}}</option>
+                                </select>
                         </div>
                     </div>
                     <div class="col-md-12">

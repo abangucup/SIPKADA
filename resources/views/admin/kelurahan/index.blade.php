@@ -37,7 +37,7 @@
                                     <th>No</th>
                                     <th>Kelurahan</th>
                                     <th>Admin Kelurahan</th>
-                                    <th>Lokasi</th>
+                                    <th>kecamatan</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>

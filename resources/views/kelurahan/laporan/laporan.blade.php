@@ -37,6 +37,7 @@
                                     <th>Alamat</th>
                                     <th>Nilai</th>
                                     <th>Rangking</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -52,8 +53,19 @@
                                     <td>{{$penerima->nama}}</td>
                                     <td>{{$penerima->jk}}</td>
                                     <td>{{$penerima->alamat}}</td>
-                                    <td>{{$penerima->rangking}}</td>
+                                    <td>{{$penerima->rangking ?? 'Nilai Kosong'}}</td>
+                                    @if ($penerima->rangking !== null)
                                     <td class="text-center">Rangking {{$i++}}</td>
+                                    @else
+                                    <td class="text-ceter">Tidak Ada Rangking</td>
+                                    @endif
+
+                                    
+                                    @if ($penerima->rangking < 60)
+                                    <td class="text-center text-danger">Bukan Penerima</td>
+                                    @else
+                                    <td class="text-center text-info">Penerima Bantuan</td>
+                                    @endif
                                 </tr>
                                 @endforeach
                             </tbody>

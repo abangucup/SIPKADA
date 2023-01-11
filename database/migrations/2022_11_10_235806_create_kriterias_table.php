@@ -18,7 +18,7 @@ return new class extends Migration
             $table->char('kode', 2)->unique();
             $table->string('kriteria');
             $table->integer('bobot');
-            $table->float('normalisasi');
+            // $table->float('normalisasi');
             $table->timestamps();
         });
     }

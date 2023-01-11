@@ -8,7 +8,6 @@ use App\Models\Penerima;
 use App\Models\Subkriteria;
 // use Barryvdh\DomPDF\PDF;
 use PDF;
-use Illuminate\Http\Request;
 
 class LaporanController extends Controller
 {
@@ -40,16 +39,12 @@ class LaporanController extends Controller
         $kelurahans = Kelurahan::all();
         $penerimas = Penerima::all();
         $kriterias = Kriteria::all();
-        $subkriterias = Subkriteria::all();
+        $min = Subkriteria::min('subbobot');
+        $max = Subkriteria::max('subbobot');
+        $sum = Kriteria::sum('bobot');
         $rankings = Penerima::all()->sortByDesc('rangking');
 
-        // NILAI MAX DAN MIN
-        foreach ($subkriterias as $sub) {
-            $min = $sub->min('subbobot');
-            $max = $sub->max('subbobot');
-        }
-
-        $pdf = PDF::loadview('admin.survey.pdf-rank', compact('penerimas', 'kelurahans', 'kriterias', 'min', 'max', 'rankings'));
-        return $pdf->download('detail-perhitungan-data-penerima.pdf');
+        $pdf = PDF::loadview('admin.survey.pdf-rank', compact('penerimas', 'kelurahans', 'kriterias', 'min', 'max', 'rankings', 'sum'));
+        return $pdf->download('detail-perhitungan-data-penerima');
     }
 }

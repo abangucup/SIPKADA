@@ -58,7 +58,7 @@
                         </div>
                         <div class="mt-2">
                             <label>Normalisasi</label>
-                            <input class="form-control" type="text" value="{{$kriterium->normalisasi}}" readonly>
+                            <input class="form-control" type="text" value="{{round($kriterium->bobot/$sum, 4)}}" readonly>
                         </div>
                     </div>
                 </div>

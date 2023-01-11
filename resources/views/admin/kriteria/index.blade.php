@@ -8,7 +8,7 @@
         <div class="card">
             <div class="row">
 
-                <div class="card-body col-md-6 col-sm-12">
+                <div class="card-body col-md-6">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0">
                             <h5 class="breadcrumb-item pl-4"><a href="{{ route('dashboard')}}"
@@ -17,10 +17,21 @@
                         </ol>
                     </nav>
                 </div>
-                <div class="card-body col-md-6 col-sm-12">
-                    <a href="{{ route('kriteria.create')}}" class="btn btn-primary float-right veiwbutton"><i
-                            class="fas fa-plus pr-2"></i> Tambah Kriteria</a>
+                <div class="card-body col-md-6">
+                    <a href="{{ route('kriteria.create')}}" class="ml-4 btn btn-primary veiwbutton float-right"><i
+                        class="fas fa-plus pr-2"></i> Tambah Kriteria</a>
+                        {{-- <form action="kritria.refresh" method="post">
+                            @csrf
+                            @method('POST')
+
+                        </form> --}}
+                    {{-- <a href="{{ route('kriteria.refresh')}}" class="float-right"><i class="fas fa-sync mr-2"></i>
+                        Refresh</a> --}}
+
                 </div>
+                {{-- <div class="card-body col-md-3">
+                    
+                </div> --}}
 
             </div>
         </div>
@@ -50,13 +61,18 @@
                                     <td>{{ $kriteria->kode}}</td>
                                     <td>{{ $kriteria->kriteria}}</td>
                                     <td>{{ $kriteria->bobot}}</td>
-                                    <td>{{ round($kriteria->normalisasi, 4)}}</td>
+                                    <td>{{ round($kriteria->bobot/$sum,4)}}</td>
                                     <td>
-                                        @foreach ($kriteria->subkriteria as $subkriteria)
-                                            <ul>
-                                                <li>{{$subkriteria->sub}}</li>
-                                            </ul>
-                                        @endforeach
+                                        @forelse ($kriteria->subkriteria as $subkriteria)
+                                        <ul>
+                                            <li>{{$subkriteria->sub}}</li>
+                                        </ul>
+                                        @empty
+                                        <a
+                                        href="{{ route('kriteria.show', $kriteria->id)}}"><i
+                                            class="fas fa-plus mr-2"></i>
+                                        Tambah Subkiriteria</a>
+                                        @endforelse 
                                     </td>
                                     <td class="text-center">
                                         <div class="dropdown dropdown-action">
@@ -68,10 +84,6 @@
                                                     href="{{ route('kriteria.show', $kriteria->id)}}"><i
                                                         class="fas fa-eye mr-2"></i>
                                                     Detail</a>
-                                                <a class="dropdown-item"
-                                                    href="{{ route('kriteria.refresh', $kriteria->id)}}"><i
-                                                        class="fas fa-sync mr-2"></i>
-                                                    Refresh</a>
                                                 <a class="dropdown-item"
                                                     href="{{ route('kriteria.edit', $kriteria->id)}}"><i
                                                         class="fas fa-pencil-alt mr-2"></i>
@@ -93,7 +105,7 @@
                                 <tr class="thead-light">
                                     <th colspan="3" class="text-center">Total Bobot</th>
                                     <th colspan="0">{{$sum}}</th>
-                                    <th colspan="3">{{round($kriterias->sum('normalisasi'), 1)}}</th>
+                                    <th colspan="3">{{round($sumnormal,1)}}</th>
                                 </tr>
                             </tfoot>
                         </table>

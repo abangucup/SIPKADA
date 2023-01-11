@@ -16,11 +16,11 @@ class KriteriaSeeder extends Seeder
     public function run()
     {
         $kriterias = [
-            ['kode' => "K1", 'kriteria' => "Status lahan tempat tinggal", 'bobot' => 30, 'normalisasi' => 30/100],
-            ['kode' => "K2", 'kriteria' => "Jenis lantai", 'bobot' => 20, 'normalisasi' => 20/100],
-            ['kode' => "K3", 'kriteria' => "Jenis dinding", 'bobot' => 20, 'normalisasi' => 20/100],
-            ['kode' => "K4", 'kriteria' => "Jenis atap", 'bobot' => 20, 'normalisasi' => 20/100],
-            ['kode' => "K5", 'kriteria' => "Jenis air", 'bobot' => 10, 'normalisasi' => 10/100],
+            ['kode' => "K1", 'kriteria' => "Status lahan tempat tinggal", 'bobot' => 30],
+            ['kode' => "K2", 'kriteria' => "Jenis lantai", 'bobot' => 20],
+            ['kode' => "K3", 'kriteria' => "Jenis dinding", 'bobot' => 20],
+            ['kode' => "K4", 'kriteria' => "Jenis atap", 'bobot' => 20],
+            ['kode' => "K5", 'kriteria' => "Jenis air", 'bobot' => 10],
         ];
 
         foreach ($kriterias as $kriteria) {

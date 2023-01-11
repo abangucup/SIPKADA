@@ -43,7 +43,7 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$kriteria->kode}}</td>
                                         <td>{{$kriteria->bobot}}</td>
-                                        <td>{{$kriteria->normalisasi}}</td>
+                                        <td>{{round($kriteria->bobot/$sum, 4)}}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -128,7 +128,7 @@
                                     @php $i = 1; @endphp
                                     @foreach ($penerimas as $key => $penerima)
                                     @if (!$penerima->survey->isEmpty())
-    
+
                                     <tr class="text-center">
                                         <td>{{$i++}}</td>
                                         <td>{{$penerima->nama}}</td>
@@ -158,6 +158,7 @@
                                         <th>Alternatif</th>
                                         <th>Nilai Akhir</th>
                                         <th>Rangking</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -171,6 +172,11 @@
                                         <td>{{$penerima->nama}}</td>
                                         <td>{{$penerima->rangking}}</td>
                                         <td>Rangking {{$i++}}</td>
+                                        @if ($penerima->rangking<60)
+                                        <td class="text-danger">Tidak Berhak Menerima</td>
+                                        @else
+                                        <td class="text-info">Penerima Bantuan</td>
+                                        @endif
                                     </tr>
                                     @endif
                                     @endforeach
