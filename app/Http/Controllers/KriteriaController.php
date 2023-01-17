@@ -18,7 +18,7 @@ class KriteriaController extends Controller
             $normalisasi[] = $kriteria->bobot/$sum;
         }
         $collection = new Collection(
-            $normalisasi
+            $normalisasi ?? null
         );
         $sumnormal = $collection->sum();
         // dd($sumnormal);

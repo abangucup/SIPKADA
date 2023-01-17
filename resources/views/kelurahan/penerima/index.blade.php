@@ -17,11 +17,11 @@
                         </ol>
                     </nav>
                 </div>
-                @if ($count <= 15)
+                {{-- @if ($count <= 15) --}}
                 <div class="card-body col-md-6 col-sm-12">
                     <a href="{{ route('penerima.create')}}" class="btn btn-primary float-right veiwbutton"><i class="fas fa-plus pr-2"></i> Tambah Penerima</a>
                 </div>
-                @endif
+                {{-- @endif --}}
 
             </div>
         </div>
