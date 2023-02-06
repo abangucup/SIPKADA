@@ -15,12 +15,12 @@ class KategoriController extends Controller
         return view('admin.kategori.index', compact('kategoris', 'kriterias'));
     }
 
-    public function create()
-    {
-        $kriterias=Kriteria::all();
-        $count = count(Kategori::all());
-        return view('admin.kategori.create', compact(['count'], 'kriterias'));
-    }
+    // public function create()
+    // {
+    //     $kriterias=Kriteria::all();
+    //     $count = count(Kategori::all());
+    //     return view('admin.kategori.create', compact(['count'], 'kriterias'));
+    // }
     public function store(Request $request)
     {
         // dd($request->all());

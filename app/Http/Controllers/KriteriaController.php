@@ -13,6 +13,7 @@ class KriteriaController extends Controller
 {
     public function index()
     {
+        $count = count(Kriteria::all());
         $sum = Kriteria::sum('bobot');
         $kriterias = Kriteria::all();
         foreach ($kriterias as $kriteria) {
@@ -25,7 +26,7 @@ class KriteriaController extends Controller
         $kategoris = Kategori::with('kriteria')->get();
         // dd($sumnormal);
 
-        return view('admin.kriteria.index', compact(['kriterias', 'sum', 'sumnormal', 'kategoris']));
+        return view('admin.kriteria.index', compact(['kriterias', 'sum', 'sumnormal', 'kategoris', 'count']));
     }
 
     public function create()

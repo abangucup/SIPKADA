@@ -17,9 +17,9 @@
                         </ol>
                     </nav>
                 </div>
-                <div class="card-body col-md-6">
+                {{-- <div class="card-body col-md-6">
                     <a href="{{ route('kriteria.create')}}" class="ml-4 btn btn-primary veiwbutton float-right"><i
-                            class="fas fa-plus pr-2"></i> Tambah Kriteria</a>
+                            class="fas fa-plus pr-2"></i> Tambah Kriteria</a> --}}
                     {{-- <form action="kritria.refresh" method="post">
                         @csrf
                         @method('POST')
@@ -28,10 +28,17 @@
                     {{-- <a href="{{ route('kriteria.refresh')}}" class="float-right"><i class="fas fa-sync mr-2"></i>
                         Refresh</a> --}}
 
-                </div>
+                {{-- </div> --}}
                 {{-- <div class="card-body col-md-3">
 
                 </div> --}}
+                <div class="card-body col-md-6">
+                    <a href="#" class="ml-4 btn btn-primary veiwbutton float-right" data-toggle="modal"
+                        data-target="#createkriteria">
+                        <i class="fas fa-plus pr-2"></i> Tambah Kriteria</a>
+                </div>
+
+                @include('admin.kriteria.modal_create')
 
             </div>
         </div>
@@ -106,51 +113,6 @@
                                         @endif
                                         @endforeach
                                 @endforeach
-
-                                    {{-- @foreach ($kriterias as $kriteria)
-                                <tr>
-                                    <td>{{ $loop->iteration}}</td>
-                                    <td>{{ $kriteria->kode}}</td>
-                                    <td>{{ $kriteria->kriteria}}</td>
-                                    <td>{{ $kriteria->bobot}}</td>
-                                    <td>{{ round($kriteria->bobot/$sum,4)}}</td>
-                                    <td>
-                                        @forelse ($kriteria->subkriteria as $subkriteria)
-                                        <ul>
-                                            <li>{{$subkriteria->sub}}</li>
-                                        </ul>
-                                        @empty
-                                        <a href="{{ route('kriteria.show', $kriteria->id)}}"><i
-                                                class="fas fa-plus mr-2"></i>
-                                            Tambah Subkiriteria</a>
-                                        @endforelse
-                                    </td>
-                                    <td class="text-center">
-                                        <div class="dropdown dropdown-action">
-                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
-                                                aria-expanded="false"><i
-                                                    class="fas fa-ellipsis-v ellipse_color"></i></a>
-                                            <div class="dropdown-menu dropdown-menu-left">
-                                                <a class="dropdown-item"
-                                                    href="{{ route('kriteria.show', $kriteria->id)}}"><i
-                                                        class="fas fa-eye mr-2"></i>
-                                                    Detail</a>
-                                                <a class="dropdown-item"
-                                                    href="{{ route('kriteria.edit', $kriteria->id)}}"><i
-                                                        class="fas fa-pencil-alt mr-2"></i>
-                                                    Edit</a>
-                                                <form action="{{ route('kriteria.destroy', $kriteria->id) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="dropdown-item"><i
-                                                            class="fas fa-trash mr-2"></i> Hapus</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @endforeach --}}
                             </tbody>
                             <tfoot>
                                 <tr class="thead-light">
