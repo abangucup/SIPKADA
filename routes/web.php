@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\LaporanController;
@@ -29,6 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['middleware' => ['role:admin']], function () {
             Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
             Route::resource('/kriteria', KriteriaController::class);
+            Route::resource('/kategori', KategoriController::class);
             Route::resource('/sub', SubKriteriaController::class);
             Route::resource('/survey', SurveyController::class);
             Route::get('rank', [SurveyController::class, 'rank'])->name('rank');

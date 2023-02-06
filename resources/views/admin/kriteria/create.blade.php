@@ -30,25 +30,38 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="font-weight-bold">Kode <span class="text-danger">*
-                            </span></label>
-                            <input class="form-control" type="text" placeholder="Kritieria" name="kode" 
-                            value="{{"K".$count+1}}" readonly>
+                                </span></label>
+                            <input class="form-control" type="text" placeholder="Kritieria" name="kode" value="{{"
+                                K".$count+1}}" readonly>
                         </div>
                         <div class="form-group">
                             <label class="font-weight-bold">Kriteria <span class="text-danger">*
                                 </span></label>
-                            <input class="form-control" type="text" placeholder="Contoh : Kewarganegaraan" name="kriteria" required>
+                            <input class="form-control" type="text" placeholder="Contoh : Kewarganegaraan"
+                                name="kriteria" required>
                         </div>
                         <div class="form-group">
                             <label class="font-weight-bold">Bobot Kriteria <span class="text-danger">*
                                 </span></label>
                             <input class="number form-control" type="number" placeholder="0-100" name="bobot" required>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-2 font-weight-bold">Kriteria</label>
+                            <div class="col-md-4">
+                                <div class="checkbox p-2">
+                                    @foreach ($kriterias as $kriteria)
+                                    <label class="pl-4">
+                                        <input type="checkbox" name="kriteria[]" value="{{$kriteria->id}}">{{$kriteria->kriteria}}
+                                    </label>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
                         <button type="submit" class="btn btn-primary justify-content-center">Tambah Kriteria</button>
                     </div>
                 </div>
-                
-                
+
+
             </form>
         </div>
     </div>

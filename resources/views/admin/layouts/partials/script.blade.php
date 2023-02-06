@@ -22,6 +22,23 @@
 
 <script src="{{ asset('assets/js/script.js')}}"></script>
 
+{{-- Tambahan --}}
+<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+    
+    var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+       removeItemButton: true,
+    //    maxItemCount:5,
+    //    searchResultLimit:5,
+    //    renderChoiceLimit:5
+     }); 
+    
+    
+});
+</script>
+
 {{-- <script>
     $(document).ready(function () {
         // var kelurahan_id = $("#kelurahan").val()
@@ -67,5 +84,3 @@
         })
     });
 </script> --}}
-
-

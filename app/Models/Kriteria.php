@@ -14,7 +14,6 @@ class Kriteria extends Model
         'kode',
         'kriteria',
         'bobot',
-        // 'normalisasi'
     
     ];
 
@@ -31,5 +30,10 @@ class Kriteria extends Model
     public function penerima()
     {
         return $this->belongsToThrough(Penerima::class, Survey::class, Subkriteria::class);
+    }
+
+    public function kategori()
+    {
+        return $this->belongsToMany(Kategori::class, 'kategori_kriteria');
     }
 }

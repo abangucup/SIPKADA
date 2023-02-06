@@ -28,8 +28,9 @@ class KriteriaController extends Controller
 
     public function create()
     {
+        $kriterias = Kriteria::all();
         $count = count(Kriteria::all());
-        return view('admin.kriteria.create', compact(['count']));
+        return view('admin.kriteria.create', compact(['count'], 'kriterias'));
     }
 
     public function store(Request $request)
