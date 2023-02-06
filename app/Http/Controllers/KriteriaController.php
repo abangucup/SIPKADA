@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use App\Models\Kriteria;
 use App\Models\Subkriteria;
 use App\Models\Survey;
@@ -21,9 +22,10 @@ class KriteriaController extends Controller
             $normalisasi ?? null
         );
         $sumnormal = $collection->sum();
+        $kategoris = Kategori::with('kriteria')->get();
         // dd($sumnormal);
 
-        return view('admin.kriteria.index', compact(['kriterias', 'sum', 'sumnormal']));
+        return view('admin.kriteria.index', compact(['kriterias', 'sum', 'sumnormal', 'kategoris']));
     }
 
     public function create()

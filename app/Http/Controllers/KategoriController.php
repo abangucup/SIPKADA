@@ -34,7 +34,15 @@ class KategoriController extends Controller
         ]);
 
         $kategori->kriteria()->attach($request->kriteria_id);
+        toast('Berhasil Menambahkan Kategori', 'success');
+        return redirect()->route('kategori.index');
+    }
 
+    public function destroy($id)
+    {
+        $kategori = Kategori::findOrFail($id);
+        $kategori->delete();
+        toast('Kategori Berhasil Dihapus', 'success');
         return redirect()->route('kategori.index');
     }
 }

@@ -18,8 +18,9 @@
                     </nav>
                 </div>
                 <div class="card-body col-md-6">
-                    <button type="button" class="ml-4 btn btn-primary veiwbutton float-right" data-toggle="modal" data-target="#exampleModal">
-                       Tambah Kategori
+                    <button type="button" class="ml-4 btn btn-primary veiwbutton float-right" data-toggle="modal"
+                        data-target="#exampleModal">
+                        Tambah Kategori
                     </button>
 
                     @include('admin.kategori.create')
@@ -69,16 +70,13 @@
                                                     href="{{ route('kriteria.show', $kriteria->id)}}"><i
                                                         class="fas fa-eye mr-2"></i>
                                                     Detail</a>
-                                                <a class="dropdown-item"
-                                                    href="{{ route('kriteria.edit', $kriteria->id)}}"><i
-                                                        class="fas fa-pencil-alt mr-2"></i>
-                                                    Edit</a>
-                                                <form action="{{ route('kriteria.destroy', $kriteria->id) }}"
+                                                <form action="{{route('kategori.destroy', $kategori->id)}}"
                                                     method="POST">
-                                                    @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="dropdown-item"><i
-                                                            class="fas fa-trash mr-2"></i> Hapus</button>
+                                                    @csrf
+                                                    <button type="submit" onclick="return confirm('Are you sure?')"
+                                                        class="dropdown-item"><i class="fas fa-trash mr-2"></i>
+                                                        Hapus</button>
                                                 </form>
                                             </div>
                                         </div>

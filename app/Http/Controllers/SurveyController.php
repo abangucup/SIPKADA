@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use App\Models\Kelurahan;
 use App\Models\Kriteria;
 use App\Models\Penerima;
