@@ -10,6 +10,7 @@ use App\Http\Controllers\PenerimaController;
 use App\Http\Controllers\SubKriteriaController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\UserController;
+use App\Models\Survey;
 use Illuminate\Support\Facades\Route;
 
 
@@ -39,6 +40,9 @@ Route::group(['middleware' => 'auth'], function () {
             Route::resource('/user', UserController::class);
             Route::resource('/kelurahan', KelurahanController::class);
             Route::post('/survey/filter', [SurveyController::class, 'filter'])->name('filter');
+
+            // Route::get('/verifikasi/{penerima_id}', [SurveyController::class, 'verifikasi'])->name('verifikasi');
+            // Route::post('/verifikasi', [SurveyController::class, 'storeVerifikasi'])->name('storeVerifikasi');
         });
     });
 

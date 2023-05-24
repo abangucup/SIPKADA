@@ -85,53 +85,66 @@ class SurveyController extends Controller
 
     public function store(Request $request)
     {
-        $subkriterias = Subkriteria::all();
+        $penerima = Penerima::findOrFail($request->penerima_id);
 
-        // NILAI MAX DAN MIN
-        foreach ($subkriterias as $sub) {
-            $min = $sub->min('subbobot');
-            $max = $sub->max('subbobot');
-        }
+        if ($request->sudah_pernah_menerima == 'belum') {
 
-        $sum = Kriteria::sum('bobot');
+            $subkriterias = Subkriteria::all();
 
-        $kriterias = Kriteria::all();
-        foreach ($kriterias as $kriteria) {
-            $k[] = $kriteria->bobot/$sum;
-        }
-
-        $count = $request->subkriteria_id;
-
-        if ($count != null) {
-            $count = count($request->subkriteria_id);
-            for ($i = 0; $i < $count; $i++) {
-                $data[] = $sub->where('id', $request->subkriteria_id[$i])->first();
-                $survey[] = [
-                    'penerima_id' => $request->penerima_id,
-                    'subkriteria_id' => $request->subkriteria_id[$i],
-                    'nilai' => $data[$i]->subbobot,
-                    'utility' => ($data[$i]->subbobot - $min) / ($max - $min) * 100,
-                    'hitung' => (($data[$i]->subbobot - $min) / ($max - $min) * 100) * $k[$i],
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ];
+            // NILAI MAX DAN MIN
+            foreach ($subkriterias as $sub) {
+                $min = $sub->min('subbobot');
+                $max = $sub->max('subbobot');
             }
 
-            Survey::insert($survey);
+            $sum = Kriteria::sum('bobot');
 
-            $sum = Survey::where('penerima_id', $request->penerima_id)->get();
+            $kriterias = Kriteria::all();
+            foreach ($kriterias as $kriteria) {
+                $k[] = $kriteria->bobot / $sum;
+            }
 
-            $penerimas = Penerima::where('id', $request->penerima_id)->first();
+            $count = $request->subkriteria_id;
 
-            $penerimas->update([
-                'rangking' => $sum->sum('hitung'),
-            ]);
+            if ($count != null) {
+                $count = count($request->subkriteria_id);
+                for ($i = 0; $i < $count; $i++) {
+                    $data[] = $sub->where('id', $request->subkriteria_id[$i])->first();
+                    $survey[] = [
+                        'penerima_id' => $request->penerima_id,
+                        'subkriteria_id' => $request->subkriteria_id[$i],
+                        'nilai' => $data[$i]->subbobot,
+                        'utility' => ($data[$i]->subbobot - $min) / ($max - $min) * 100,
+                        'hitung' => (($data[$i]->subbobot - $min) / ($max - $min) * 100) * $k[$i],
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                }
 
-            toast('Survey Selesai', 'success');
-        } else {
+                Survey::insert($survey);
 
-            alert()->info('Required Kriteria', 'Harap Inputkan Kriteria dan SubKriteria Dahulu');
+                $sum = Survey::where('penerima_id', $request->penerima_id)->get();
+
+                $penerimas = Penerima::where('id', $request->penerima_id)->first();
+
+                $penerimas->update([
+                    'status_pernah_menerima' => $request->sudah_pernah_menerima,
+                    'rangking' => $sum->sum('hitung'),
+                ]);
+
+                toast('Survey Selesai', 'success');
+            } else {
+
+                alert()->info('Required Kriteria', 'Harap Inputkan Kriteria dan SubKriteria Dahulu');
+            }
         }
+
+        $penerima->update([
+            'status_pernah_menerima' => $request->sudah_pernah_menerima,
+            'rangking' => 0,
+        ]);
+
+
 
         return redirect()->route('survey.index');
     }

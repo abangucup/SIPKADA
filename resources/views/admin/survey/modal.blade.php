@@ -25,7 +25,9 @@
                                 <li class="list-group-item">
                                     <div class="d-flex flex-row float-left col-sm-7">
                                         <div class="p-2"><i class="fas fa-eye mr-3" data-toggle="tooltip"
-                                                data-placement="left" title="Bobot : {{$kriteria->bobot}}, Normalisasi : {{$kriteria->normalisasi}}"></i></div>
+                                                data-placement="left"
+                                                title="Bobot : {{$kriteria->bobot}}, Normalisasi : {{$kriteria->normalisasi}}"></i>
+                                        </div>
                                         <div class="p-2">{{$kriteria->kriteria}}</div>
                                     </div>
 
@@ -43,6 +45,16 @@
                                     </div>
                                 </li>
                                 @endforeach
+                                <li>
+                                    <div class="form-group">
+                                        <label class="font-weight-bold mt-4">Sudah Pernah Menerima 10 Tahun
+                                            Terakhir?</label>
+                                        <select name="sudah_pernah_menerima" class="form-control">
+                                            <option value="sudah">Sudah Pernah</option>
+                                            <option value="belum">Belum Pernah</option>
+                                        </select>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </div>
