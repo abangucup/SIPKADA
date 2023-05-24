@@ -85,66 +85,61 @@ class SurveyController extends Controller
 
     public function store(Request $request)
     {
-        $penerima = Penerima::findOrFail($request->penerima_id);
+        $subkriterias = Subkriteria::all();
 
-        if ($request->sudah_pernah_menerima == 'belum') {
-
-            $subkriterias = Subkriteria::all();
-
-            // NILAI MAX DAN MIN
-            foreach ($subkriterias as $sub) {
-                $min = $sub->min('subbobot');
-                $max = $sub->max('subbobot');
-            }
-
-            $sum = Kriteria::sum('bobot');
-
-            $kriterias = Kriteria::all();
-            foreach ($kriterias as $kriteria) {
-                $k[] = $kriteria->bobot / $sum;
-            }
-
-            $count = $request->subkriteria_id;
-
-            if ($count != null) {
-                $count = count($request->subkriteria_id);
-                for ($i = 0; $i < $count; $i++) {
-                    $data[] = $sub->where('id', $request->subkriteria_id[$i])->first();
-                    $survey[] = [
-                        'penerima_id' => $request->penerima_id,
-                        'subkriteria_id' => $request->subkriteria_id[$i],
-                        'nilai' => $data[$i]->subbobot,
-                        'utility' => ($data[$i]->subbobot - $min) / ($max - $min) * 100,
-                        'hitung' => (($data[$i]->subbobot - $min) / ($max - $min) * 100) * $k[$i],
-                        'created_at' => now(),
-                        'updated_at' => now(),
-                    ];
-                }
-
-                Survey::insert($survey);
-
-                $sum = Survey::where('penerima_id', $request->penerima_id)->get();
-
-                $penerimas = Penerima::where('id', $request->penerima_id)->first();
-
-                $penerimas->update([
-                    'status_pernah_menerima' => $request->sudah_pernah_menerima,
-                    'rangking' => $sum->sum('hitung'),
-                ]);
-
-                toast('Survey Selesai', 'success');
-            } else {
-
-                alert()->info('Required Kriteria', 'Harap Inputkan Kriteria dan SubKriteria Dahulu');
-            }
+        // NILAI MAX DAN MIN
+        foreach ($subkriterias as $sub) {
+            $min = $sub->min('subbobot');
+            $max = $sub->max('subbobot');
         }
 
-        $penerima->update([
-            'status_pernah_menerima' => $request->sudah_pernah_menerima,
-            'rangking' => 0,
-        ]);
+        $sum = Kriteria::sum('bobot');
 
+        $kriterias = Kriteria::all();
+        foreach ($kriterias as $kriteria) {
+            $k[] = $kriteria->bobot / $sum;
+        }
 
+        $count = $request->subkriteria_id;
+
+        if ($count != null) {
+            $count = count($request->subkriteria_id);
+            for ($i = 0; $i < $count; $i++) {
+                $data[] = $sub->where('id', $request->subkriteria_id[$i])->first();
+                $survey[] = [
+                    'penerima_id' => $request->penerima_id,
+                    'subkriteria_id' => $request->subkriteria_id[$i],
+                    'nilai' => $data[$i]->subbobot,
+                    'utility' => ($data[$i]->subbobot - $min) / ($max - $min) * 100,
+                    'hitung' => (($data[$i]->subbobot - $min) / ($max - $min) * 100) * $k[$i],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
+
+            Survey::insert($survey);
+
+            $sum = Survey::where('penerima_id', $request->penerima_id)->get();
+
+            $penerimas = Penerima::where('id', $request->penerima_id)->first();
+
+            // dd($request->status_pernah_menerima == "sudah");
+            $penerimas->update([
+                'rangking' => $sum->sum('hitung'),
+                'status_pernah_menerima' => $request->status_pernah_menerima
+            ]);
+
+            dd($penerimas);
+            // $penerima = Penerima::findOrFail($request->penerima_id);
+            // $penerima->update([
+            //     'status_pernah_menerima' => 'belum',
+            // ]);
+
+            toast('Survey Selesai', 'success');
+        } else {
+
+            alert()->info('Required Kriteria', 'Harap Inputkan Kriteria dan SubKriteria Dahulu');
+        }
 
         return redirect()->route('survey.index');
     }

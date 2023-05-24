@@ -49,7 +49,7 @@
                                     <div class="form-group">
                                         <label class="font-weight-bold mt-4">Sudah Pernah Menerima 10 Tahun
                                             Terakhir?</label>
-                                        <select name="sudah_pernah_menerima" class="form-control">
+                                        <select name="status_pernah_menerima" class="form-control">
                                             <option value="sudah">Sudah Pernah</option>
                                             <option value="belum">Belum Pernah</option>
                                         </select>

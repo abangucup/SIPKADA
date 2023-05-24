@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('alamat');
             $table->foreignId('kelurahan_id')->nullable()->constrained()->onDelete('cascade');
             $table->integer('rangking')->nullable();
-            $table->enum('status_pernah_menerima', ['sudah', 'belum']);
+            $table->enum('status_pernah_menerima', ['sudah', 'belum'])->nullable();
             $table->timestamps();
         });
     }
