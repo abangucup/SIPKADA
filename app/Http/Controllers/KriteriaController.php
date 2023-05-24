@@ -17,7 +17,7 @@ class KriteriaController extends Controller
         $sum = Kriteria::sum('bobot');
         $kriterias = Kriteria::all();
         foreach ($kriterias as $kriteria) {
-            $normalisasi[] = $kriteria->bobot/$sum;
+            $normalisasi[] = $kriteria->bobot / $sum;
         }
         $collection = new Collection(
             $normalisasi ?? null
@@ -40,7 +40,7 @@ class KriteriaController extends Controller
     {
         $sum = Kriteria::sum('bobot');
 
-        $this->validate($request,[
+        $this->validate($request, [
             'kode' => 'required',
             'kriteria' => 'required',
             'bobot' => 'required',
@@ -55,7 +55,6 @@ class KriteriaController extends Controller
 
         toast('Berhasil Menambahkan Kriteria', 'success');
         return to_route('kriteria.index');
-
     }
 
     // public function refresh(Kriteria $kriterium)
@@ -66,7 +65,7 @@ class KriteriaController extends Controller
     //     //     'normalisasi' => $refresh->bobot / $sum,
     //     // ]);
     //     // return back();
-        
+
     // }
 
     public function show(Kriteria $kriterium)
@@ -100,9 +99,10 @@ class KriteriaController extends Controller
         toast('Berhasil Update Kriteria', 'success');
         return to_route('kriteria.index');
     }
-    
+
     public function destroy(Kriteria $kriterium)
     {
+        $kriterium->kategori()->detach();
         $kriterium->delete();
         toast('Kriteria Berhasil Dihapus', 'success');
         return back();

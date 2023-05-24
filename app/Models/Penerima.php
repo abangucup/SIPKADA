@@ -16,7 +16,8 @@ class Penerima extends Model
         'jk',
         'alamat',
         'kelurahan_id',
-        'rangking'
+        'rangking',
+        'status_pernah_menerima'
     ];
 
     public function kelurahan()

@@ -49,6 +49,9 @@
                                 <tr>
                                     <td>{{ $loop->iteration}}</td>
                                     <td>{{ $kategori->nama_kategori}}</td>
+                                    @if ($kategori->kriteria->isNotEmpty())
+
+
                                     <td>
                                         @forelse ($kategori->kriteria as $kriteria)
                                         <ul>
@@ -81,6 +84,28 @@
                                             </div>
                                         </div>
                                     </td>
+                                    @else
+                                    <td>
+                                        <a href="#" data-toggle="modal" data-target="#createkriteria">Tambah
+                                            Kriteria</a>
+
+                                        @include('admin.kriteria.modal_create')
+                                    </td>
+                                    <td class="d-flex justify-content-center">
+                                        <a class="btn btn-warning mx-2" href="#" data-toggle="modal"
+                                            data-target="#exampleModal-{{ $kategori->id }}"><i
+                                                class="fas fa-eye mr-2"></i>
+                                            Edit</a>
+                                        @include('admin.kategori.edit')
+                                        <form action="{{route('kategori.destroy', $kategori->id)}}" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" onclick="return confirm('Are you sure?')"
+                                                class="btn btn-danger"><i class="fas fa-trash mr-2"></i>
+                                                Hapus</button>
+                                        </form>
+                                    </td>
+                                    @endif
                                 </tr>
                                 @endforeach
                             </tbody>

@@ -123,18 +123,17 @@ class SurveyController extends Controller
 
             $penerimas = Penerima::where('id', $request->penerima_id)->first();
 
-            // dd($request->status_pernah_menerima == "sudah");
-            $penerimas->update([
-                'rangking' => $sum->sum('hitung'),
-                'status_pernah_menerima' => $request->status_pernah_menerima
-            ]);
-
-            dd($penerimas);
-            // $penerima = Penerima::findOrFail($request->penerima_id);
-            // $penerima->update([
-            //     'status_pernah_menerima' => 'belum',
-            // ]);
-
+            if ($request->status_pernah_menerima == 'belum') {
+                $penerimas->update([
+                    'rangking' => $sum->sum('hitung'),
+                    'status_pernah_menerima' => $request->status_pernah_menerima
+                ]);
+            } else {
+                $penerimas->update([
+                    'rangking' => 0,
+                    'status_pernah_menerima' => $request->status_pernah_menerima
+                ]);
+            }
             toast('Survey Selesai', 'success');
         } else {
 
